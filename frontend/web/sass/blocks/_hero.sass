@@ -1,0 +1,64 @@
+.hero
+  height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+  &-block
+    display: flex
+    flex-direction: column
+    h1
+      font-family: 'comic', sans-serif
+      font-size: 48px
+      line-height: 66px
+      color: #FFF
+      text-transform: uppercase
+      width: 680px
+      margin-bottom: 55px
+    a
+      padding: 14px 97px 14px 97px
+      border-radius: 31px
+      border: 1px solid #fff
+      font-family: 'Montserrat', sans-serif
+      font-weight: 700
+      color: #fff
+      display: inline-block
+    &__title
+      width: 100% !important
+    &__btn a
+      transition: 0.3s
+
+@media (max-width: 850px)
+  .hero
+    &-block
+      h1
+        width: 100%
+@media (max-width: 500px)
+  .hero
+    align-items: flex-end
+    justify-content: center
+    &-block
+      h1
+        text-align: center
+        font-size: 48px
+        line-height: 66px
+      &__btn a
+        padding: 5px 40px 5px 40px
+      &__btn
+        display: flex
+        justify-content: center
+  .center
+    align-items: center
+  .center .hero-block
+    h1
+      font-size: 24px
+      line-height: 33px
+    span
+      font-size: 36px
+      line-height: 50px
+
+@media (max-width: 370px)
+  .hero
+    &-block
+      h1
+        font-size: 40px
+        line-height: 58px

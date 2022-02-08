@@ -1,0 +1,231 @@
+* 
+  box-sizing: border-box
+  outline: 0 !important
+  margin: 0
+  padding: 0
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  -webkit-text-size-adjust: 100%
+  outline-offset: 0 !important
+  opacity: 1
+  
+.wrap
+  width: 1200px
+  margin: 0 auto
+.color-text
+  color: #FC6805
+  font-family: 'comic', sans-serif
+  font-weight: 900
+.title
+  font-family: "comic", sans-serif
+  font-weight: 900
+  font-size: 36px
+  line-height: 50px
+  font-style: normal
+  color: #0B5C0B
+  text-transform: uppercase
+  margin-bottom: 20px
+  display: block
+.big
+  height: 92px !important
+  bottom: -30px !important
+.bigT
+  font-size: 24px !important
+  line-height: 33px !important
+.benefit
+  position: absolute
+  right: 0
+  z-index: -10
+.text
+  font-family: 'Montserrat', sans-serif
+  font-weight: 500
+  font-style: normal
+  font-size: 16px
+  line-height: 23px
+  width: 100%
+  color: #000
+  margin-top: 15px
+.rf
+  margin-top: 36px
+  margin-bottom: 36px
+.mar
+  margin-top: 44px !important
+.m25
+  margin-top: 25px
+  margin-bottom: 25px
+.mask
+  background: rgba(0, 0, 0, 0.3)
+  border-radius: 36px
+  opacity: 0
+  width: 100%
+  height: 100%
+  position: absolute
+  z-index: 10
+  top: 0
+  left: 0
+  transition: 0.6s
+.article
+  width: 1350px
+.about
+  margin-top: 50px !important
+.error
+  color: red
+  font-family: 'Montserrat', sans-serif
+  padding-left: 30px
+  padding-top: 5px
+.small-text
+  font-size: 24px
+  line-height: 30px
+.black
+  background: rgba(0,0 ,0 ,0.2)
+.block
+  margin-bottom: 50px
+  &:last-child
+    margin-bottom: 0
+.active
+  // border: 1px solid #FC6805 !important
+  img
+    display: block
+.left
+  margin-left: 30px
+  margin-right: 0px !important
+.border
+  border-radius: 30px
+.h20
+  width: 100%
+.h20 input
+  height: 30px !important
+  margin-top: 15px !important
+  font-size: 18px !important
+  &:first-child
+    margin-top: 0
+.modal-window
+  width: 100% !important
+  margin-top: 0 !important
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  height: 100%
+.h20 .error
+  font-size: 14px
+.fz18
+  font-size: 18px
+  font-family: 'comic', sans-serif
+  font-weight: 900
+  text-align: center
+  width: 100%
+  margin-bottom: 0
+.orange
+  border: 1px solid #FC6805 !important
+  color: #FC6805 !important
+.small
+  font-size: 18px !important
+.fz16
+  font-size: 16px
+  margin-bottom: 0
+  font-family: 'Montserrat', sans-serif
+  text-transform: uppercase
+  font-weight: 700
+  line-height: 22px
+.mb
+  margin-top: 20px !important
+  display: flex
+  justify-content: center
+.activity
+  display: block !important
+.twitter
+  transform: translateY(5px)
+.show
+  display: block !important
+.burger-menu
+  display: none
+  transform: translateY(3px)
+.image
+  width: 100%
+.invis
+  display: none
+.footvisible
+  display: none !important
+.burgershow
+  transform: translateX(0) !important
+.footvis
+  display: none
+@media (max-width: 1250px)
+  .wrap
+    width: 90%
+@media (max-width: 870px)
+  .burger-menu
+    display: flex
+    align-items: center
+    justify-content: center
+@media (max-width: 720px)
+  .foothide
+    display: none !important
+@media (max-width: 600px)
+  .title
+    font-size: 20px
+    line-height: 24px
+@media (max-width: 500px)
+  .title
+    font-size: 18px
+    line-height: 25px
+  .text
+    font-size: 14px
+  .about
+    margin-top: 20px !important
+  .showd
+    display: none
+  .invis
+    display: block
+  .map >div
+    height: 300px
+  .error
+    font-size: 12px
+    padding-left: 20px
+@media (min-width: 992px)
+  html,
+  body
+    scrollbar-color: #d6d6d6 #F4F5F8
+    scrollbar-width: thin
+    &::-webkit-scrollbar
+      width: 5px
+      height: 8px
+      background-color: #F4F5F8
+    &::-webkit-scrollbar-thumb
+      background-color: #d6d6d6
+      border-radius: 3px
+  .footer-block__btn span:hover
+    background-color: #fff
+    color: black
+    transition: 0.5s
+  .hero-block__btn a:hover
+    background-color: #FC6805
+    border: 1px solid #FC6805
+    transition: 0.3s
+  .questions-block__image:hover .mask
+    opacity: 1
+    transition: 0.6s
+  .projects-block__title:hover img
+    transform: translateX(5px)
+    transition: 0.5s
+  .popular-block__btn a:hover
+    color: #fff
+    transition: 0.5s
+    background-color: #0B5C0B
+  .head-block__nav ul li a:hover
+    color: #BABABA
+    transition: 0.3s
+  .form-block__button:hover
+    background-color: #0B5C0B
+    transition: 0.3s
+    color: #ffffff
+  .disabled:hover
+    color: #0B5C0B
+    background-color: #fff
+  .advice-block__image:hover .mask
+    opacity: 1
+    transition: 0.6s
+  .popular-block__title.disabled:hover
+    color: #000

@@ -1,0 +1,90 @@
+.head-block
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+  text-align: center
+  height: 100px
+  &__nav
+    ul
+      list-style: none
+      display: flex
+      li
+        font-family: 'Montserrat', sans-serif
+        font-weight: 500
+        font-style: normal
+        font-size: 24px
+        line-height: 30px
+        transition: 0.3s
+        margin-right: 80px
+        a
+          text-decoration: none
+          color: #FFFFFF
+          transition: 0.3s
+.background
+  position: relative
+  height: 100vh
+  width: 100%
+.fon
+  position: absolute
+  z-index: -20
+  object-fit: cover
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+header
+  height: 100%
+  width: 100%
+.head
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 500
+  display: flex
+  justify-content: center
+  width: 100%
+  transition: 0.7s
+@media (max-width: 1250px)
+  .head
+    &-block
+      &__nav
+        ul
+          li
+            margin-right: 40px
+@media (max-width: 1100px)
+  .head
+    &-block
+      &__nav
+        ul
+          li
+            font-size: 20px
+            line-height: 26px
+@media (max-width: 1000px)
+  .head
+    &-block
+      &__nav
+        ul
+          li
+            margin-right: 20px
+@media (max-width: 900px)
+  .head
+    &-block
+      &__logo
+        width: 100%
+        img
+          width: 80%
+@media (max-width: 870px)
+  .head
+    &-block
+      display: flex
+      justify-content: center
+      &__nav
+        display: none
+      &__logo
+        width: 100%
+        img
+          width: 100%
+  .burger-menu
+    position: fixed
+    left: 10px

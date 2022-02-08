@@ -1,0 +1,127 @@
+.form
+  margin-top: 10px
+  &-block
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    &__action
+      width: calc( 55% - 70px )
+      margin-top: 50px
+    &__image
+      margin-bottom: 80px
+      &:last-child
+        margin-bottom: 0
+      img
+        box-shadow: 0px 8px 10px rgba(11, 92, 11, 0.25)
+    &__inputs input
+      width: 100%
+      margin-top: 32px
+      padding-left: 30px
+      padding-right: 30px
+      padding-top: 0px
+      height: 60px
+      background-color: rgba(232, 232, 232, 0.68)
+      border-radius: 34px
+      font-family: 'Montserrat', sans-serif
+      font-weight: 400
+      font-size: 24px
+      line-height: 33px
+      color: #2D2D2D
+      outline: none
+      border: 1px solid #858585
+    &__textarea textarea
+      width: 100%
+      margin-top: 32px
+      resize: none
+      height: 300px
+      max-height: 400px
+      background-color: rgba(232, 232, 232, 0.68)
+      border-radius: 34px
+      padding-left: 30px
+      font-family: 'Montserrat', sans-serif
+      font-weight: 400
+      font-size: 24px
+      line-height: 33px
+      padding-top: 12px
+      padding-right: 30px
+      outline: none
+      color: #2D2D2D
+      border: 1px solid #858585
+    &__btn
+      width: 85%
+      display: flex
+      justify-content: center
+      margin-top: 80px
+    &__button
+      width: 245px
+      height: 40px
+      border: 1px solid #0B5C0B
+      border-radius: 22px
+      font-family: 'Montserrat', sans-serif
+      font-weight: 500
+      font-style: normal
+      font-size: 24px
+      line-height: 30px
+      color: #0B5C0B
+      cursor: pointer
+      transition: 0.3s
+    &__input
+      display: flex
+      flex-direction: column
+    &__textarea
+      display: flex
+      flex-direction: column
+    &__inputs
+      width: 100%
+    &__images.showd
+      display: block
+      width: 45%
+    &__image
+      width: 100%
+      img
+        width: 100%
+.disabled
+  color: #0B5C0B
+  background-color: #fff
+.form-block__input input.error
+  border: 1px solid red
+.form-block__textarea textarea.error
+  border: 1px solid red
+
+@media (max-width: 1170px)
+  .form-block
+    &__action
+      width: 50%
+@media (max-width: 850px)
+  .form-block
+    &__action
+      width: 100%
+    &__images.showd
+      display: none
+@media (max-width: 550px)
+  .invis
+    display: block
+    width: 100%
+    margin-bottom: 10px
+    img
+      width: 100%
+      box-shadow: 0px 0px 0px 0px
+  .form-block__action
+    margin-top: 20px
+  .form-block__input input
+    height: 35px
+    font-size: 14px
+    line-height: 20px
+    padding-left: 15px
+    margin-top: 20px
+    width: 100%
+  .form-block__textarea textarea
+    border-radius: 20px
+    font-size: 14px
+    line-height: 20px
+    padding-left: 15px
+    margin-top: 20px
+    width: 100%
+  .form-block__btn
+    width: 100%
+    margin-top: 30px

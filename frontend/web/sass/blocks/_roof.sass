@@ -1,0 +1,49 @@
+.roof
+  padding-top: 80px
+  padding-bottom: 200px
+  &-block
+    &__title
+      font-family: 'comic', sans-serif
+      font-weight: 900
+      font-style: normal
+      font-size: 20px
+      line-height: 28px
+      color: #000
+      display: block
+      margin-top: 10px
+    &__content
+      width: 830px
+      margin-right: 20px
+    &__items
+      display: flex
+      flex-direction: row
+      margin-top: 15px
+    &__images
+      display: flex
+      flex-direction: column
+      img
+        margin-bottom: 40px
+        &:last-child
+          margin-bottom: 0
+    &__image
+      display: none
+@media (max-width: 950px)
+  .roof
+    &-block
+      &__images
+        display: none
+      &__image
+        display: block
+@media (max-width: 500px)
+  .roof
+    padding-top: 40px
+    padding-bottom: 80px
+    &-block
+      &__image
+        width: 100%
+        margin-top: 15px
+        &:first-child
+          margin-top: 0
+        img
+          width: 100%
+          object-fit: cover

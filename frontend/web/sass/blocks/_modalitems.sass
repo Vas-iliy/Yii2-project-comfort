@@ -1,0 +1,80 @@
+.modalitems
+  &-block
+    &__window
+      width: 100%
+      height: max-content
+      background-color: #fff
+      display: flex
+      align-items: center
+      justify-content: space-between
+    &__head
+      display: flex
+      justify-content: space-between
+      align-items: center
+      margin-bottom: 10px
+    &__wrapper
+      width: 100%
+    &__exit
+      cursor: pointer
+.modalitems.active
+  display: block !important
+  border: none !important
+.dropdown
+  width: 100%
+  position: relative
+.dropdown .menuitems
+  border: 1px solid #FC6805
+  box-shadow: 3px 7px 7px rgba(252, 104, 5, 0.15)
+  padding: 0px 10px 0px 10px
+  position: absolute
+  background-color: #fff
+  z-index: 1
+  min-width: 100%
+  top: 40px
+  left: 0
+  width: 90%
+.menuitems.hide
+  max-height: 0 !important
+.dropdown .titleitems
+  font-family: 'Montserrat', sans-serif
+  font-weight: 500
+  font-size: 24px
+  line-height: 33px
+  color: #000
+  display: flex
+  position: relative
+  justify-content: space-between
+  img
+    margin-left: 5px
+    width: 20px
+.dropdown .option
+  margin-bottom: 10px
+  font-family: 'Montserrat', sans-serif
+  font-weight: 500
+  cursor: pointer
+  font-size: 20px
+  &:first-child
+    margin-top: 15px
+.dropdown li
+  font-family: 'Montserrat', sans-serif
+  font-weight: 500
+  font-size: 24px
+  line-height: 33px
+  color: #000
+.rotate-90
+  transform: rotate(90deg)
+@media (max-with: 1050px)
+  .dropdown .option
+    margin-bottom: 20px
+@media (max-width: 700px)
+  .dropdown .option
+    font-size: 14px
+    line-height: 24px
+@media (max-width: 600px)
+  .dropdown .titleitems
+    font-size: 16px
+    line-height: 22px
+@media (max-width: 425px)
+  .dropdown .titleitems
+    font-size: 14px
+    line-height: 20px

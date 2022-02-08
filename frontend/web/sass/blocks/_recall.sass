@@ -1,0 +1,106 @@
+.recall
+  margin-top: 100px
+  &-block
+    margin-top: 25px
+    &__item
+      display: flex
+      flex-direction: column
+      width: 500px
+      a
+        width: max-content
+        display: flex
+        justify-content: flex-end
+    &__title
+      font-family: 'Montserrat', sans-serif
+      font-weight: 500
+      font-size: 24px
+      line-height: 33px
+      color: #000
+      margin-top: 12px
+      margin-left: 20px
+      margin-bottom: 10px
+    &__info p
+      font-family: 'Montserrat', sans-serif
+      font-weight: 400
+      font-size: 18px
+      line-height: 25px
+      color: #000
+      width: 90%
+      margin-left: 20px
+      margin-bottom: 10px
+    &__readmore
+      cursor: pointer
+      width: 100%
+      span
+        padding-right: 15px
+        padding-bottom: 15px
+        font-family: 'Montserrat', sans-serif
+        font-weight: 400
+        font-size: 18px
+        line-height: 25px
+        color: #000
+        text-align: right
+        display: block
+        width: 100%
+.recall-slide
+  width: 515px
+  background-color: #E7E7E7
+  border-radius: 15px
+  &:last-child
+    margin-right: 0
+.swiper-recall
+  width: 100%
+  height: 280px
+  overflow: hidden
+.swiper-wrapper
+  width: 100%
+  display: flex
+  position: relative
+  box-sizing: content-box
+.swiper
+  overflow: hidden
+
+
+@media (max-width: 768px)
+  .recall
+    margin-top: 30px
+@media (max-width: 600px)
+  .recall
+    &-block
+      &__info p 
+        font-size: 14px
+        line-height: 18px
+      &__item
+        width: 320px
+      &__readmore span
+        font-weight: 700
+        font-size: 14px
+        line-height: 18px
+      &__title
+        font-size: 16px
+        line-height: 24px
+  .recall-slide
+    width: 320px
+  .swiper-recall
+    height: auto
+  
+@media (max-width: 370px)
+  .recall
+    &-block
+      &__info p 
+        font-size: 14px
+        line-height: 18px
+      &__item
+        width: 260px
+      &__readmore span
+        font-weight: 700
+        font-size: 14px
+        line-height: 18px
+      &__title
+        font-size: 16px
+        line-height: 24px
+  .recall-slide
+    width: 260px
+  .swiper-recall
+    height: auto
+  

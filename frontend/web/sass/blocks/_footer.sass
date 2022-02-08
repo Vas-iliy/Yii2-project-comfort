@@ -1,0 +1,173 @@
+.footer
+  background-color: #1F1F1F
+  >.wrap
+    height: 100%
+  &-block
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    height: 100%
+    padding: 20px 0px 20px 0px
+    &__contacts
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+    &__links
+      display: flex
+      align-items: center
+      margin-bottom: 30px
+      img
+        margin-right: 75px
+      a
+        margin-right: 25px
+        font-family: 'Montserrat', sans-serif
+        font-weight: 400
+        font-size: 20px
+        line-height: 30px
+        color: #FFFFFF
+        &:first-child
+          margin-right: 0
+        &:last-child
+          margin-right: 0
+    &__question
+      display: flex
+      flex-direction: column
+      width: 350px
+      border-left: 1px solid #fff
+      padding-left: 30px
+    &__social
+      display: flex
+      flex-direction: row
+      align-items: flex-end
+      margin-bottom: 15px
+      a
+        margin-right: 40px
+        width: 50px
+        height: 50px
+        display: flex
+        justify-content: center
+        align-items: center
+        &:last-child
+          margin-right: 0
+      img
+        object-fit: cover
+    &__pol 
+      font-family: 'Montserrat', sans-serif
+      font-weight: 400
+      font-style: normal
+      font-size: 18px
+      line-height: 22px
+      color: #FFFFFF
+      margin-right: 10px
+      margin-bottom: 25px
+      &:last-child
+        margin-right: 0
+    &__title
+      font-family: 'Montserrat', sans-serif
+      font-weight: 700
+      font-style: normal
+      font-size: 24px
+      line-height: 30px
+      color: #ffffff
+      margin-bottom: 20px
+    &__politic
+      font-family: 'Montserrat', sans-serif
+      font-weight: 400
+      font-style: normal
+      font-size: 18px
+      line-height: 22px
+      color: #FFFFFF
+      a
+        color: #fff
+        border-bottom: 1px solid #fff
+    &__btn span
+      padding: 5px 65px 5px 65px
+      border: 1px solid #fff
+      border-radius: 31px
+      font-family: 'Montserrat', sans-serif
+      font-weight: 700
+      font-style: normal
+      font-size: 18px
+      line-height: 25px
+      text-align: center
+      color: #fff
+      text-decoration: none
+      transition: 0.5s
+      cursor: pointer
+    &__vision
+      display: none
+    &__call
+      margin-bottom: 20px
+
+
+@media (max-width: 1200px)
+  .footer
+    &-block
+      flex-direction: column
+      align-items: start
+      &__question
+        border-left: none
+        padding-left: 0
+        padding-top: 20px
+      &__contacts
+        width: 100%
+      &__links
+        justify-content: space-between
+        a
+          margin-right: 0
+        img
+          margin-right: 30px
+@media (max-width: 720px)
+  .footer
+    &-block
+      &__links
+        flex-direction: column
+        align-items: center
+        margin-bottom: 0
+        a
+          margin-bottom: 15px
+        img
+          margin-right: 0
+      &__vision
+        display: block
+        margin-right: 20px
+      &__question
+        display: flex
+        flex-direction: column
+        align-items: center
+        width: 100%
+        margin-bottom: 20px
+        border-top: 1px solid #fff
+        padding-top: 20px
+      &__call
+        display: flex
+        flex-direction: row
+        align-items: center
+        width: 50%
+      &__pol
+        margin-bottom: 0
+  .footvis
+    flex-direction: column !important
+    display: flex
+    align-items: center
+    width: 100%
+  .footvisible
+    display: flex !important
+    flex-direction: row
+    width: 100%
+    justify-content: center
+@media (max-width: 500px)
+  .footer
+    &-block
+      &__call
+        width: 100%
+      &__links
+        a
+          font-size: 24px
+          line-height: 30px
+          &:last-child
+            margin-bottom: 25px
+  .footvis
+    font-size: 14px
+  

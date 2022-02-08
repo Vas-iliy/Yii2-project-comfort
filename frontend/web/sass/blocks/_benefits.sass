@@ -1,0 +1,120 @@
+.benefits
+  padding-top: 44px
+  &-block
+    &__title
+      font-family: 'comic', sans-serif
+      font-weight: 900
+      font-style: normal
+      font-size: 20px
+      line-height: 27px
+      color: #000
+      text-transform: uppercase
+      margin-bottom: 35px
+      display: block
+    &__items
+      position: relative
+    &__cards
+      display: flex
+      flex-direction: row
+      padding-top: 40px
+      margin-bottom: 10px
+      &:last-child
+        margin-bottom: 0
+        padding-top: 0
+    &__card
+      width: max-content
+      margin-right: 35px
+      text-align: center
+      height: 222px
+      width: 314px
+      background-color: rgba(232, 232, 232, 0.6)
+      display: flex
+      justify-content: center
+      align-items: center
+      backdrop-filter: blur(5px)
+      &:last-child
+        margin-right: 0
+      p
+        width: 260px
+    &__name
+      width: 260px
+      display: block
+      font-family: 'Montserrat', sans-serif
+      font-weight: 700
+      font-style: normal
+      font-size: 18px
+      line-height: 25px
+      color: #000
+      height: 50px
+    &__text
+      p
+        font-family: 'Montserrat', sans-serif
+        font-weight: 500
+        font-style: normal
+        font-size: 14px
+        line-height: 19px
+        color: #000
+.vis
+  display: none !important
+@media (max-width: 900px)
+  .benefit
+    width: 100%
+    object-fit: cover
+    height: 100%
+  .benefits
+    height: max-content
+    &-block
+      height: 100%
+      &__card
+        width: calc( 50% - 5px )
+        height: 100%
+        min-width: 300px
+        min-height: 300px
+      &__name
+        height: 100%
+      &__cards
+        justify-content: space-between
+        padding-top: 0
+        margin-bottom: 20px
+      &__wrap
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+
+@media (max-width: 750px)
+  .benefits-block__wrap
+    display: none
+  .vis
+    display: block !important
+  .benefits
+    &-block
+      &__card
+        min-height: 200px
+        min-width: 200px
+      &__text
+        width: 70%
+      &__name
+        width: 100%
+@media (max-width: 550px)
+  .benefits
+    padding-top: 20px
+    &-block
+      &__card
+        min-height: 150px
+        min-width: 150px
+      &__text
+        width: 70%
+      &__name
+        width: 100%
+        font-size: 14px
+        line-height: 20px
+@media (max-width: 370px)
+  .benefits
+    &-block
+      &__card
+        min-height: 110px
+        min-width: 110px
+      &__text
+        width: 100%
+      &__name
+        width: 100%

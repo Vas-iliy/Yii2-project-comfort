@@ -1,0 +1,333 @@
+.popular
+  padding-top: 100px
+  &-slider
+    // высоту и ширну менять на адптиве
+    width: 645px
+    &.hidden
+      display: none
+
+    .swiper-wrapper
+      height: 430px
+
+  &-slide
+    width: 645px !important
+    height: 100% !important
+
+    img
+      width: 645px
+      height: 100%
+      object-fit: cover
+      border-radius: 30px
+
+  &-pagination
+    width: calc(100% - 140px) !important // менять на адаптиве
+    display: flex
+    align-items: center
+    justify-content: center
+    margin: 0 auto
+    margin-top: 30px
+    &-item
+      border-radius: 5px
+      width: 110px
+      height: 70px
+      object-fit: cover
+      margin: 0 10px
+      transition: 0.5s
+      display: none
+      opacity: 0
+
+      cursor: pointer
+      position: static
+      left: 0 !important
+
+      &.active-main  // текущий активный
+        transform: scale(1)
+        opacity: 1
+        display: block
+      &.active-prev,
+      &.active-next
+        display: block
+        transform: scale(0.9)
+        opacity: 0.66
+      &.active-prev-prev,
+      &.active-next-next
+        transform: scale(0.8)
+        opacity: 0.33
+        display: none
+  &-block
+    display: flex
+    justify-content: space-between
+    align-items: flex-start
+    flex-direction: row
+    margin-top: 30px
+    &__characteristic
+      margin-bottom: 15px
+    &__info
+      width: calc(100% - 690px) // 100% - (ширина слайдера + ширина отступа между)
+    &__title
+      font-family: 'Montserrat', sans-serif
+      margin-bottom: 50px
+      font-weight: 700
+      font-size: 36px
+      line-height: 50px
+      text-decoration: underline
+      display: block
+      color: #000
+    &__name
+      font-family: 'Montserrat', sans-serif
+      font-weight: 500
+      font-size: 24px
+      line-height: 33px
+      color: #000
+      padding: 5px 10px 5px 10px
+      &:last-child
+        margin-right: 0
+    &__text p
+      font-family: 'Montserrat', sans-serif
+      font-weight: 500
+      font-size: 16px
+      line-height: 22px
+      color: #000
+    &__buy
+      display: flex
+      flex-direction: row
+      align-items: center
+      margin-top: 30px
+    &__block
+      border: 1px solid #FC6805
+      display: inline-block
+      margin-right: 10px
+    &__btn a
+      padding: 10px 55px 10px 55px
+      border-radius: 31px
+      border: 1px solid #0B5C0B
+      font-family: 'Montserrat', sans-serif
+      font-weight: 700
+      color: #0B5C0B
+      display: inline-block
+      transition: 0.5s
+    &__btn
+      margin-right: 30px
+    &__price
+      font-family: 'Montserrat'
+      font-weight: 500
+      color: #0B5C0B
+      font-size: 36px
+      line-height: 46px
+    &__value
+      display: flex
+      flex-direction: row
+
+.popularSlider
+  height: 100%
+  width: 100%
+.popularSlider .swiper-slide
+  display: flex
+  border-radius: 30px
+  min-width: 645px
+  img
+    width: 100%
+    object-fit: cover
+    height: 100%
+    min-height: 100%
+.popularSlider .swiper-wrapper
+  height: 80%
+.swiper-pagination
+  width: 100%
+  display: flex
+  flex-direction: row
+  justify-content: center
+  margin-top: 20px
+.popular-block__title.active
+  display: none
+.popular-block__title.disabled
+.popular-block__slider.active
+  display: none
+
+@media (max-width: 1260px)
+  .popular
+    &-slider
+      width: 550px
+    &-slide
+      width: 100% !important
+      img
+        width: 550px
+    &-block
+      &__info
+        width: calc( 100% - 590px )
+      &__buy
+        flex-direction: column
+        align-items: start
+      &__btn
+        margin-bottom: 10px
+      &__block
+        margin-bottom: 10px
+        &:last-child
+          margin-bottom: 0
+  // Почему это только для меньше 1300? Должно быть для больших тоже
+// @media (max-width: 1300px)
+//   .popularSlider .swiper-slide
+//     width: 100%
+//     min-width: 100%
+//   .popular-block__info
+//     width: 60%
+//   .popular-block__slider
+//     width: 40%
+@media (max-width: 1100px)
+  .popular
+    &-pagination
+      margin-bottom: 20px
+    &-slider.hidden
+      display: block
+    &-slider.visible
+      display: none
+    &-slider
+      width: 650px
+    &-slide
+      img
+        width: 650px
+    &-block
+      flex-direction: column
+      height: auto
+      align-items: center
+      &__title
+        margin-bottom: 20px
+      &__buy
+        flex-direction: row
+        align-items: center
+      &__btn
+        margin-bottom: 0
+      &__block
+        margin-bottom: 0
+  .popular-block .popular-block__info
+    align-items: start
+    width: 100%
+  .popular-block__title.disabled
+    display: none
+  .popular-block__title.active
+    display: block !important
+    border: none !important
+    font-size: 26px
+    line-height: 36px
+    text-align: left
+    display: flex
+    justify-content: start
+    width: 100%
+@media (max-width: 690px)
+  .popular
+    &-slider
+      width: 550px
+    &-slide
+      img
+        width: 550px
+@media (max-width: 600px)
+  .popular
+    padding-top: 50px
+    &-block
+      &__slider
+        width: 100%
+        justify-content: center
+        display: flex
+        align-items: center
+        margin-right: 0
+      &__title
+        margin-bottom: 20px
+      &__name
+        font-size: 20px
+        line-height: 26px
+      &__title
+        font-size: 32px
+        line-height: 40px
+      &__price
+        font-size: 32px
+  .popular-block .popular-block__info
+    align-items: start
+    width: 100%
+  .popularSlider .swiper-wrapper
+    height: 80%
+  .left
+    margin-left: 0
+    margin-top: 10px
+  .block
+    padding-top: 0
+  .title.project
+    margin-bottom: 20px
+    display: block
+@media (max-width: 650px)
+  .popular
+    &-slider
+      width: 500px
+    &-slide
+      img
+        width: 500px
+  .popular-slider .swiper-wrapper
+    height: 300px
+  .popular-block__title.active
+    font-size: 16px
+    line-height: 24px
+
+@media (max-width: 550px)
+  .popular
+    &-slider
+      width: 400px
+    &-slide
+      img
+        width: 400px
+    &-pagination
+      width: 90% !important
+  .popular-slider .swiper-wrapper
+    height: 250px
+@media (max-width: 500px)
+  .popular
+    &-block
+      &__name
+        font-size: 14px
+        line-height: 20px
+        margin-right: 5px
+      &__price
+        display: none
+      &__value
+        display: none
+      &__buy
+        justify-content: center
+      &__btn a
+        padding: 5px 50px 5px 50px
+      &__btn 
+        margin-right: 0
+  .block.disabled
+    display: none
+  .popular-block__slider.active
+    border: none !important
+    margin-top: 0
+    display: block !important
+  .popular-block__slider.disabled
+    display: none
+@media (max-width: 450px)
+  .popular
+    &-slider
+      width: 350px
+    &-slide
+      img
+        width: 350px
+  .popular-slider .swiper-wrapper
+    height: 200px
+  .popular-pagination-item
+    width: 70px
+    height: 40px
+@media (max-width: 400px)
+  .popular
+    &-slider
+      width: 280px
+    &-slide
+      img
+        width: 280px
+  .popular-slider .swiper-wrapper
+    height: 200px
+@media (max-width: 375px)
+  .popular
+    &-block
+      &__name
+        font-size: 12px
+        line-height: 16px
+      &__block
+        margin-right: 5px

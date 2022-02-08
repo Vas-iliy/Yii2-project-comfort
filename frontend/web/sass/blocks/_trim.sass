@@ -1,0 +1,56 @@
+.trim
+  padding-top: 100px
+  &-block
+    &__item
+      display: flex
+      flex-direction: row
+      align-items: center
+      margin-bottom: 24px
+      &:last-child
+        margin-bottom: 0
+    &__title
+      font-family: 'Montserrat', sans-serif
+      font-weight: 500
+      font-size: 18px 
+      line-height: 23px
+      color: #000
+      margin-left: 50px
+      margin-top: 20px
+    &__points ul
+      list-style: none
+      li
+        position: relative
+        margin-bottom: 24px
+        &:last-child
+          margin-bottom: 0
+        &::before
+          content: ''
+          width: 26px
+          height: 26px
+          border-radius: 50%
+          background-color: rgba(252, 104, 5, 0.3)
+          position: absolute
+          top: 0
+          left: -60px
+          z-index: 1
+          margin: 0px 10px 0px 10px
+        &::after
+          content: ''
+          width: 16px
+          height: 16px
+          border-radius: 50%
+          z-index: 2
+          position: absolute
+          top: 5px
+          left: -55px
+          background-color: #FC6805
+          margin: 0px 10px 0px 10px
+
+          
+@media (max-width: 650px)
+  .trim
+    padding-top: 20px
+    &-block
+      &__title
+        font-size: 14px
+        line-height: 22px

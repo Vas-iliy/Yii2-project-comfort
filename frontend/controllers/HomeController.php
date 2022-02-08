@@ -2,7 +2,6 @@
 
 namespace frontend\controllers;
 
-use frontend\controllers\AppControllers;
 
 class HomeController extends AppControllers
 {
@@ -11,7 +10,7 @@ class HomeController extends AppControllers
     public function actionIndex()
     {
         $this->contacts = $this->getContact();
+        $this->page = $this->getPage('home');
         return $this->render('index');
     }
-
 }

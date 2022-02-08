@@ -66,7 +66,7 @@ AppAsset::register($this);
     </div>
     <!--  -->
     <section class="background">
-        <img src="img/blocks/hero/hero-image1.jpg" class="fon" alt="">
+        <?=Html::img($this->context->page->getUploadedFileUrl('image'), ['class' => 'fon'])?>
         <div class="head">
             <div class="wrap">
                 <div class="head-block">
@@ -92,8 +92,7 @@ AppAsset::register($this);
         <div class="hero center">
             <div class="wrap">
                 <div class="hero-block">
-                    <h1> <span> Articomfort </span>-
-                        современные технологии комфорта</h1>
+                    <h1><?=$this->context->page->title?></h1>
                     <div class="hero-block__btn">
                         <a href="#">Заказать дом</a>
                     </div>

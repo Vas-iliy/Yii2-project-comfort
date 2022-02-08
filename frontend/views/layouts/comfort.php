@@ -167,36 +167,9 @@ AppAsset::register($this);
 </div>
 <main>
     <?=$content?>
-    <section class="contacts">
-        <div class="wrap">
-            <div class="contacts-block">
-                <div class="contacts-block__item">
-                    <span class="contacts-block__name">Адрес:</span>
-                    <span class="contacts-block__info">Москва,<br>
-              ул.Стромынка, дом19, стр.2, 17076</span>
-                </div>
-                <div class="contacts-block__item">
-                    <span class="contacts-block__name">Телефон</span>
-                    <span class="contacts-block__info">+7 (903) 185-55-47<br>
-              Время работы: 10:00 - 18:00
-              (пн - пт )</span>
-                </div>
-                <div class="contacts-block__item">
-                    <span class="contacts-block__name">Электронная почта</span>
-                    <span class="contacts-block__info">info@articomfort.ru</span>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="map">
-        <div style="position:relative;overflow:hidden;"><a
-                href="https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps"
-                style="color:#eee;font-size:12px;position:absolute;top:0px;">Москва</a><a
-                href="https://yandex.ru/maps/geo/moskva/53000094/?ll=37.621951%2C55.752564&utm_medium=mapframe&utm_source=maps&z=18.26"
-                style="color:#eee;font-size:12px;position:absolute;top:14px;">Москва — Яндекс.Карты</a><iframe
-                src="https://yandex.ru/map-widget/v1/-/CCUyrVvv3D" width="100%" height="505" frameborder="0"
-                allowfullscreen="true" style="position:relative;"></iframe></div>
-    </section>
+    <?=$this->render('_contacts', [
+        'contacts' => $this->context->contacts,
+    ])?>
 </main>
 <footer>
     <section class="footer">

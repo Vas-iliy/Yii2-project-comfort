@@ -18,9 +18,11 @@ if(!empty($states)):?>
 </section>
 <?endif;?>
 <section class="form">
+    <?if(!empty($images)):?>
     <div class="form-block__image invis">
-        <img src="img/blocks/contact/contact-image1.png" alt="">
+        <?=Html::img($images[1]->getUploadedFileUrl('image'))?>
     </div>
+    <?endif;?>
     <div class="wrap">
         <div class="form-block">
             <?$form = ActiveForm::begin([
@@ -30,7 +32,7 @@ if(!empty($states)):?>
                     'errorOptions' => ['class' => 'error']
                 ],
                 'method' => 'post',
-                /*'action' => ['subject/review'],*/
+                'action' => ['subject/review'],
             ])?>
                 <span class="title">оставьте<span class="color-text"> отзыв</span></span>
                 <div class="form-block__inputs">
@@ -51,14 +53,15 @@ if(!empty($states)):?>
                     <?= Html::submitButton('Отправить', ['class' => 'form-block__button disabled', 'id' => 'submit']) ?>
                 </div>
             <?php ActiveForm::end(); ?>
+            <?if(!empty($images)):?>
             <div class="form-block__images showd">
+                <?foreach ($images as $image):?>
                 <div class="form-block__image">
-                    <img src="img/blocks/contact/contact-image1.png" alt="">
+                    <?=Html::img($image->getUploadedFileUrl('image'))?>
                 </div>
-                <div class="form-block__image">
-                    <img src="img/blocks/contact/contact-image1.png" alt="">
-                </div>
+                <?endforeach;?>
             </div>
+            <?endif;?>
         </div>
     </div>
 </section>

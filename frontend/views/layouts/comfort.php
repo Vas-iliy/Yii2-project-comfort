@@ -74,7 +74,7 @@ AppAsset::register($this);
                     <div class="burger-menu">
                         <img src="img/icons/menu-btn.png" alt="">
                     </div>
-                    <a href="index.html">
+                    <a href="<?=Url::home()?>">
                         <div class="head-block__logo">
                             <img src="img/icons/head-logo.png" alt="">
                         </div>
@@ -94,9 +94,11 @@ AppAsset::register($this);
             <div class="wrap">
                 <div class="hero-block">
                     <h1><?=$this->context->page->title?></h1>
+                    <?if(Url::current([], true) == 'http://comfort/'):?>
                     <div class="hero-block__btn">
                         <a href="#">Заказать дом</a>
                     </div>
+                    <?endif;?>
                 </div>
             </div>
         </div>
@@ -108,7 +110,7 @@ AppAsset::register($this);
 <div class="menu" id="menu">
     <div class="menu-block">
         <nav class="menu-block__items">
-            <a href="index.html">
+            <a href="<?=Url::home()?>">
                 <div class="menu-block__item">
                     <div class="menu-block__image">
                         <img src="img/blocks/burger/burger-icon4.svg" alt="">
@@ -177,7 +179,7 @@ AppAsset::register($this);
             <div class="footer-block">
                 <div class="footer-block__contacts">
                     <div class="footer-block__links">
-                        <a href="index.html">
+                        <a href="<?=Url::home()?>">
                             <img src="img/icons/footer-logo.png" alt="">
                         </a>
                         <a href="projects.html">Проекты</a>

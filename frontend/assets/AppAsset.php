@@ -14,9 +14,12 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'https://unpkg.com/swiper/swiper-bundle.min.js',
-        'js/jquery.min.js',
-        'js/jquery.validate.min.js',
+        /*'js/jquery.min.js',*/
+        /*'js/jquery.validate.min.js',*/
         'js/jquery.mask.js',
         'js/index.js',
+    ];
+    public $depends = [
+        'yii\web\YiiAsset',
     ];
 }

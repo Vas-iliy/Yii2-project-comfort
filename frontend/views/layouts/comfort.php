@@ -5,6 +5,7 @@
 
 use frontend\assets\AppAsset;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -83,7 +84,7 @@ AppAsset::register($this);
                             <li><a href="projects.html">Проекты</a></li>
                             <li><a href="services.html">Услуги</a></li>
                             <li><a href="article.html">Полезные статьи</a></li>
-                            <li><a href="about.html">О компании</a></li>
+                            <li><a href="<?=Url::to(['home/about'])?>">О компании</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -131,7 +132,7 @@ AppAsset::register($this);
                     <span>Услуги</span>
                 </div>
             </a>
-            <a href="about.html">
+            <a href="<?=Url::to(['home/about'])?>">
                 <div class="menu-block__item">
                     <div class="menu-block__image">
                         <img src="img/blocks/burger/burger-icon3.svg" alt="">
@@ -181,7 +182,7 @@ AppAsset::register($this);
                         </a>
                         <a href="projects.html">Проекты</a>
                         <a href="services.html">Услуги</a>
-                        <a href="about.html">О компании</a>
+                        <a href="<?=Url::to(['home/about'])?>">О компании</a>
                     </div>
                     <div class="footer-block__social foothide">
                         <a href="#" target="_blank">

@@ -48,6 +48,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '' => 'home/index',
+                'about' => 'home/about',
             ],
         ],
 

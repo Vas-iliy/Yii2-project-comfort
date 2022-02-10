@@ -52,6 +52,7 @@ return [
                 '' => 'home/index',
                 'about' => 'home/about',
                 'article/<id:\d+>' => 'article/state',
+                'project' => 'project/index',
             ],
         ],
 

@@ -1,4 +1,5 @@
 <? use yii\helpers\Html;
+use yii\helpers\Url;
 
 if ($this->beginCache('filters_home_page', ['duration' => 3600 * 24 * 30])):?>
     <?if(!empty($filters)):?>
@@ -12,7 +13,7 @@ if ($this->beginCache('filters_home_page', ['duration' => 3600 * 24 * 30])):?>
                                 <div class="projects-block__item bigitem">
                                     <div class="projects-block__image">
                                         <?=Html::img($filters[0]->getUploadedFileUrl('image'), ['class' => 'image'])?>
-                                        <a href="#">
+                                        <a href="<?=Url::to(['project/index', 'filter' => $filters[0]->id])?>">
                                             <div class="projects-block__title big">
                                                 <span class="projects-block__name bigT"><?=$filters[0]->filter?></span>
                                                 <img src="img/icons/arrow-icon.svg" alt="">
@@ -23,7 +24,7 @@ if ($this->beginCache('filters_home_page', ['duration' => 3600 * 24 * 30])):?>
                                 <div class="projects-block__item hidden">
                                     <div class="projects-block__image">
                                         <?=Html::img($filters[1]->getUploadedFileUrl('image'), ['class' => 'image'])?>
-                                        <a href="#">
+                                        <a href="<?=Url::to(['project/index', 'filter' => $filters[1]->id])?>">
                                             <div class="projects-block__title big">
                                                 <span class="projects-block__name bigT"><?=$filters[1]->filter?></span>
                                                 <img src="img/icons/arrow-icon.svg" alt="">
@@ -36,7 +37,7 @@ if ($this->beginCache('filters_home_page', ['duration' => 3600 * 24 * 30])):?>
                                 <div class="projects-block__item mini visible">
                                     <div class="projects-block__image">
                                         <?=Html::img($filters[1]->getUploadedFileUrl('image'), ['class' => 'image'])?>
-                                        <a href="#">
+                                        <a href="<?=Url::to(['project/index', 'filter' => $filters[1]->id])?>">
                                             <div class="projects-block__title big">
                                                 <span class="projects-block__name bigT"><?=$filters[1]->filter?></span>
                                                 <img src="img/icons/arrow-icon.svg" alt="">
@@ -47,7 +48,7 @@ if ($this->beginCache('filters_home_page', ['duration' => 3600 * 24 * 30])):?>
                                 <div class="projects-block__item mini">
                                     <div class="projects-block__image">
                                         <?=Html::img($filters[2]->getUploadedFileUrl('image'), ['class' => 'image'])?>
-                                        <a href="#">
+                                        <a href="<?=Url::to(['project/index', 'filter' => $filters[2]->id])?>">
                                             <div class="projects-block__title big">
                                                 <span class="projects-block__name bigT"><?=$filters[2]->filter?></span>
                                                 <img src="img/icons/arrow-icon.svg" alt="">
@@ -58,7 +59,7 @@ if ($this->beginCache('filters_home_page', ['duration' => 3600 * 24 * 30])):?>
                                 <div class="projects-block__item hidden">
                                     <div class="projects-block__image">
                                         <?=Html::img($filters[3]->getUploadedFileUrl('image'), ['class' => 'image'])?>
-                                        <a href="#">
+                                        <a href="<?=Url::to(['project/index', 'filter' => $filters[3]->id])?>">
                                             <div class="projects-block__title big">
                                                 <span class="projects-block__name bigT"><?=$filters[3]->filter?></span>
                                                 <img src="img/icons/arrow-icon.svg" alt="">
@@ -72,7 +73,7 @@ if ($this->beginCache('filters_home_page', ['duration' => 3600 * 24 * 30])):?>
                             <div class="projects-block__item visible">
                                 <div class="projects-block__image">
                                     <?=Html::img($filters[3]->getUploadedFileUrl('image'), ['class' => 'image'])?>
-                                    <a href="#">
+                                    <a href="<?=Url::to(['project/index', 'filter' => $filters[3]->id])?>">
                                         <div class="projects-block__title big">
                                             <span class="projects-block__name bigT"><?=$filters[3]->filter?></span>
                                             <img src="img/icons/arrow-icon.svg" alt="">
@@ -85,7 +86,7 @@ if ($this->beginCache('filters_home_page', ['duration' => 3600 * 24 * 30])):?>
                                     <div class="projects-block__item">
                                         <div class="projects-block__image">
                                             <?=Html::img($filter->getUploadedFileUrl('image'), ['class' => 'image'])?>
-                                            <a href="#">
+                                            <a href="<?=Url::to(['project/index', 'filter' => $filter->id])?>">
                                                 <div class="projects-block__title">
                                                     <span class="projects-block__name"><?=$filter->filter?></span>
                                                     <img src="img/icons/arrow-icon.svg" alt="">

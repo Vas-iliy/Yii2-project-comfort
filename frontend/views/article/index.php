@@ -1,34 +1,26 @@
+<? use yii\helpers\Html;
+use yii\helpers\Url;
+
+if(!empty($categories) && !empty($categories[0]->states)):?>
 <section class="advice">
     <div class="wrap">
-        <span class="title">Советы <span class="color-text"> по строительству</span></span>
+        <span class="title"><?=$categories[0]->title?></span>
         <div class="advice-block">
-            <a href="#"><div class="advice-block__item">
+            <?foreach ($categories[0]->states as $state):?>
+            <a href="<?=Url::to(['state', 'id' => $state->id])?>">
+                <div class="advice-block__item">
                     <div class="advice-block__image">
-                        <img src="img/blocks/advice/advice-image1.png" alt="">
+                        <?=Html::img($state->getUploadedFileUrl('image'))?>
                         <div class="mask"></div>
                     </div>
-                    <span class="advice-block__title">Lorem ipsum dolor sit
-              amet</span>
-                </div></a>
-            <a href="#"><div class="advice-block__item">
-                    <div class="advice-block__image">
-                        <img src="img/blocks/advice/advice-image2.png" alt="">
-                        <div class="mask"></div>
-                    </div>
-                    <span class="advice-block__title">Lorem ipsum dolor sit
-              amet</span>
-                </div></a>
-            <a href="#"><div class="advice-block__item">
-                    <div class="advice-block__image">
-                        <img src="img/blocks/advice/advice-image3.png" alt="">
-                        <div class="mask"></div>
-                    </div>
-                    <span class="advice-block__title">Lorem ipsum dolor sit
-              amet</span>
-                </div></a>
+                    <span class="advice-block__title"><?=$state->title?></span>
+                </div>
+            </a>
+            <?endforeach;?>
         </div>
     </div>
 </section>
+<?endif;?>
 <section class="questions">
     <div class="wrap">
         <a href="questions.html"><div class="questions-block">
@@ -40,34 +32,25 @@
             </div></a>
     </div>
 </section>
+<?if(!empty($categories)):?>
+<?foreach ($categories as $k => $category): if ($k > 0 && !empty($category->states)):?>
 <section class="advice">
     <div class="wrap">
-        <span class="title">Советы <span class="color-text">по Отделке</span></span>
+        <span class="title"><?=$category->title?></span>
         <div class="advice-block">
-            <a href="#"><div class="advice-block__item">
-                    <div class="advice-block__image">
-                        <img src="img/blocks/advice/advice-image4.png" alt="">
-                        <div class="mask"></div>
+            <?foreach ($category->states as $state):?>
+                <a href="<?=Url::to(['state', 'id' => $state->id])?>">
+                    <div class="advice-block__item">
+                        <div class="advice-block__image">
+                            <?=Html::img($state->getUploadedFileUrl('image'))?>
+                            <div class="mask"></div>
+                        </div>
+                        <span class="advice-block__title"><?=$state->title_state?></span>
                     </div>
-                    <span class="advice-block__title">Lorem ipsum dolor sit
-              amet</span>
-                </div></a>
-            <a href="#"><div class="advice-block__item">
-                    <div class="advice-block__image">
-                        <img src="img/blocks/advice/advice-image5.png" alt="">
-                        <div class="mask"></div>
-                    </div>
-                    <span class="advice-block__title">Lorem ipsum dolor sit
-              amet</span>
-                </div></a>
-            <a href="#"><div class="advice-block__item">
-                    <div class="advice-block__image">
-                        <img src="img/blocks/advice/advice-image6.png" alt="">
-                        <div class="mask"></div>
-                    </div>
-                    <span class="advice-block__title">Lorem ipsum dolor sit
-              amet</span>
-                </div></a>
+                </a>
+            <?endforeach;?>
         </div>
     </div>
 </section>
+<?endif; endforeach;?>
+<?endif;?>

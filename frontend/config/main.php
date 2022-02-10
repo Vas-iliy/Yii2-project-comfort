@@ -21,6 +21,7 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
+            'baseUrl' => '',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -50,6 +51,7 @@ return [
             'rules' => [
                 '' => 'home/index',
                 'about' => 'home/about',
+                'article/<id:\d+>' => 'article/state',
             ],
         ],
 

@@ -14,6 +14,16 @@ class Service extends ActiveRecord
         return 'services';
     }
 
+    public function getImages()
+    {
+        return $this->hasMany(ServiceImage::class, ['service_id' => 'id']);
+    }
+
+    public function getPoints()
+    {
+        return $this->hasMany(ServicePoint::class, ['service_id' => 'id']);
+    }
+
     public function afterFind()
     {
         $this->items = array_filter(Json::decode($this->getAttribute('items_json')));

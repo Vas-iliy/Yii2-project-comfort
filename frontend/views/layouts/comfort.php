@@ -158,9 +158,11 @@ AppAsset::register($this);
                         <a href="<?=Url::home()?>">
                             <img src="img/icons/footer-logo.png" alt="">
                         </a>
-                        <a href="projects.html">Проекты</a>
-                        <a href="services.html">Услуги</a>
-                        <a href="<?=Url::to(['home/about'])?>">О компании</a>
+                        <?foreach ($this->context->pages as $page):?>
+                            <?if ($page->alias != ''):?>
+                                <a href="<?=Url::to(['/' . $page->alias])?>"><?=$page->title_menu?></a>
+                            <?endif;?>
+                        <?endforeach;?>
                     </div>
                     <div class="footer-block__social foothide">
                         <a href="#" target="_blank">

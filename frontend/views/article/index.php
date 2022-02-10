@@ -21,17 +21,20 @@ if(!empty($categories) && !empty($categories[0]->states)):?>
     </div>
 </section>
 <?endif;?>
+<?if(!empty($question)):?>
 <section class="questions">
     <div class="wrap">
-        <a href="questions.html"><div class="questions-block">
+        <a href="<?=Url::to([$question->alias])?>"><div class="questions-block">
                 <div class="questions-block__image">
-                    <img src="img/blocks/questions/questions-image1.png" alt="">
+                    <?=Html::img($question->getUploadedFileUrl('image'))?>
                     <div class="mask"></div>
-                    <p>Часто задаваемые вопросы</p>
+                    <p><?=$question->title?></p>
                 </div>
-            </div></a>
+            </div>
+        </a>
     </div>
 </section>
+<?endif;?>
 <?if(!empty($categories)):?>
 <?foreach ($categories as $k => $category): if ($k > 0 && !empty($category->states)):?>
 <section class="advice">
@@ -45,7 +48,7 @@ if(!empty($categories) && !empty($categories[0]->states)):?>
                             <?=Html::img($state->getUploadedFileUrl('image'))?>
                             <div class="mask"></div>
                         </div>
-                        <span class="advice-block__title"><?=$state->title_state?></span>
+                        <span class="advice-block__title"><?=$state->title?></span>
                     </div>
                 </a>
             <?endforeach;?>

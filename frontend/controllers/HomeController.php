@@ -26,6 +26,17 @@ class HomeController extends AppControllers
         parent::__construct($id, $module, $pages, $config);
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['about'],
+                'duration' => 3600*24*30,
+            ],
+        ];
+    }
+
     public function actionIndex()
     {
         $this->contacts = $this->getContact();

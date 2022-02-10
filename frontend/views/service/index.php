@@ -83,14 +83,14 @@ if(!empty($services)):?>
 </section>
 <?endif;?>
 <?if(!empty($services)): foreach ($services as $k => $service): if ($k > 0):?>
-    <section>
+    <section class="<?=(count($services) == $k+1) ? 'roof' : 'house'?>">
         <div class="wrap">
-            <div class="house-block">
+            <div class="roof-block">
                 <span class="title"><?=$service->title?></span>
-                <p class="text"><?=$services[0]->description?></p>
+                <p class="text"><?=$service->description?></p>
                 <div class="trim-block__points">
                     <ul>
-                        <?if(!empty($services[0]->items)): foreach ($services[0]->items as $item):?>
+                        <?if(!empty($service->items)): foreach ($service->items as $item):?>
                             <li class="trim-block__title"><?=$item?></li>
                         <? endforeach; endif;?>
                     </ul>
@@ -100,22 +100,22 @@ if(!empty($services)):?>
                     <?=Html::img($service->images[0]->getUploadedFileUrl('image'))?>
                 </div>
                 <?endif;?>
-                <div class="house-block__items">
-                <?if(!empty($service->points)): foreach ($service->points as $point):?>
-                    <div class="house-block__content">
-                        <span class="house-block__title"><?=$point->title?></span>
-                        <p class="text"><?=$point->description?></p>
-                        <?if($point->items):?>
-                            <div class="house-block__points rf">
-                                <ul>
-                                    <?foreach ($point->items as $item):?>
-                                    <li class="house-block__title"><?=$item?></li>
-                                    <?endforeach;?>
-                                </ul>
-                            </div>
-                        <?endif;?>
+                <div class="roof-block__items">
+                    <div class="roof-block__content">
+                    <?if(!empty($service->points)): foreach ($service->points as $point):?>
+                    <span class="roof-block__title"><?=$point->title?></span>
+                    <p class="text"><?=$point->description?></p>
+                    <?if($point->items):?>
+                    <div class="trim-block__points rf">
+                        <ul>
+                            <?foreach ($point->items as $item):?>
+                            <li class="trim-block__title"><?=$item?></li>
+                            <?endforeach;?>
+                        </ul>
                     </div>
-                <?endforeach; endif;?>
+                    <?endif;?>
+                    <?endforeach; endif;?>
+                    </div>
                     <?if($service->images):?>
                     <div class="roof-block__images">
                         <?foreach ($service->images as $image):?>

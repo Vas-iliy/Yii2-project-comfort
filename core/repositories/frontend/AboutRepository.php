@@ -10,10 +10,12 @@ class AboutRepository
 {
     public function getStates()
     {
-        if (!$about = About::find()->all()) {
-            throw new NotFoundHttpException('No contacts.');
+        $about = \Yii::$app->cache->get('about_states');
+        if (empty($about)) {
+            $about = About::find()->all();
+            $about = TitleHelper::editTitle($about);
+            \Yii::$app->cache->set('about_states', $about, 3600*24*30);
         }
-        $about = TitleHelper::editTitle($about);
         return $about;
     }
 }

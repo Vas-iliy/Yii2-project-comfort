@@ -9,8 +9,10 @@ class ContactRepository
 {
     public function getContacts()
     {
-        if (!$contacts = Contact::find()->asArray()->all()) {
-            throw new NotFoundHttpException('No contacts.');
+        $contacts = \Yii::$app->cache->get('contact');
+        if (empty($contacts)) {
+            $contacts = Contact::find()->asArray()->all();
+            \Yii::$app->cache->set('contact', $contacts, 3600*24*30*12);
         }
         return $contacts;
     }

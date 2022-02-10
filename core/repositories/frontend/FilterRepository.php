@@ -9,8 +9,10 @@ class FilterRepository
 {
     public function getFilter()
     {
-        if (!$filters = Filter::find()->andWhere(['top' => 1])->limit(6)->orderBy('order')->all()) {
-            throw new NotFoundHttpException('No contacts.');
+        $filters = \Yii::$app->cache->get('filter_home');
+        if (empty($filters)) {
+            $filters = Filter::find()->andWhere(['top' => 1])->limit(6)->orderBy('order')->all();
+            \Yii::$app->cache->set('filter_home', $filters, 3600*24*30);
         }
         return $filters;
     }

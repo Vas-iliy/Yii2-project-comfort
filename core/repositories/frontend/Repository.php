@@ -19,4 +19,10 @@ class Repository
         if (!$data = $class->findOne($id)) throw new NotFoundHttpException('Not found.');
         return $data;
     }
+
+    protected function getAllArray($class)
+    {
+        if (!$data = $class->find()->asArray()->all()) throw new NotFoundHttpException('Not found.');
+        return $data;
+    }
 }

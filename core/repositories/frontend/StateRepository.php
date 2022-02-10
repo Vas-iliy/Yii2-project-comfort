@@ -11,7 +11,7 @@ class StateRepository extends Repository
         $state = \Yii::$app->cache->get("state_$id");
         if (empty($state)) {
             $state = $this->get($id, new State());
-            \Yii::$app->cache->set('projects_popular', $state, 3600*24*30);
+            \Yii::$app->cache->set("projects_$id", $state, 3600*24*30);
         }
         return $state;
     }

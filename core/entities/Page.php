@@ -27,6 +27,18 @@ class Page extends ActiveRecord
                     'admin' => ['width' => 100, 'height' => 70],
                 ],
             ],
+            [
+                'class' => ImageUploadBehavior::class,
+                'attribute' => 'icon',
+                'createThumbsOnRequest' => true,
+                'filePath' => '@staticRoot/origin/pages/icons/[[id]].[[extension]]',
+                'fileUrl' => '@static/origin/pages/icons/[[id]].[[extension]]',
+                'thumbPath' => '@staticRoot/cache/pages/icons/[[[profile]]_[[id]].[[extension]]',
+                'thumbUrl' => '@static/cache/pages/icons/[[[profile]]_[[id]].[[extension]]',
+                'thumbs' => [
+                    'admin' => ['width' => 100, 'height' => 70],
+                ],
+            ],
         ];
     }
 }

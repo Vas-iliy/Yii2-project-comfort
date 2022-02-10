@@ -14,4 +14,12 @@ class PageRepository
         }
         return $page;
     }
+
+    public function getPages()
+    {
+        if (!$pages = Page::find()->where(['main_page' => 1])->all()) {
+            throw new NotFoundHttpException('No contacts.');
+        }
+        return $pages;
+    }
 }

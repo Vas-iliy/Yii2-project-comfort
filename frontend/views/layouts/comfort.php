@@ -79,14 +79,17 @@ AppAsset::register($this);
                             <img src="img/icons/head-logo.png" alt="">
                         </div>
                     </a>
+                    <?if(!empty($this->context->pages)):?>
                     <nav class="head-block__nav">
                         <ul>
-                            <li><a href="projects.html">Проекты</a></li>
-                            <li><a href="services.html">Услуги</a></li>
-                            <li><a href="article.html">Полезные статьи</a></li>
-                            <li><a href="<?=Url::to(['home/about'])?>">О компании</a></li>
+                            <?foreach ($this->context->pages as $page):?>
+                            <?if ($page->alias != ''):?>
+                            <li><a href="<?=Url::to(['/' . $page->alias])?>"><?=$page->title?></a></li>
+                            <?endif;?>
+                            <?endforeach;?>
                         </ul>
                     </nav>
+                    <?endif;?>
                 </div>
             </div>
         </div>
@@ -107,49 +110,20 @@ AppAsset::register($this);
 <!-- Burger-menu -->
 <div class="menu-bg">
 </div>
+<?if(!empty($this->context->pages)):?>
 <div class="menu" id="menu">
     <div class="menu-block">
         <nav class="menu-block__items">
-            <a href="<?=Url::home()?>">
+            <?foreach ($this->context->pages as $page):?>
+            <a href="<?=Url::to(['/'.$page->alias])?>">
                 <div class="menu-block__item">
                     <div class="menu-block__image">
-                        <img src="img/blocks/burger/burger-icon4.svg" alt="">
+                        <?=Html::img($page->getUploadedFileUrl('icon'))?>
                     </div>
-                    <span>Главная</span>
+                    <span><?=$page->title_menu?></span>
                 </div>
             </a>
-            <a href="projects.html">
-                <div class="menu-block__item">
-                    <div class="menu-block__image">
-                        <img src="img/blocks/burger/burger-icon5.svg" alt="">
-                    </div>
-                    <span>Проекты</span>
-                </div>
-            </a>
-            <a href="services.html">
-                <div class="menu-block__item">
-                    <div class="menu-block__image">
-                        <img src="img/blocks/burger/burger-icon6.svg" alt="">
-                    </div>
-                    <span>Услуги</span>
-                </div>
-            </a>
-            <a href="<?=Url::to(['home/about'])?>">
-                <div class="menu-block__item">
-                    <div class="menu-block__image">
-                        <img src="img/blocks/burger/burger-icon3.svg" alt="">
-                    </div>
-                    <span>О компании</span>
-                </div>
-            </a>
-            <a href="article.html">
-                <div class="menu-block__item">
-                    <div class="menu-block__image">
-                        <img src="img/blocks/burger/burger-icon7.svg" alt="">
-                    </div>
-                    <span>Советы</span>
-                </div>
-            </a>
+            <?endforeach;?>
             <a href="#" target="_blank">
                 <div class="menu-block__item">
                     <div class="menu-block__image">
@@ -167,6 +141,7 @@ AppAsset::register($this);
         </nav>
     </div>
 </div>
+<?endif;?>
 <main>
     <?=$content?>
     <?=$this->render('_contacts', [

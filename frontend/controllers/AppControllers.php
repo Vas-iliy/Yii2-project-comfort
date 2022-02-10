@@ -10,6 +10,13 @@ class AppControllers extends Controller
 {
     public $contacts;
     public $page;
+    public $pages;
+
+    public function __construct($id, $module, PageRepository $pages, $config = [])
+    {
+        $this->pages = $pages->getPages();
+        parent::__construct($id, $module, $config);
+    }
 
     protected function getContact()
     {

@@ -4,14 +4,17 @@ namespace frontend\controllers;
 
 use core\repositories\frontend\FilterRepository;
 use core\repositories\frontend\PageRepository;
+use core\repositories\frontend\ProjectRepository;
 
 class ProjectController extends AppControllers
 {
     private $filters;
+    private $projects;
 
-    public function __construct($id, $module, PageRepository $pages, FilterRepository $filters, $config = [])
+    public function __construct($id, $module, PageRepository $pages, FilterRepository $filters, ProjectRepository $projects, $config = [])
     {
         $this->filters = $filters;
+        $this->projects = $projects;
         parent::__construct($id, $module, $pages, $config);
     }
 
@@ -24,7 +27,8 @@ class ProjectController extends AppControllers
         if ((is_array($isActive) && count($isActive) == 0)){
             return $this->redirect('project');
         }
-        return $this->render('index', compact('filters', 'isActive'));
+        $projects = $this->projects->getProjects($isActive);
+        return $this->render('index', compact('filters', 'isActive', 'projects'));
     }
 
 }

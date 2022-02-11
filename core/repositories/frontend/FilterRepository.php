@@ -36,7 +36,11 @@ class FilterRepository extends Repository
                 if ($value > 1) {
                     $arr = array_unique($arr);
                     unset($arr[array_search($k,$arr)]);
+                    $arr = array_values($arr);
                 }
+            }
+            if (count($arr) == 1) {
+                return $arr[0];
             }
             return $arr;
         }

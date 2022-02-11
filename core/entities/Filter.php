@@ -7,11 +7,15 @@ use yiidreamteam\upload\ImageUploadBehavior;
 
 class Filter extends ActiveRecord
 {
-    public $class;
-    public $div;
     public static function tableName()
     {
         return 'filters';
+    }
+
+    public function getProjects()
+    {
+        return $this->hasMany(Project::class, ['id' => 'project_id'])
+            ->viaTable('projects_filters', ['filter_id' => 'id']);
     }
 
     public function behaviors()

@@ -15,4 +15,10 @@ class Project extends ActiveRecord
     {
         return $this->hasMany(ProjectImage::class, ['project_id' => 'id']);
     }
+
+    public function getFilters()
+    {
+        return $this->hasMany(Filter::class, ['id' => 'filter_id'])
+            ->viaTable('projects_filters', ['project_id' => 'id']);
+    }
 }

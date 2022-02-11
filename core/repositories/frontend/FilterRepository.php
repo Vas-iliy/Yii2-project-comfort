@@ -27,4 +27,20 @@ class FilterRepository extends Repository
         return $filters;
     }
 
+    public function countFilters($filters)
+    {
+        if (preg_match('/,/', $filters)) {
+            $arr = explode(',', $filters);
+            $double = array_count_values($arr);
+            foreach ($double as $k => $value) {
+                if ($value > 1) {
+                    $arr = array_unique($arr);
+                    unset($arr[array_search($k,$arr)]);
+                }
+            }
+            return $arr;
+        }
+        return $filters;
+    }
+
 }

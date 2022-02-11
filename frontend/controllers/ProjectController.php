@@ -20,9 +20,11 @@ class ProjectController extends AppControllers
         $this->page = $this->getPage('project');
         $this->contacts = $this->getContact();
         $filters = $this->filters->getFilters();
-
-        $isActive = $this->request->get('filter');
-        return $this->render('index');
+        $isActive = $this->filters->countFilters($this->request->get('filter'));
+        if ((is_array($isActive) && count($isActive) == 0)){
+            return $this->redirect('project');
+        }
+        return $this->render('index', compact('filters', 'isActive'));
     }
 
 }

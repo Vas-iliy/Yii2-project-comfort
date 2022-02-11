@@ -1,23 +1,45 @@
 <section class="items">
     <div class="wrap">
         <span class="title">Каталог наших <span class="color-text"> проектов</span></span>
+        <? use yii\helpers\Url;
+
+        if(!empty($filters)):?>
         <div class="items-block hide">
             <div class="items-block__change">
                 <div class="modalitems-block__window">
                     <div class="modalitems-block__wrapper">
                         <div class='dropdown'>
-                            <div class='titleitems pointerCursor'>Выберите фильтр <img class="fa fa-angle-right"
-                                                                                       src="img/icons/js-arrow.svg" alt=""></div>
-
+                            <div class='titleitems pointerCursor'>
+                                <?if(!empty($isActive)):?>
+                                    <?foreach ($filters as $filter):?>
+                                        <?if (is_string($isActive)):?>
+                                        <?=($filter['id'] == $isActive) ? $filter['filter'] : ''?>
+                                        <?elseif (is_array($isActive)):?>
+                                        <?=($filter['id'] == $isActive[0]) ? $filter['filter'] : ''?>
+                                        <?endif;?>
+                                    <?endforeach;?>
+                                <?else:?>
+                                    Выберите фильтр
+                                <?endif;?>
+                                <img class="fa fa-angle-right" src="img/icons/js-arrow.svg" alt="">
+                            </div>
                             <div class='menuitems pointerCursor hide'>
-                                <div class='option' id='option1'>Каркасные дома</div>
-                                <div class='option' id='option2'>Комбинированные дома</div>
-                                <div class='option' id='option3'>Из клееного дуба</div>
-                                <div class='option' id='option4'>Из арболита</div>
-                                <div class='option' id='option5'>Из профилированного бруса</div>
-                                <div class='option' id='option6'>Из оцилиндрованного бревна</div>
-                                <div class='option' id='option7'>Из газобетона</div>
-                                <div class='option' id='option8'>Бани</div>
+                                <?foreach ($filters as $filter):?>
+                                    <a href="<?=(preg_match('/filter=/', Url::current())) ? Url::current() . ',' . $filter['id'] : Url::to(['', 'filter' => $filter['id']])?>">
+                                    <div class="
+                                    items-block__point
+                                    <?=(is_string($isActive) && $filter['id'] == $isActive) ? ' active' : ''?>
+                                    <?if (is_array($isActive)) {
+                                        foreach ($isActive as $item) {
+                                            if ($item == $filter['id']) echo ' active';
+                                        }
+                                    }?>
+                                    ">
+                                        <span><?=$filter['filter']?></span>
+                                        <img src="img/icons/delete-icon.svg" class="hide" alt="">
+                                    </div>
+                                </a>
+                                <?endforeach;?>
                             </div>
                         </div>
                     </div>
@@ -25,43 +47,31 @@
             </div>
         </div>
         <div class="items-block visible">
+            <?foreach ($filters as $k => $filter):?>
+            <?if($k == 0 || ($k/4) == 1):?>
             <div class="items-block__points">
-                <div class="items-block__point">
-                    <span>Каркасные дома</span>
-                    <img src="img/icons/delete-icon.svg" class="hide" alt="">
+            <?endif;?>
+
+            <a href="<?=(preg_match('/filter=/', Url::current())) ? Url::current() . ',' . $filter['id'] : Url::to(['', 'filter' => $filter['id']])?>">
+                <div class="
+                items-block__point
+                <?=(is_string($isActive) && $filter['id'] == $isActive) ? ' active' : ''?>
+                <?if (is_array($isActive)) {
+                            foreach ($isActive as $item) {
+                                if ($item == $filter['id']) echo ' active';
+                            }
+                        }?>
+                ">
+                        <span><?=$filter['filter']?></span>
+                        <img src="img/icons/delete-icon.svg" class="hide" alt="">
                 </div>
-                <div class="items-block__point">
-                    <span>Комбинированные дома</span>
-                    <img src="img/icons/delete-icon.svg" class="hide" alt="">
-                </div>
-                <div class="items-block__point">
-                    <span>Из клееного дуба</span>
-                    <img src="img/icons/delete-icon.svg" class="hide" alt="">
-                </div>
-                <div class="items-block__point">
-                    <span>Из арболита</span>
-                    <img src="img/icons/delete-icon.svg" class="hide" alt="">
-                </div>
+            </a>
+            <?if($k == 3 || $k == 7 || $k == 11 || $k == count($filters) - 1):?>
             </div>
-            <div class="items-block__points">
-                <div class="items-block__point">
-                    <span>Из профилированного бруса</span>
-                    <img src="img/icons/delete-icon.svg" class="hide" alt="">
-                </div>
-                <div class="items-block__point">
-                    <span>Из оцилиндрованного бревна</span>
-                    <img src="img/icons/delete-icon.svg" class="hide" alt="">
-                </div>
-                <div class="items-block__point">
-                    <span>Из газобетона</span>
-                    <img src="img/icons/delete-icon.svg" class="hide" alt="">
-                </div>
-                <div class="items-block__point">
-                    <span>Бани</span>
-                    <img src="img/icons/delete-icon.svg" class="hide" alt="">
-                </div>
-            </div>
+            <?endif;?>
+            <?endforeach;?>
         </div>
+        <?endif;?>
     </div>
 </section>
 <section class="block">

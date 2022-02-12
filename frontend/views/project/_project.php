@@ -3,7 +3,7 @@
 foreach ($projects as $project):?>
     <section class="block">
         <div class="wrap">
-            <span class="popular-block__title active"><?=$project->id?></span>
+            <span class="popular-block__title active"><?=$project->title?></span>
             <div class="popular-block">
                 <div class="swiper popular-slider">
                     <div class="swiper-wrapper">

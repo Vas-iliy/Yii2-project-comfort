@@ -2,6 +2,7 @@
 
 namespace core\entities\user;
 
+use sizeg\jwt\JwtValidationData;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -88,13 +89,20 @@ class User extends ActiveRecord implements IdentityInterface
         return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
+    public static function findIdentityByAccessToken($token, $type = null) {
         return static::find()
-            ->joinWith(['tokens t'])
-            ->andWhere(['t.token' => $token])
-            ->andWhere(['>', 't.expired_at', time()])
+            ->where(['user_id' => (string) $token->getClaim('uid') ])
+            ->andWhere(['status' => User::STATUS_ACTIVE])  //adapt this to your needs
             ->one();
+    }
+
+    public function afterSave($isInsert, $changedOldAttributes) {
+        // Purge the user tokens when the password is changed
+        if (array_key_exists('password', $changedOldAttributes)) {
+            UserRefreshToken::deleteAll(['urf_userID' => $this->user_id]);
+        }
+
+        return parent::afterSave($isInsert, $changedOldAttributes);
     }
 
     public static function findByUsername($username)

@@ -13,6 +13,11 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
+        'jwt' => [
+            'class' => \sizeg\jwt\Jwt::class,
+            'key' => 'SECRET-KEY',
+            'jwtValidationData' => \backend\components\JwtValidationData::class,
+        ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],

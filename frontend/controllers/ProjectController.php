@@ -5,7 +5,6 @@ namespace frontend\controllers;
 use core\repositories\frontend\FilterRepository;
 use core\repositories\frontend\PageRepository;
 use core\repositories\frontend\ProjectRepository;
-use yii\data\Pagination;
 
 class ProjectController extends AppControllers
 {

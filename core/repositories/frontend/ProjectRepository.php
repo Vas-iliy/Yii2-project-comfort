@@ -4,6 +4,7 @@ namespace core\repositories\frontend;
 
 use core\entities\Filter;
 use core\entities\Project;
+use yii\data\Pagination;
 
 class ProjectRepository
 {
@@ -24,11 +25,7 @@ class ProjectRepository
                 $str = trim(implode(',', $filter));
                 $projects = \Yii::$app->cache->get("projects_" . $str);
                 if (empty($projects)) {
-                    $filters = [];
-                    foreach ($filter as $value) {
-                        $filters[] = Filter::findOne($value);
-                    }
-                    $projects = $this->projectFilters($filters);
+                    $projects = $this->getProjectFromFilters($filter);
                     \Yii::$app->cache->set("projects_" . $str, $projects, 3600*24*30);
                 }
                 return $projects;
@@ -36,37 +33,31 @@ class ProjectRepository
             $projects = \Yii::$app->cache->get("projects_" . $filter);
             if (empty($projects)) {
                 $fil = Filter::findOne($filter);
-                $projects = $fil->getProjects()->with('images')->all();
+                $projects = $fil->getProjects()->with('images')->with('material');
                 \Yii::$app->cache->set("projects_" . $filter, $projects, 3600*24*30);
             }
             return $projects;
         }
         $projects = \Yii::$app->cache->get('projects');
         if (empty($projects)) {
-            $projects = Project::find()->with('images')->all();
+            $projects = Project::find()->with('images')->with('material');
             \Yii::$app->cache->set('projects', $projects, 3600*24*30);
         }
         return $projects;
     }
 
-    private function projectFilters($filters)
+    public function pagination($projects)
     {
-        $project = [];
-        foreach ($filters as $filter) {
-            if (!empty($project) && !empty($filter->projects)) {
-                foreach ($project as $k => $value) {
-                    foreach ($filter->projects as $item) {
-                        if($value->id == $item->id) {
-                            unset($project[$k]);
-                        }
-                    }
-                }
-                $project = array_merge($project, $filter->projects);
-            } elseif (!empty($filter->projects)) {
-                $project = $filter->getProjects()->with('images')->all();
-            }
-        }
-        return $project;
+        $pages = new Pagination(['totalCount' => $projects->count(), 'pageSize' => \Yii::$app->params['projectCount'], 'forcePageParam' => false, 'pageSizeParam' => false]);
+        return [
+            'pages' => $pages,
+            'projects' => $projects->offset($pages->offset)->limit($pages->limit)->all()
+        ];
     }
 
+    private function getProjectFromFilters($filters)
+    {
+        return Project::find()
+            ->joinWith('filters')->andWhere(['in','filters.id', $filters])->with('images')->with('material')->distinct();
+    }
 }

@@ -3,7 +3,7 @@
 foreach ($projects as $project):?>
     <section class="block">
         <div class="wrap">
-            <span class="popular-block__title active"><?=$project->title?></span>
+            <span class="popular-block__title active"><?=$project->id?></span>
             <div class="popular-block">
                 <div class="swiper popular-slider">
                     <div class="swiper-wrapper">
@@ -24,7 +24,7 @@ foreach ($projects as $project):?>
                             <span class="popular-block__name"><?=$project->square?> м²</span>
                         </div>
                         <div class="popular-block__block">
-                            <span class="popular-block__name"><?=$project->material?></span>
+                            <span class="popular-block__name"><?=$project->material->material?></span>
                         </div>
                         <div class="popular-block__block">
                             <span class="popular-block__name"><?=$project->count_floors?> этаж</span>

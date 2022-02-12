@@ -2,6 +2,7 @@
     <div class="wrap">
         <span class="title">Каталог наших <span class="color-text"> проектов</span></span>
         <? use yii\helpers\Url;
+        use yii\widgets\LinkPager;
 
         if(!empty($filters)):?>
         <div class="items-block hide">
@@ -76,8 +77,12 @@
 </section>
 <?if(!empty($projects)):?>
     <?=$this->render('_project', [
-        'projects' => $projects,
+        'projects' => $projects['projects'],
+    ])?>
+    <?=LinkPager::widget([
+    'pagination' => $projects['pages']
     ])?>
 <?else:?>
 <h2>В данном разделе проетов пока нет</h2>
 <?endif;?>
+

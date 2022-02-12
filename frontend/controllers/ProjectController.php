@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use core\repositories\frontend\FilterRepository;
 use core\repositories\frontend\PageRepository;
 use core\repositories\frontend\ProjectRepository;
+use yii\data\Pagination;
 
 class ProjectController extends AppControllers
 {
@@ -27,7 +28,8 @@ class ProjectController extends AppControllers
         if ((is_array($isActive) && count($isActive) == 0)){
             return $this->redirect('project');
         }
-        $projects = $this->projects->getProjects($isActive);
+        $projects = $this->projects->pagination($this->projects->getProjects($isActive));
+
         return $this->render('index', compact('filters', 'isActive', 'projects'));
     }
 

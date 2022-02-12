@@ -26,7 +26,6 @@ if(!empty($states)):?>
     <div class="wrap">
         <div class="form-block">
             <?$form = ActiveForm::begin([
-                /*'id' => 'form-block__action',*/
                 'options' => ['class' => 'form-block__action'],
                 'fieldConfig' => [
                     'errorOptions' => ['class' => 'error']

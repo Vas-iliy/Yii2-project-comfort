@@ -39,28 +39,31 @@ AppAsset::register($this);
                             <img src="img/icons/form-close.png" alt="">
                         </div>
                     </div>
-                    <div class="modal-block__form">
-                        <form action="#" class="form-block__action modal-window" id="form-block__action">
-                            <span class="title fz16">оставьте свой номер,</span> <span class="color-text fz16"> мы перезвоним
-                  вам</span>
-                            <div class="form-block__inputs">
-                                <div class="form-block__input h20">
-                                    <input type="text" placeholder="Ваше имя" id="name" name="cname">
-                                </div>
-                                <div class="form-block__input h20">
-                                    <input type="text" placeholder="Ваш телефон" id="cphone" name="cphone">
-                                </div>
-                            </div>
-                            <span class="modal-block__title">Определились с материалом?</span>
-                            <div class="form-block__inputs">
-                                <div class="form-block__input h20">
-                                    <input type="text" placeholder="Ваше имя" id="name" name="cname">
-                                </div>
-                            </div>
-                            <div class="form-block__btn">
-                                <input type="submit" value="Отправить" id="submit" class="form-block__button small disabled">
-                            </div>
-                        </form>
+                    <?=$this->render('_form', [
+                        'model' => $this->context->client,
+                        'materials' => $this->context->materials,
+                    ])?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modalform <?if(Yii::$app->session->hasFlash('success') == 'client' || Yii::$app->session->hasFlash('success') == 'error') echo 'activity';?>">
+        <div class="modalform-block">
+            <div class="modalform-block__window">
+                <div class="modalform-block__wrap">
+                    <div class="modalform-block__head">
+                        <div class="modalform-block__exit">
+                            <img src="img/icons/close-icon.png" alt="">
+                        </div>
+                    </div>
+                    <div class="modalform-block__body">
+                        <div class="modalform-block__image">
+                            <img src="img/icons/form-icon.svg" alt="">
+                        </div>
+                        <span class="modalform-block__title">Спасибо за Вашу активность</span>
+                        <span class="modalform-block__subtitle"><?=(Yii::$app->session->hasFlash('success') == 'error') ? 'Мы ранее уже приняли ваш запрос.' : ''?>В скором времени с вами свяжутся </span>
+                        <a href="<?=Url::home()?>" class="modalform-block__btn">На главную</a>
                     </div>
                 </div>
             </div>

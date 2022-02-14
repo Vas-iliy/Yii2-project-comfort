@@ -16,31 +16,6 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => [
         'log',
-        [
-            'class' => 'yii\filters\ContentNegotiator',
-            'formats' => [
-                'application/json' => 'json'
-            ],
-        ],
-    ],
-    'modules' => [
-        'oauth2' => [
-            'class' => 'filsh\yii2\oauth2server\Module',
-            'tokenParamName' => 'accessToken',
-            'tokenAccessLifetime' => 3600 * 24,
-            'storageMap' => [
-                'user_credentials' => 'common\auth\Identity',
-            ],
-            'grantTypes' => [
-                'user_credentials' => [
-                    'class' => 'OAuth2\GrantType\UserCredentials',
-                ],
-                'refresh_token' => [
-                    'class' => 'OAuth2\GrantType\RefreshToken',
-                    'always_issue_new_refresh_token' => true
-                ]
-            ]
-        ]
     ],
     'components' => [
         'request' => [
@@ -61,6 +36,14 @@ return [
             'identityClass' => 'common\auth\Identity',
             'enableAutoLogin' => false,
             'enableSession' => false,
+            'loginUrl' => 'auth/login'
+        ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure transport
+            // for the mailer to send real emails.
+            'useFileTransport' => true,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -76,30 +59,22 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                'POST oauth2/<action:\w+>' => 'oauth2/rest/<action>',
+                '' => 'site/index',
+                'signup' => 'site/signup',
+                'login' => 'site/login',
             ],
         ],
 
     ],
-    'as authenticator' => [
-        'class' => 'filsh\yii2\oauth2server\filters\auth\CompositeAuth',
-        'except' => ['site/index', 'oauth2/rest/token'],
-        'authMethods' => [
-            ['class' => 'yii\filters\auth\HttpBearerAuth'],
-        ]
-    ],
     'as access' => [
         'class' => 'yii\filters\AccessControl',
-        'except' => ['site/index', 'oauth2/rest/token'],
+        'except' => ['site/signup', 'site/login'],
         'rules' => [
             [
                 'allow' => true,
                 'roles' => ['@'],
             ],
         ],
-    ],
-    'as exceptionFilter' => [
-        'class' => 'filsh\yii2\oauth2server\filters\ErrorToExceptionFilter',
     ],
     'params' => $params,
 ];

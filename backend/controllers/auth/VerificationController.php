@@ -29,7 +29,7 @@ class VerificationController extends Controller
                 ///return token
             }
         } catch (InvalidArgumentException $e) {
-            throw new BadRequestHttpException($e->getMessage());
+            throw new BadRequestHttpException($e->getMessage(), null, $e);
         }
 
         return $this->goHome();
@@ -41,9 +41,9 @@ class VerificationController extends Controller
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
                 $this->resend->sendEmail($form);
-                return $this->goHome();
+                Yii::$app->getResponse()->setStatusCode(204);
             } catch (\DomainException $e) {
-                throw new BadRequestHttpException($e->getMessage());
+                throw new BadRequestHttpException($e->getMessage(), null, $e);
             }
         }
 

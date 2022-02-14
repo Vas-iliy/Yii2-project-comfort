@@ -1,6 +1,6 @@
 <?php
 
-namespace core\repositories\frontend;
+namespace core\repositories;
 
 use core\entities\ContactImage;
 use yii\web\NotFoundHttpException;

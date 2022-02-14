@@ -2,9 +2,9 @@
 
 namespace frontend\controllers;
 
-use core\repositories\frontend\FilterRepository;
-use core\repositories\frontend\PageRepository;
-use core\repositories\frontend\ProjectRepository;
+use core\repositories\FilterRepository;
+use core\repositories\PageRepository;
+use core\repositories\ProjectRepository;
 
 class ProjectController extends AppControllers
 {

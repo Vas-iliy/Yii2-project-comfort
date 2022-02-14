@@ -4,9 +4,9 @@ namespace frontend\controllers;
 
 use core\forms\frontend\ClientForm;
 use core\helpers\MaterialHelper;
-use core\repositories\frontend\ContactRepository;
-use core\repositories\frontend\MaterialRepository;
-use core\repositories\frontend\PageRepository;
+use core\repositories\ContactRepository;
+use core\repositories\MaterialRepository;
+use core\repositories\PageRepository;
 use yii\web\Controller;
 
 class AppControllers extends Controller

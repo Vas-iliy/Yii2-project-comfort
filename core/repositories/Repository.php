@@ -1,7 +1,7 @@
 <?php
 
 
-namespace core\repositories\frontend;
+namespace core\repositories;
 
 
 use yii\web\NotFoundHttpException;

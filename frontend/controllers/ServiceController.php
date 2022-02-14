@@ -2,11 +2,11 @@
 
 namespace frontend\controllers;
 
-use core\repositories\frontend\AdvantageRepository;
-use core\repositories\frontend\PageRepository;
-use core\repositories\frontend\ServiceRepository;
-use core\repositories\frontend\WorkImageRepository;
-use core\repositories\frontend\WorkRepository;
+use core\repositories\AdvantageRepository;
+use core\repositories\PageRepository;
+use core\repositories\ServiceRepository;
+use core\repositories\WorkImageRepository;
+use core\repositories\WorkRepository;
 
 class ServiceController extends AppControllers
 {

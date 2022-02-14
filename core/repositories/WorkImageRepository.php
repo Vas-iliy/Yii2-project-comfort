@@ -1,8 +1,9 @@
 <?php
 
-namespace core\repositories\frontend;
+namespace core\repositories;
 
 use core\entities\WorkImage;
+use core\repositories\Repository;
 
 class WorkImageRepository extends Repository
 {

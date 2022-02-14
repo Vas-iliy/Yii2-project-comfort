@@ -1,8 +1,9 @@
 <?php
 
-namespace core\repositories\frontend;
+namespace core\repositories;
 
 use core\entities\Material;
+use core\repositories\Repository;
 
 class MaterialRepository extends Repository
 {

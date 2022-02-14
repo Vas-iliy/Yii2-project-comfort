@@ -1,8 +1,9 @@
 <?php
 
-namespace core\repositories\frontend;
+namespace core\repositories;
 
 use core\entities\State;
+use core\repositories\Repository;
 
 class StateRepository extends Repository
 {

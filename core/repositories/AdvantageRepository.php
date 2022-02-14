@@ -1,8 +1,9 @@
 <?php
 
-namespace core\repositories\frontend;
+namespace core\repositories;
 
 use core\entities\Advantage;
+use core\repositories\Repository;
 
 class AdvantageRepository extends Repository
 {

@@ -5,11 +5,11 @@ namespace frontend\controllers;
 
 use core\forms\frontend\ClientForm;
 use core\forms\frontend\ReviewForm;
-use core\repositories\frontend\AboutRepository;
-use core\repositories\frontend\ContactImageRepository;
-use core\repositories\frontend\FilterRepository;
-use core\repositories\frontend\PageRepository;
-use core\repositories\frontend\ProjectRepository;
+use core\repositories\AboutRepository;
+use core\repositories\ContactImageRepository;
+use core\repositories\FilterRepository;
+use core\repositories\PageRepository;
+use core\repositories\ProjectRepository;
 
 class HomeController extends AppControllers
 {

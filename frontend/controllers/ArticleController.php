@@ -2,10 +2,10 @@
 
 namespace frontend\controllers;
 
-use core\repositories\frontend\PageRepository;
-use core\repositories\frontend\QuestionRepository;
-use core\repositories\frontend\StateCategoryRepository;
-use core\repositories\frontend\StateRepository;
+use core\repositories\PageRepository;
+use core\repositories\QuestionRepository;
+use core\repositories\StateCategoryRepository;
+use core\repositories\StateRepository;
 
 class ArticleController extends AppControllers
 {

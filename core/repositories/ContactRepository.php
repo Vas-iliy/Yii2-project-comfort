@@ -1,17 +1,18 @@
 <?php
 
-namespace core\repositories\frontend;
+namespace core\repositories;
 
 use core\entities\Contact;
+use core\repositories\Repository;
 use yii\web\NotFoundHttpException;
 
-class ContactRepository
+class ContactRepository extends Repository
 {
     public function getContacts()
     {
         $contacts = \Yii::$app->cache->get('contact');
         if (empty($contacts)) {
-            $contacts = Contact::find()->asArray()->all();
+            $contacts = $this->getAllArray(new Contact());
             \Yii::$app->cache->set('contact', $contacts, 3600*24*30*12);
         }
         return $contacts;

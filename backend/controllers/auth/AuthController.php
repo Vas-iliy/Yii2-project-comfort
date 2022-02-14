@@ -5,6 +5,7 @@ namespace backend\controllers\auth;
 use core\forms\auth\LoginForm;
 use core\forms\auth\SignupForm;
 use core\services\auth\AuthService;
+use core\services\auth\TokenService;
 use Yii;
 use yii\helpers\Url;
 use yii\rest\Controller;
@@ -13,11 +14,13 @@ use yii\web\BadRequestHttpException;
 class AuthController extends Controller
 {
     private $service;
+    private $token;
 
-    public function __construct($id, $module, AuthService $service, $config = [])
+    public function __construct($id, $module, AuthService $service, TokenService $token, $config = [])
     {
         parent::__construct($id, $module, $config);
         $this->service = $service;
+        $this->token = $token;
     }
     public function actionSignup()
     {
@@ -40,7 +43,7 @@ class AuthController extends Controller
         if ($form->load(Yii::$app->request->getBodyParams(), '') && $form->validate()){
             try {
                 if ($token = $this->service->auth($form)) {
-                    return $this->redirect(['oauth2/rest/token', 'username' => $form->username, 'password' => $form->password]);
+                    return $token;
                 }
             } catch(\DomainException $e) {
                 throw new BadRequestHttpException($e->getMessage(), null, $e);
@@ -49,8 +52,14 @@ class AuthController extends Controller
         return $form;
     }
 
-    public function actionRefreshToken()
+    public function actionRefreshToken($refresh)
     {
-
+        try {
+            if ($token = $this->token->editSuccessToken($refresh)) {
+                return $token;
+            }
+        } catch(\DomainException $e) {
+            throw new BadRequestHttpException($e->getMessage(), null, $e);
+        }
     }
 }

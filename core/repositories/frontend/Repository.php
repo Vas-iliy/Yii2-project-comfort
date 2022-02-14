@@ -14,9 +14,23 @@ class Repository
         return $data;
     }
 
+    protected function save($class)
+    {
+        if (!$class->save()) throw new \RuntimeException('Saving error.');
+        return $class;
+    }
+
     protected function get($id, $class)
     {
         if (!$data = $class->findOne($id)) throw new NotFoundHttpException('Not found.');
+        return $data;
+    }
+
+    public function getBy($class, $condition)
+    {
+        if (!$data = $class->find()->andWhere($condition)->limit(1)->one()) {
+            throw new NotFoundHttpException('Not found');
+        }
         return $data;
     }
 

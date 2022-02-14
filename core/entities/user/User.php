@@ -5,6 +5,7 @@ namespace core\entities\user;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 
 /**
  * User model
@@ -21,7 +22,7 @@ use yii\db\ActiveRecord;
  * @property integer $updated_at
  * @property string $password write-only password
  */
-class User extends ActiveRecord
+class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
@@ -82,10 +83,40 @@ class User extends ActiveRecord
         ];
     }
 
+    public static function findIdentity($id)
+    {
+        return self::findOne($id);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return static::find()
+            ->joinWith(['tokens t'])
+            ->andWhere(['t.access_token' => $token])
+            ->andWhere(['>', 't.expire', time()])
+            ->one();
+    }
+
     public static function findByUsername($username)
     {
         return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getAuthKey()
+    {
+        return $this->auth_key;
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        return $this->auth_key === $authKey;
+    }
+
 
     public static function findByPasswordResetToken($token)
     {
@@ -138,5 +169,10 @@ class User extends ActiveRecord
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function getTokens()
+    {
+        return $this->hasMany(Token::class, ['user_id' => 'id']);
     }
 }

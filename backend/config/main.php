@@ -33,10 +33,10 @@ return [
             ],
         ],
         'user' => [
-            'identityClass' => 'common\auth\Identity',
+            'identityClass' => 'core\entities\user\User',
             'enableAutoLogin' => false,
             'enableSession' => false,
-            'loginUrl' => 'auth/login'
+            'loginUrl' => 'login'
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
@@ -60,15 +60,22 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
-                'signup' => 'site/signup',
-                'login' => 'site/login',
+                'signup' => 'auth/auth/signup',
+                'login' => 'auth/auth/login',
             ],
         ],
 
     ],
+    'as authenticator' => [
+        'class' => '\yii\filters\auth\CompositeAuth',
+        'except' => ['auth/auth/signup', 'auth/auth/login'],
+        'authMethods' => [
+            ['class' => 'yii\filters\auth\HttpBearerAuth'],
+        ]
+    ],
     'as access' => [
         'class' => 'yii\filters\AccessControl',
-        'except' => ['site/signup', 'site/login'],
+        'except' => ['auth/auth/signup', 'auth/auth/login'],
         'rules' => [
             [
                 'allow' => true,

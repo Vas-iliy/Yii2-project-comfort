@@ -2,6 +2,8 @@
 
 namespace core\services\auth;
 
+use core\entities\user\Token;
+use core\repositories\TokenRepository;
 use core\repositories\UserRepository;
 use core\entities\user\User;
 use core\forms\auth\LoginForm;
@@ -11,10 +13,12 @@ use Yii;
 class AuthService
 {
     private $users;
+    private $tokens;
 
     public function __construct()
     {
         $this->users = new UserRepository();
+        $this->tokens = new TokenRepository();
     }
 
     public function signup(SignupForm $form): User
@@ -48,6 +52,8 @@ class AuthService
         if (!$user->validatePassword($form->password)) {
             throw new \DomainException('Undefined password');
         }
-        return $user;
+        $token = Token::generateToken($user['id']);
+        $tokens = $this->tokens->saveToken($token);
+        return $tokens;
     }
 }

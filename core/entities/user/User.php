@@ -5,7 +5,6 @@ namespace core\entities\user;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use yii\web\IdentityInterface;
 
 /**
  * User model
@@ -22,7 +21,7 @@ use yii\web\IdentityInterface;
  * @property integer $updated_at
  * @property string $password write-only password
  */
-class User extends ActiveRecord implements IdentityInterface
+class User extends ActiveRecord
 {
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
@@ -83,20 +82,6 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
-    public static function findIdentity($id)
-    {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
-    }
-
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        return static::find()
-            ->joinWith(['tokens t'])
-            ->andWhere(['t.token' => $token])
-            ->andWhere(['>', 't.expired_at', time()])
-            ->one();
-    }
-
     public static function findByUsername($username)
     {
         return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
@@ -114,13 +99,6 @@ class User extends ActiveRecord implements IdentityInterface
         ]);
     }
 
-    public static function findByVerificationToken($token) {
-        return static::findOne([
-            'verification_token' => $token,
-            'status' => self::STATUS_INACTIVE
-        ]);
-    }
-
     public static function isPasswordResetTokenValid($token)
     {
         if (empty($token)) {
@@ -130,21 +108,6 @@ class User extends ActiveRecord implements IdentityInterface
         $timestamp = (int) substr($token, strrpos($token, '_') + 1);
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
         return $timestamp + $expire >= time();
-    }
-
-    public function getId()
-    {
-        return $this->getPrimaryKey();
-    }
-
-    public function getAuthKey()
-    {
-        return $this->auth_key;
-    }
-
-    public function validateAuthKey($authKey)
-    {
-        return $this->getAuthKey() === $authKey;
     }
 
     public function validatePassword($password)

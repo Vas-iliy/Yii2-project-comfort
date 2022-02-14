@@ -4,10 +4,11 @@ namespace common\auth;
 
 use core\entities\user\User;
 use core\readModels\UserReadRepository;
+use OAuth2\Storage\UserCredentialsInterface;
 use Yii;
 use yii\web\IdentityInterface;
 
-class Identity implements IdentityInterface
+class Identity implements IdentityInterface, UserCredentialsInterface
 {
     private $user;
 

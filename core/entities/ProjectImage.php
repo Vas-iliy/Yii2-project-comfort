@@ -25,6 +25,7 @@ class ProjectImage extends ActiveRecord
                 'thumbUrl' => '@static/cache/projects/[[attribute_project_id]]/[[profile]]_[[id]].[[extension]]',
                 'thumbs' => [
                     'admin' => ['width' => 100, 'height' => 70],
+                    'catalog_list' => ['width' => 228, 'height' => 228],
                 ],
             ],
         ];

@@ -62,11 +62,12 @@ return [
                 '' => 'site/index',
                 'signup' => 'auth/auth/signup',
                 'login' => 'auth/auth/login',
+                'GET project' => 'project/index',
             ],
         ],
 
     ],
-    'as authenticator' => [
+    /*'as authenticator' => [
         'class' => '\yii\filters\auth\CompositeAuth',
         'except' => ['auth/auth/signup', 'auth/auth/login'],
         'authMethods' => [
@@ -82,6 +83,6 @@ return [
                 'roles' => ['@'],
             ],
         ],
-    ],
+    ],*/
     'params' => $params,
 ];

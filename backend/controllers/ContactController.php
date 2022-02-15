@@ -8,9 +8,7 @@ use core\entities\Contact;
 use core\forms\ContactFrom;
 use core\readModels\ContactReadRepository;
 use core\services\ContactService;
-use Yii;
 use yii\rest\Controller;
-use yii\web\BadRequestHttpException;
 use yii\web\NotFoundHttpException;
 
 class ContactController extends Controller
@@ -27,25 +25,14 @@ class ContactController extends Controller
 
     public function actionIndex()
     {
-        $projects = $this->contacts->getAll();
-        return new MapDataProvider($projects, [$this, 'serializeListItem']);
+        $contacts= $this->contacts->getAll();
+        return new MapDataProvider($contacts, [$this, 'serializeListItem']);
     }
 
     public function actionCreate()
     {
         $form = new ContactFrom();
-        if ($form->load(Yii::$app->request->getBodyParams(), '') && $form->validate()) {
-            try {
-                $this->service->create($form);
-                Yii::$app->getResponse()->setStatusCode(201);
-                return [];
-            } catch (\DomainException $e) {
-                throw new BadRequestHttpException($e->getMessage(), null, $e);
-            }
-        }
-        if ($form->errors) {
-            Yii::$app->getResponse()->setStatusCode(400);
-        }
+        AppController::actionCreate($form, $this->service);
         return [
             'errors' => $form->errors
         ];
@@ -55,18 +42,7 @@ class ContactController extends Controller
     {
         $contact = $this->findModel($id);
         $form = new ContactFrom($contact);
-        if ($form->load(Yii::$app->request->getBodyParams(), '') && $form->validate()) {
-            try {
-                $this->service->edit($contact->id, $form);
-                Yii::$app->getResponse()->setStatusCode(201);
-                return [];
-            } catch (\DomainException $e) {
-                throw new BadRequestHttpException($e->getMessage(), null, $e);
-            }
-        }
-        if ($form->errors) {
-            Yii::$app->getResponse()->setStatusCode(400);
-        }
+        AppController::actionUpdate($form, $this->service, $contact->id);
         return [
             'project' => ContactList::formContact($form),
             'errors' => $form->errors,

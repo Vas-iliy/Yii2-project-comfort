@@ -7,17 +7,12 @@ use backend\providers\MapDataProvider;
 use core\entities\Filter;
 use core\entities\Material;
 use core\entities\Project;
-use core\entities\ProjectImage;
 use core\forms\ProjectFrom;
 use core\readModels\FilterReadRepository;
 use core\readModels\MaterialReadRepository;
 use core\readModels\ProjectReadRepository;
 use core\services\ProjectService;
-use Yii;
-use yii\helpers\Url;
 use yii\rest\Controller;
-use yii\web\BadRequestHttpException;
-
 
 class ProjectController extends Controller
 {
@@ -54,22 +49,7 @@ class ProjectController extends Controller
     public function actionCreate()
     {
         $form = new ProjectFrom();
-        if ($form->load(Yii::$app->request->getBodyParams(), '') && $form->validate()) {
-            try {
-                $this->service->create($form);
-                Yii::$app->getResponse()->setStatusCode(201);
-                return [
-                    '_links' => [
-                        'projects' => ['href' => Url::to([''], true)],
-                    ]
-                ];
-            } catch (\DomainException $e) {
-                throw new BadRequestHttpException($e->getMessage(), null, $e);
-            }
-        }
-        if ($form->errors) {
-            Yii::$app->getResponse()->setStatusCode(400);
-        }
+        AppController::actionCreate($form, $this->service);
         return [
             'errors' => $form->errors,
             'filters' => new MapDataProvider($this->filters->getAll(), [$this, 'formListFilter']),
@@ -81,22 +61,7 @@ class ProjectController extends Controller
     {
         $project = $this->findModel($id);
         $form = new ProjectFrom($project);
-        if ($form->load(Yii::$app->request->getBodyParams(), '') && $form->validate()) {
-            try {
-                $this->service->edit($project->id, $form);
-                Yii::$app->getResponse()->setStatusCode(201);
-                return [
-                    '_links' => [
-                        'projects' => ['href' => Url::to([''], true)],
-                    ]
-                ];
-            } catch (\DomainException $e) {
-                throw new BadRequestHttpException($e->getMessage(), null, $e);
-            }
-        }
-        if ($form->errors) {
-            Yii::$app->getResponse()->setStatusCode(400);
-        }
+        AppController::actionUpdate($form, $this->service, $project->id);
         return [
             'project' => ProjectList::formProject($form),
             'errors' => $form->errors,

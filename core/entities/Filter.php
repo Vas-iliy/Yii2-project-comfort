@@ -14,8 +14,7 @@ class Filter extends ActiveRecord
 
     public function getProjects()
     {
-        return $this->hasMany(Project::class, ['id' => 'project_id'])
-            ->viaTable('projects_filters', ['filter_id' => 'id']);
+        return $this->hasMany(Project::class, ['filter_id' => 'id']);
     }
 
     public function behaviors()

@@ -57,7 +57,6 @@ class ProjectRepository
 
     private function getProjectFromFilters($filters)
     {
-        return Project::find()
-            ->joinWith('filters')->andWhere(['in','filters.id', $filters])->with('images')->with('material')->distinct();
+        return Project::find()->andWhere(['in','filter_id', $filters])->with('images')->with('material');
     }
 }

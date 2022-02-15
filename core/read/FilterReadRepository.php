@@ -14,6 +14,11 @@ class FilterReadRepository
         return $this->getProvider($query);
     }
 
+    public function toProvider($project)
+    {
+        return $this->getProvider($project);
+    }
+
     public function getWithProject($projectId)
     {
 

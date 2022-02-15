@@ -21,9 +21,8 @@ class Project extends ActiveRecord
         return $this->hasOne(Material::class, ['id' => 'material_id']);
     }
 
-    public function getFilters()
+    public function getFilter()
     {
-        return $this->hasMany(Filter::class, ['id' => 'filter_id'])
-            ->viaTable('projects_filters', ['project_id' => 'id']);
+        return $this->hasOne(Filter::class, ['id' => 'filter_id']);
     }
 }

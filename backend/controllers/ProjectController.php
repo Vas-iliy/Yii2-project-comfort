@@ -4,10 +4,10 @@ namespace backend\controllers;
 
 use backend\providers\MapDataProvider;
 use core\entities\Project;
+use core\read\FilterReadRepository;
 use core\read\ProjectReadRepository;
 use yii\helpers\Url;
 use yii\rest\Controller;
-use yii\web\NotFoundHttpException;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -15,55 +15,21 @@ use yii\web\NotFoundHttpException;
 class ProjectController extends Controller
 {
     private $projects;
+    private $filters;
 
-    public function __construct($id, $module, ProjectReadRepository $projects, $config = [])
+    public function __construct($id, $module, ProjectReadRepository $projects, FilterReadRepository $filters, $config = [])
     {
         $this->projects = $projects;
+        $this->filters = $filters;
         parent::__construct($id, $module, $config);
     }
 
     public function actionIndex()
     {
-        /*$dataProvider = new ActiveDataProvider([
-            'query' => Project::find(),
-
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-
-        ]);
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);*/
         $projects = $this->projects->getAll();
         return new MapDataProvider($projects, [$this, 'serializeListItem']);
-
     }
 
-    /**
-     * Displays a single Project model.
-     * @param int $id
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new Project model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
     public function actionCreate()
     {
         $model = new Project();
@@ -81,13 +47,6 @@ class ProjectController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Project model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -101,13 +60,6 @@ class ProjectController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Project model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -115,21 +67,6 @@ class ProjectController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Project model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id
-     * @return Project the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Project::findOne(['id' => $id])) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
 
     public function serializeListItem(Project $project): array
     {
@@ -141,8 +78,14 @@ class ProjectController extends Controller
             'text' => $project->description,
             'price' => $project->prise,
             'popular' => $project->popular,
+            'filters' => function() use ($project) {
+                $filters = $this->filters->toProvider($project->filters);
+                return [
+                    'id' => $filters->id,
+                    'title' => $filters->filter,
+                ];
+            },
             '_links' => [
-                'self' => ['href' => Url::to(['view', 'id' => $project->id], true)],
                 'update' => ['href' => Url::to(['update', 'id' => $project->id], true)],
                 'delete' => ['href' => Url::to(['delete', 'id' => $project->id], true)],
             ],

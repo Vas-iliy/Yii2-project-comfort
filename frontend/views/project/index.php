@@ -26,7 +26,7 @@
                             </div>
                             <div class='menuitems pointerCursor hide'>
                                 <?foreach ($filters as $filter):?>
-                                    <a href="<?=(preg_match('/filter=/', Url::current())) ? Url::current() . ',' . $filter['id'] : Url::to(['', 'filter' => $filter['id']])?>">
+                                    <a href="<?=Yii::$app->request->get('filter') ? Url::to(['', 'filter' => Yii::$app->request->get('filter').','.$filter['id']]) : Url::to(['', 'filter' => $filter['id']])?>">
                                     <div class="
                                     items-block__point
                                     <?=(is_string($isActive) && $filter['id'] == $isActive) ? ' active' : ''?>
@@ -53,7 +53,7 @@
             <div class="items-block__points">
             <?endif;?>
 
-            <a href="<?=(preg_match('/filter=/', Url::current())) ? Url::current() . ',' . $filter['id'] : Url::to(['', 'filter' => $filter['id']])?>">
+            <a href="<?=Yii::$app->request->get('filter') ? Url::to(['', 'filter' => Yii::$app->request->get('filter').','.$filter['id']]) : Url::to(['', 'filter' => $filter['id']])?>">
                 <div class="
                 items-block__point
                 <?=(is_string($isActive) && $filter['id'] == $isActive) ? ' active' : ''?>

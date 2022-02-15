@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\providers\MapDataProvider;
 use core\entities\Project;
+use core\entities\ProjectImage;
 use core\read\FilterReadRepository;
 use core\read\ProjectReadRepository;
 use yii\helpers\Url;
@@ -75,16 +76,14 @@ class ProjectController extends Controller
             'title' => $project->title,
             'square' => $project->square,
             'count' => $project->count_floors,
+            'material' => $project->material->material,
             'text' => $project->description,
             'price' => $project->prise,
             'popular' => $project->popular,
-            'filters' => function() use ($project) {
-                $filters = $this->filters->toProvider($project->filters);
-                return [
-                    'id' => $filters->id,
-                    'title' => $filters->filter,
-                ];
-            },
+            'filter' => $project->filter->filter,
+            'images' => array_map(function (ProjectImage $image) {
+                return $image->getThumbFileUrl('image', 'catalog_list');
+            }, $project->images),
             '_links' => [
                 'update' => ['href' => Url::to(['update', 'id' => $project->id], true)],
                 'delete' => ['href' => Url::to(['delete', 'id' => $project->id], true)],

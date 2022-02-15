@@ -3,20 +3,16 @@
 namespace core\read;
 
 use core\entities\Project;
+use core\entities\ProjectImage;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
 
-class ProjectReadRepository
+class ProjectImageReadRepository
 {
-    public function getAll()
+    public function getImages($id)
     {
-        $query = Project::find()->with('filter', 'images', 'material');
+        $query = ProjectImage::find()->where(['project_id' => $id])->with('filter', 'images', 'material');
         return $this->getProvider($query);
-    }
-
-    public function find($id)
-    {
-        return Project::find()->andWhere(['id' => $id])->one();
     }
 
     private function getProvider(ActiveQuery $query)

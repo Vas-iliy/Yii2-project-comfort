@@ -2,21 +2,22 @@
 
 namespace core\read;
 
-use core\entities\Filter;
+use core\entities\Material;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
 
-class FilterReadRepository
+class MaterialReadRepository
 {
     public function getAll()
     {
-        $query = Filter::find();
+        $query = Material::find();
         return $this->getProvider($query);
     }
 
+
     public function find($id)
     {
-        return Filter::find()->andWhere(['id' => $id])->one();
+        return Material::find()->andWhere(['id' => $id])->one();
     }
 
     private function getProvider(ActiveQuery $query)

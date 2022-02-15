@@ -3,25 +3,34 @@
 namespace backend\controllers;
 
 use backend\providers\MapDataProvider;
+use core\entities\Filter;
+use core\entities\Material;
 use core\entities\Project;
 use core\entities\ProjectImage;
+use core\forms\ProjectFrom;
 use core\read\FilterReadRepository;
+use core\read\MaterialReadRepository;
 use core\read\ProjectReadRepository;
+use core\services\ProjectService;
+use Yii;
 use yii\helpers\Url;
 use yii\rest\Controller;
+use yii\web\BadRequestHttpException;
 
-/**
- * ProjectController implements the CRUD actions for Project model.
- */
+
 class ProjectController extends Controller
 {
     private $projects;
     private $filters;
+    private $materials;
+    private $service;
 
-    public function __construct($id, $module, ProjectReadRepository $projects, FilterReadRepository $filters, $config = [])
+    public function __construct($id, $module, ProjectReadRepository $projects, FilterReadRepository $filters, MaterialReadRepository $materials, ProjectService $service, $config = [])
     {
         $this->projects = $projects;
         $this->filters = $filters;
+        $this->materials = $materials;
+        $this->service = $service;
         parent::__construct($id, $module, $config);
     }
 
@@ -33,19 +42,21 @@ class ProjectController extends Controller
 
     public function actionCreate()
     {
-        $model = new Project();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+        $form = new ProjectFrom();
+        if ($form->load(Yii::$app->request->getBodyParams(), '') && $form->validate()) {
+            try {
+                $this->service->create($form);
+                Yii::$app->getResponse()->setStatusCode(201);
+                return [];
+            } catch (\DomainException $e) {
+                throw new BadRequestHttpException($e->getMessage(), null, $e);
             }
-        } else {
-            $model->loadDefaultValues();
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        return [
+            'errors' => $form->errors,
+            'filters' => new MapDataProvider($this->filters->getAll(), [$this, 'formListFilter']),
+            'materials' => new MapDataProvider($this->materials->getAll(), [$this, 'formListMaterial']),
+        ];
     }
 
     public function actionUpdate($id)
@@ -68,7 +79,6 @@ class ProjectController extends Controller
         return $this->redirect(['index']);
     }
 
-
     public function serializeListItem(Project $project): array
     {
         return [
@@ -88,6 +98,22 @@ class ProjectController extends Controller
                 'update' => ['href' => Url::to(['update', 'id' => $project->id], true)],
                 'delete' => ['href' => Url::to(['delete', 'id' => $project->id], true)],
             ],
+        ];
+    }
+
+    public function formListFilter(Filter $filter)
+    {
+        return [
+            'id' => $filter->id,
+            'title' => $filter->filter
+        ];
+    }
+
+    public function formListMaterial(Material $material)
+    {
+        return [
+            'id' => $material->id,
+            'title' => $material->material
         ];
     }
 }

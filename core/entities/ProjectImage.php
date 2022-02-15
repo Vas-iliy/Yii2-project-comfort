@@ -3,6 +3,7 @@
 namespace core\entities;
 
 use yii\db\ActiveRecord;
+use yii\web\UploadedFile;
 use yiidreamteam\upload\ImageUploadBehavior;
 
 class ProjectImage extends ActiveRecord
@@ -10,6 +11,13 @@ class ProjectImage extends ActiveRecord
     public static function tableName()
     {
         return 'project_images';
+    }
+
+    public static function create(UploadedFile $file)
+    {
+        $image = new static();
+        $image->image = $file;
+        return $image;
     }
 
     public function behaviors()

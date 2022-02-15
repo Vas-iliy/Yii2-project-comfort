@@ -6,7 +6,7 @@ use core\entities\Filter;
 use core\entities\Project;
 use yii\data\Pagination;
 
-class ProjectRepository
+class ProjectRepository extends Repository
 {
     public function getProjectPopular()
     {
@@ -44,6 +44,11 @@ class ProjectRepository
             \Yii::$app->cache->set('projects', $projects, 3600*24*30);
         }
         return $projects;
+    }
+
+    public function saveProject($project)
+    {
+        return $this->save($project);
     }
 
     public function pagination($projects)

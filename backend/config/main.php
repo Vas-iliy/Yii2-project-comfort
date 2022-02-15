@@ -63,6 +63,7 @@ return [
                 'signup' => 'auth/auth/signup',
                 'login' => 'auth/auth/login',
                 'GET project' => 'project/index',
+                'project/create' => 'project/create',
             ],
         ],
 

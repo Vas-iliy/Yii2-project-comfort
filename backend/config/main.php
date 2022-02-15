@@ -64,6 +64,8 @@ return [
                 'login' => 'auth/auth/login',
                 'GET project' => 'project/index',
                 'project/create' => 'project/create',
+                'GET project/<id:\d+>' => 'project/update',
+                'PUT project/<id:\d+>' => 'project/update',
             ],
         ],
 

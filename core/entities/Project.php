@@ -34,8 +34,8 @@ class Project extends ActiveRecord
         $this->description = $description;
         $this->prise = $prise;
         $this->popular = $popular;
-        $this->material = $material;
-        $this->filter = $filter;
+        $this->material_id = $material;
+        $this->filter_id = $filter;
     }
 
     public function addImage(UploadedFile $file)

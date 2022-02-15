@@ -16,6 +16,7 @@ use Yii;
 use yii\helpers\Url;
 use yii\rest\Controller;
 use yii\web\BadRequestHttpException;
+use yii\web\NotFoundHttpException;
 
 
 class ProjectController extends Controller
@@ -34,6 +35,16 @@ class ProjectController extends Controller
         parent::__construct($id, $module, $config);
     }
 
+    public function verbs(): array
+    {
+        return [
+            'index' => ['GET'],
+            'create' => ['GET', 'POST'],
+            'update' => ['GET', 'PUT', 'PATCH'],
+            'delete' => ['DELETE'],
+        ];
+    }
+
     public function actionIndex()
     {
         $projects = $this->projects->getAll();
@@ -47,10 +58,17 @@ class ProjectController extends Controller
             try {
                 $this->service->create($form);
                 Yii::$app->getResponse()->setStatusCode(201);
-                return [];
+                return [
+                    '_links' => [
+                        'projects' => ['href' => Url::to([''], true)],
+                    ]
+                ];
             } catch (\DomainException $e) {
                 throw new BadRequestHttpException($e->getMessage(), null, $e);
             }
+        }
+        if ($form->errors) {
+            Yii::$app->getResponse()->setStatusCode(400);
         }
         return [
             'errors' => $form->errors,
@@ -61,15 +79,42 @@ class ProjectController extends Controller
 
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $project = $this->findModel($id);
+        $form = new ProjectFrom($project);
+        if ($form->load(Yii::$app->request->getBodyParams(), '') && $form->validate()) {
+            try {
+                $this->service->edit($project->id, $form);
+                Yii::$app->getResponse()->setStatusCode(201);
+                return [
+                    '_links' => [
+                        'projects' => ['href' => Url::to([''], true)],
+                    ]
+                ];
+            } catch (\DomainException $e) {
+                throw new BadRequestHttpException($e->getMessage(), null, $e);
+            }
         }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        if ($form->errors) {
+            Yii::$app->getResponse()->setStatusCode(400);
+        }
+        return [
+            'project' => [
+                'title' => $form->title,
+                'square' => $form->square,
+                'count_floors' => $form->count_floors,
+                'material' => $form->material,
+                'description' => $form->description,
+                'prise' => $form->prise,
+                'popular' => $form->popular,
+                'filter' => $form->filter,
+                'images' => array_map(function (ProjectImage $image) {
+                    return $image->getThumbFileUrl('image', 'catalog_list');
+                }, $form->images),
+            ],
+            'errors' => $form->errors,
+            'filters' => new MapDataProvider($this->filters->getAll(), [$this, 'formListFilter']),
+            'materials' => new MapDataProvider($this->materials->getAll(), [$this, 'formListMaterial']),
+        ];
     }
 
     public function actionDelete($id)
@@ -77,6 +122,16 @@ class ProjectController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = Project::findOne(['id' => $id])) !== null) {
+            return $model;
+        }
+        return [
+            'error' => 'The requested page does not exist.'
+        ];
     }
 
     public function serializeListItem(Project $project): array

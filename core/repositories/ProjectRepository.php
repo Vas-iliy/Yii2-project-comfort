@@ -51,6 +51,11 @@ class ProjectRepository extends Repository
         return $this->save($project);
     }
 
+    public function getProject($id)
+    {
+        return $this->get($id, new Project());
+    }
+
     public function pagination($projects)
     {
         $pages = new Pagination(['totalCount' => $projects->count(), 'pageSize' => \Yii::$app->params['projectCount'], 'forcePageParam' => false, 'pageSizeParam' => false]);

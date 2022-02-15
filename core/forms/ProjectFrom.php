@@ -29,8 +29,9 @@ class ProjectFrom extends Model
             $this->description = $project->description;
             $this->prise = $project->prise;
             $this->popular = $project->popular;
-            $this->material = $project->material;
-            $this->filter = $project->filter;
+            $this->material = $project->material->id;
+            $this->filter = $project->filter->id;
+            $this->images = $project->images;
             $this->_project = $project;
         }
         parent::__construct($config);

@@ -2,21 +2,21 @@
 
 namespace backend\controllers;
 
+use backend\lists\ProjectList;
 use backend\providers\MapDataProvider;
 use core\entities\Filter;
 use core\entities\Material;
 use core\entities\Project;
 use core\entities\ProjectImage;
 use core\forms\ProjectFrom;
-use core\read\FilterReadRepository;
-use core\read\MaterialReadRepository;
-use core\read\ProjectReadRepository;
+use core\readModels\FilterReadRepository;
+use core\readModels\MaterialReadRepository;
+use core\readModels\ProjectReadRepository;
 use core\services\ProjectService;
 use Yii;
 use yii\helpers\Url;
 use yii\rest\Controller;
 use yii\web\BadRequestHttpException;
-use yii\web\NotFoundHttpException;
 
 
 class ProjectController extends Controller
@@ -98,19 +98,7 @@ class ProjectController extends Controller
             Yii::$app->getResponse()->setStatusCode(400);
         }
         return [
-            'project' => [
-                'title' => $form->title,
-                'square' => $form->square,
-                'count_floors' => $form->count_floors,
-                'material' => $form->material,
-                'description' => $form->description,
-                'prise' => $form->prise,
-                'popular' => $form->popular,
-                'filter' => $form->filter,
-                'images' => array_map(function (ProjectImage $image) {
-                    return $image->getThumbFileUrl('image', 'catalog_list');
-                }, $form->images),
-            ],
+            'project' => ProjectList::formProject($form),
             'errors' => $form->errors,
             'filters' => new MapDataProvider($this->filters->getAll(), [$this, 'formListFilter']),
             'materials' => new MapDataProvider($this->materials->getAll(), [$this, 'formListMaterial']),
@@ -134,41 +122,19 @@ class ProjectController extends Controller
         ];
     }
 
-    public function serializeListItem(Project $project): array
+    public function serializeListItem(Project $project)
     {
-        return [
-            'id' => $project->id,
-            'title' => $project->title,
-            'square' => $project->square,
-            'count' => $project->count_floors,
-            'material' => $project->material->material,
-            'text' => $project->description,
-            'price' => $project->prise,
-            'popular' => $project->popular,
-            'filter' => $project->filter->filter,
-            'images' => array_map(function (ProjectImage $image) {
-                return $image->getThumbFileUrl('image', 'catalog_list');
-            }, $project->images),
-            '_links' => [
-                'update' => ['href' => Url::to(['update', 'id' => $project->id], true)],
-                'delete' => ['href' => Url::to(['delete', 'id' => $project->id], true)],
-            ],
-        ];
+        return ProjectList::serializeListItem($project);
     }
 
     public function formListFilter(Filter $filter)
     {
-        return [
-            'id' => $filter->id,
-            'title' => $filter->filter
-        ];
+        return ProjectList::formListFilter($filter);
+
     }
 
     public function formListMaterial(Material $material)
     {
-        return [
-            'id' => $material->id,
-            'title' => $material->material
-        ];
+        return ProjectList::formListMaterial($material);
     }
 }

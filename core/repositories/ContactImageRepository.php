@@ -3,7 +3,6 @@
 namespace core\repositories;
 
 use core\entities\ContactImage;
-use yii\web\NotFoundHttpException;
 
 class ContactImageRepository
 {

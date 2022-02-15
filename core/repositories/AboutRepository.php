@@ -4,8 +4,6 @@ namespace core\repositories;
 
 use core\entities\About;
 use core\helpers\TitleHelper;
-use core\repositories\Repository;
-use yii\web\NotFoundHttpException;
 
 class AboutRepository extends Repository
 {

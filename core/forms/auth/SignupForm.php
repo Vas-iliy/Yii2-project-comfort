@@ -5,19 +5,12 @@ namespace core\forms\auth;
 use Yii;
 use yii\base\Model;
 
-/**
- * Signup form
- */
 class SignupForm extends Model
 {
     public $username;
     public $email;
     public $password;
 
-
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [

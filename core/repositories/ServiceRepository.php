@@ -4,7 +4,6 @@ namespace core\repositories;
 
 use core\entities\Service;
 use core\helpers\TitleHelper;
-use core\repositories\Repository;
 
 class ServiceRepository extends Repository
 {

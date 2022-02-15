@@ -1,12 +1,9 @@
 <?php
 
-
 namespace core\repositories;
-
 
 use core\entities\Question;
 use core\helpers\TitleHelper;
-use core\repositories\Repository;
 
 class QuestionRepository extends Repository
 {

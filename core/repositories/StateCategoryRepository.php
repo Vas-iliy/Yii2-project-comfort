@@ -1,12 +1,9 @@
 <?php
 
-
 namespace core\repositories;
-
 
 use core\entities\StateCategory;
 use core\helpers\TitleHelper;
-use core\repositories\Repository;
 
 class StateCategoryRepository extends Repository
 {

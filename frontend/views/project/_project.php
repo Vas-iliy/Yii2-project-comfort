@@ -38,7 +38,7 @@ foreach ($projects as $project):?>
                             <a href="#">Построить</a>
                         </div>
                         <div class="popular-block__value">
-                            <span class="popular-block__price"><span class="small-text">от</span> <?=number_format($project->prise, 0, '', ' ')?></span> <img
+                            <span class="popular-block__price"><span class="small-text">от</span> <?=number_format($project->price, 0, '', ' ')?></span> <img
                                 src="img/icons/ruble-icon.svg" alt="">
                         </div>
                     </div>

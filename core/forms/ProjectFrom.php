@@ -12,7 +12,7 @@ class ProjectFrom extends Model
     public $square;
     public $count_floors;
     public $description;
-    public $prise;
+    public $price;
     public $popular;
     public $material;
     public $filter;
@@ -27,7 +27,7 @@ class ProjectFrom extends Model
             $this->square = $project->square;
             $this->count_floors = $project->count_floors;
             $this->description = $project->description;
-            $this->prise = $project->prise;
+            $this->price = $project->price;
             $this->popular = $project->popular;
             $this->material = $project->material->id;
             $this->filter = $project->filter->id;
@@ -40,9 +40,9 @@ class ProjectFrom extends Model
     public function rules()
     {
         return [
-            [['title', 'square', 'count_floors', 'description', 'prise', 'popular', 'material', 'filter', 'images'], 'required' , 'message' => 'Поле не заполнено'],
+            [['title', 'square', 'count_floors', 'description', 'price', 'popular', 'material', 'filter', 'images'], 'required' , 'message' => 'Поле не заполнено'],
             [['title', 'description'], 'string'],
-            [['count_floors', 'prise', 'material', 'filter'], 'integer'],
+            [['count_floors', 'price', 'material', 'filter'], 'integer'],
             [['square'], 'number'],
             [['popular'], 'boolean'],
             ['images', 'each', 'rule' => ['image']],

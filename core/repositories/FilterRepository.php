@@ -3,8 +3,6 @@
 namespace core\repositories;
 
 use core\entities\Filter;
-use core\repositories\Repository;
-use yii\web\NotFoundHttpException;
 
 class FilterRepository extends Repository
 {

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace core\forms\frontend;
-
 
 use core\entities\Service;
 use yii\base\Model;

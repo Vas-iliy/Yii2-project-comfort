@@ -1,22 +1,22 @@
 <?php
 
-namespace core\read;
+namespace core\readModels;
 
-use core\entities\Project;
+use core\entities\Filter;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
 
-class ProjectReadRepository
+class FilterReadRepository
 {
     public function getAll()
     {
-        $query = Project::find()->with('filter', 'images', 'material');
+        $query = Filter::find();
         return $this->getProvider($query);
     }
 
     public function find($id)
     {
-        return Project::find()->andWhere(['id' => $id])->one();
+        return Filter::find()->andWhere(['id' => $id])->one();
     }
 
     private function getProvider(ActiveQuery $query)

@@ -3,7 +3,6 @@
 namespace core\repositories;
 
 use core\entities\Page;
-use yii\web\NotFoundHttpException;
 
 class PageRepository
 {

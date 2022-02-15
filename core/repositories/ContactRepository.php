@@ -3,8 +3,6 @@
 namespace core\repositories;
 
 use core\entities\Contact;
-use core\repositories\Repository;
-use yii\web\NotFoundHttpException;
 
 class ContactRepository extends Repository
 {

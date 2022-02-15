@@ -62,10 +62,18 @@ return [
                 '' => 'site/index',
                 'signup' => 'auth/auth/signup',
                 'login' => 'auth/auth/login',
+
                 'GET project' => 'project/index',
                 'project/create' => 'project/create',
                 'GET project/<id:\d+>' => 'project/update',
                 'PUT project/<id:\d+>' => 'project/update',
+
+                'GET contact' => 'contact/index',
+                'contact/create' => 'contact/create',
+                'GET contact/<id:\d+>' => 'contact/update',
+                'PUT contact/<id:\d+>' => 'contact/update',
+
+
             ],
         ],
 

@@ -10,4 +10,18 @@ class Contact extends ActiveRecord
     {
         return 'contacts';
     }
+
+    public static function create($title, $content)
+    {
+        $project = new static();
+        $project->title = $title;
+        $project->content = $content;
+        return $project;
+    }
+
+    public function edit($title, $content)
+    {
+        $this->title = $title;
+        $this->content = $content;
+    }
 }

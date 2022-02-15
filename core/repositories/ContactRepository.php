@@ -15,4 +15,14 @@ class ContactRepository extends Repository
         }
         return $contacts;
     }
+
+    public function getContact($id)
+    {
+        return $this->get($id, new Contact());
+    }
+
+    public function saveContact($contact)
+    {
+        return $this->save($contact);
+    }
 }

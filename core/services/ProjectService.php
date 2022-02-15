@@ -26,6 +26,7 @@ class ProjectService
             $from->popular,
             $from->material,
             $from->filter,
+            $from->status
         );
         foreach ($from->images as $image) {
             $project->addImage($image);
@@ -46,11 +47,18 @@ class ProjectService
             $from->popular,
             $from->material,
             $from->filter,
+            $from->status
         );
         foreach ($from->images as $image) {
             $project->addImage($image);
         }
         $this->projects->saveProject($project);
         return $project;
+    }
+
+    public function remove($id)
+    {
+        $project = $this->projects->getProject($id);
+        $this->projects->remove($project);
     }
 }

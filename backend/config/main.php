@@ -67,13 +67,13 @@ return [
                 'project/create' => 'project/create',
                 'GET project/<id:\d+>' => 'project/update',
                 'PUT project/<id:\d+>' => 'project/update',
+                'DELETE project/<id:\d+>' => 'project/delete',
 
                 'GET contact' => 'contact/index',
                 'contact/create' => 'contact/create',
                 'GET contact/<id:\d+>' => 'contact/update',
                 'PUT contact/<id:\d+>' => 'contact/update',
-
-
+                'DELETE contact/<id:\d+>' => 'contact/delete',
             ],
         ],
 

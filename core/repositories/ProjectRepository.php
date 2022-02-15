@@ -51,6 +51,12 @@ class ProjectRepository extends Repository
         return $this->save($project);
     }
 
+    public function remove(Project $project)
+    {
+        $project->status = $project::STATUS_DELETED;
+        if (!$project->save()) throw new \RuntimeException('Removing error.');
+    }
+
     public function getProject($id)
     {
         return $this->get($id, new Project());

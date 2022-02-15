@@ -15,24 +15,32 @@ class ContactService
         $this->contacts = $contacts;
     }
 
-    public function create(ContactFrom $from)
+    public function create(ContactFrom $form)
     {
         $project = Contact::create(
-            $from->title,
-            $from->content
+            $form->title,
+            $form->content,
+            $form->status
         );
         $this->contacts->saveContact($project);
         return $project;
     }
 
-    public function edit($id, ContactFrom $from)
+    public function edit($id, ContactFrom $form)
     {
         $project = $this->contacts->getContact($id);
         $project->edit(
-            $from->title,
-            $from->content
+            $form->title,
+            $form->content,
+            $form->status
         );
         $this->contacts->saveContact($project);
         return $project;
+    }
+
+    public function remove($id)
+    {
+        $project = $this->contacts->getContact($id);
+        $this->contacts->remove($project);
     }
 }

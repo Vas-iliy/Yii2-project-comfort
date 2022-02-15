@@ -7,12 +7,16 @@ use yii\web\UploadedFile;
 
 class Project extends ActiveRecord
 {
+    const STATUS_DELETED = 0;
+    const STATUS_INACTIVE = 9;
+    const STATUS_ACTIVE = 10;
+
     public static function tableName()
     {
         return 'projects';
     }
 
-    public static function create($title, $square, $count_floors, $description, $price, $popular, $material, $filter)
+    public static function create($title, $square, $count_floors, $description, $price, $popular, $material, $filter, $status)
     {
         $project = new static();
         $project->title = $title;
@@ -23,10 +27,11 @@ class Project extends ActiveRecord
         $project->popular = $popular;
         $project->material_id = $material;
         $project->filter_id = $filter;
+        $project->status = $status;
         return $project;
     }
 
-    public function edit($title, $square, $count_floors, $description, $price, $popular, $material, $filter)
+    public function edit($title, $square, $count_floors, $description, $price, $popular, $material, $filter, $status)
     {
         $this->title = $title;
         $this->square = $square;
@@ -36,6 +41,7 @@ class Project extends ActiveRecord
         $this->popular = $popular;
         $this->material_id = $material;
         $this->filter_id = $filter;
+        $this->status = $status;
     }
 
     public function addImage(UploadedFile $file)

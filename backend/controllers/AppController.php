@@ -37,4 +37,14 @@ class AppController extends Controller
             Yii::$app->getResponse()->setStatusCode(400);
         }
     }
+
+    public static function actionDelete($id, $service)
+    {
+        try {
+            $service->remove($id);
+            Yii::$app->getResponse()->setStatusCode(202);
+        }  catch (\DomainException $e) {
+            throw new BadRequestHttpException($e->getMessage(), null, $e);
+        }
+    }
 }

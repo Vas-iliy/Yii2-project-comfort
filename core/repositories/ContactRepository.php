@@ -16,6 +16,12 @@ class ContactRepository extends Repository
         return $contacts;
     }
 
+    public function remove(Contact $contact)
+    {
+        $contact->status = $contact::STATUS_DELETED;
+        if (!$contact->save()) throw new \RuntimeException('Removing error.');
+    }
+
     public function getContact($id)
     {
         return $this->get($id, new Contact());

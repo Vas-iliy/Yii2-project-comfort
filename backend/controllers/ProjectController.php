@@ -12,7 +12,9 @@ use core\readModels\FilterReadRepository;
 use core\readModels\MaterialReadRepository;
 use core\readModels\ProjectReadRepository;
 use core\services\ProjectService;
+use Yii;
 use yii\rest\Controller;
+use yii\web\BadRequestHttpException;
 
 class ProjectController extends Controller
 {
@@ -72,9 +74,8 @@ class ProjectController extends Controller
 
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        AppController::actionDelete($id, $this->service);
+        return [];
     }
 
     protected function findModel($id)

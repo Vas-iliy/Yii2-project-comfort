@@ -3,24 +3,25 @@
 namespace core\repositories;
 
 use core\entities\Filter;
+use yii\web\NotFoundHttpException;
 
-class FilterRepository extends Repository
+class FilterRepository
 {
     public function getFilter()
     {
         $filters = \Yii::$app->cache->get('filter_home');
         if (empty($filters)) {
-            $filters = Filter::find()->andWhere(['top' => 1])->limit(6)->orderBy('order')->all();
+            $filters = Filter::find()->andWhere(['top' => 1, 'status' => Filter::STATUS_ACTIVE])->limit(6)->orderBy('order')->all();
             \Yii::$app->cache->set('filter_home', $filters, 3600*24*30);
         }
         return $filters;
     }
 
-    public function getFilters()
+    public function getAll()
     {
         $filters = \Yii::$app->cache->get('filters');
         if (empty($filters)) {
-            $filters = $this->getAllArray(new Filter());
+            if (!$filters = Filter::find()->andWhere(['status' => Filter::STATUS_ACTIVE])->asArray()->all()) throw new NotFoundHttpException('Not found.');
             \Yii::$app->cache->set('filters', $filters, 3600 * 24 * 30);
         }
         return $filters;

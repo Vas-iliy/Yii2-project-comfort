@@ -3,14 +3,15 @@
 namespace core\repositories;
 
 use core\entities\Contact;
+use yii\web\NotFoundHttpException;
 
-class ContactRepository extends Repository
+class ContactRepository
 {
     public function getContacts()
     {
         $contacts = \Yii::$app->cache->get('contact');
         if (empty($contacts)) {
-            $contacts = $this->getAllArray(new Contact());
+            if (!$contacts = Contact::find()->andWhere(['status' => Contact::STATUS_ACTIVE])->asArray()->all()) throw new NotFoundHttpException('Not found.');
             \Yii::$app->cache->set('contact', $contacts, 3600*24*30*12);
         }
         return $contacts;
@@ -22,13 +23,15 @@ class ContactRepository extends Repository
         if (!$contact->save()) throw new \RuntimeException('Removing error.');
     }
 
-    public function getContact($id)
+    public function get($id)
     {
-        return $this->get($id, new Contact());
+        if (!$contact = Contact::findOne($id)) throw new NotFoundHttpException('Not found.');
+        return $contact;
     }
 
-    public function saveContact($contact)
+    public function save($contact)
     {
-        return $this->save($contact);
+        if (!$return = $contact->save()) throw new \RuntimeException('Saving error.');
+        return $return;
     }
 }

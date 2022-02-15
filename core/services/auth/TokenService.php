@@ -2,7 +2,6 @@
 
 namespace core\services\auth;
 
-use core\entities\user\Token;
 use core\repositories\TokenRepository;
 
 class TokenService
@@ -16,10 +15,9 @@ class TokenService
 
     public function editSuccessToken($refresh)
     {
-        $token = new Token();
-        if ($tokens = $this->tokens->getToken($token, $refresh)) {
+        if ($tokens = $this->tokens->get($refresh)) {
             $tokens->editAccessToken();
-            return true;
+            return $tokens;
         }
         return false;
     }

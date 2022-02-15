@@ -38,10 +38,10 @@ class ServiceController extends AppControllers
     public function actionIndex()
     {
         $this->page = $this->getPage('service');
-        $services = $this->services->getServices();
+        $services = $this->services->getAll();
         $advantage = $this->getPage('advantage');
-        $advantages = $this->advantages->getAdvantages();
-        $workImages = $this->workImages->getImages();
+        $advantages = $this->advantages->getAll();
+        $workImages = $this->workImages->getAll();
         $workTexts = $this->workTexts->getTexts();
         return $this->render('index', compact('services', 'advantage', 'advantages', 'workImages', 'workTexts'));
     }

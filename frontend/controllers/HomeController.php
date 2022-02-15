@@ -50,7 +50,7 @@ class HomeController extends AppControllers
     {
         $this->contacts = $this->getContact();
         $this->page = $this->getPage('home/about');
-        $states = $this->about_us->getStates();
+        $states = $this->about_us->getAll();
         $images = $this->contactImages->getContacts();
         $model = new ReviewForm();
         return $this->render('about', compact('states', 'model', 'images'));

@@ -3,14 +3,15 @@
 namespace core\repositories;
 
 use core\entities\WorkImage;
+use yii\web\NotFoundHttpException;
 
-class WorkImageRepository extends Repository
+class WorkImageRepository
 {
-    public function getImages()
+    public function getAll()
     {
         $images = \Yii::$app->cache->get('works_images');
         if (empty($images)) {
-            $images = $this->getAll(new WorkImage());
+            if (!$images = WorkImage::find()->all()) throw new NotFoundHttpException('Not found.');
             \Yii::$app->cache->set('works_images', $images, 3600*24*30);
         }
         return $images;

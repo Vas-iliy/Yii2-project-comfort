@@ -21,9 +21,9 @@ class Token extends ActiveRecord
         return $token;
     }
 
-    public function editAccessToken($token)
+    public function editAccessToken()
     {
-        $this->access_token = $token;
+        $this->access_token = \Yii::$app->security->generateRandomString();
         $this->expire = time() + \Yii::$app->params['expired.token'];
     }
 }

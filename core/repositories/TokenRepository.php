@@ -3,16 +3,21 @@
 namespace core\repositories;
 
 use core\entities\user\Token;
+use yii\web\NotFoundHttpException;
 
-class TokenRepository extends Repository
+class TokenRepository
 {
-    public function saveToken(Token $token)
+    public function save(Token $token)
     {
-        return $this->save($token);
+        if (!$return = $token->save()) throw new \RuntimeException('Saving error.');
+        return $return;
     }
 
-    public function getToken(Token $token, $refreshToken)
+    public function get($refreshToken)
     {
-        return $this->getBy($token, ['refresh_token' => $refreshToken]);
+        if (!$return = Token::find()->andWhere(['refresh_token' => $refreshToken])->limit(1)->one()) {
+            throw new NotFoundHttpException('Not found');
+        }
+        return $return;
     }
 }

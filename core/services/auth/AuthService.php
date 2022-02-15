@@ -53,7 +53,7 @@ class AuthService
             throw new \DomainException('Undefined password');
         }
         $token = Token::generateToken($user['id']);
-        $tokens = $this->tokens->saveToken($token);
+        $tokens = $this->tokens->save($token);
         return $tokens;
     }
 }

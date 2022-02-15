@@ -5,14 +5,15 @@ namespace core\repositories;
 use core\entities\Filter;
 use core\entities\Project;
 use yii\data\Pagination;
+use yii\web\NotFoundHttpException;
 
-class ProjectRepository extends Repository
+class ProjectRepository
 {
     public function getProjectPopular()
     {
         $projects = \Yii::$app->cache->get('projects_popular');
         if (empty($projects)) {
-            $projects = Project::find()->andWhere(['popular' => 1])->with('images')->limit(6)->all();
+            $projects = Project::find()->andWhere(['popular' => 1, 'status' => Project::STATUS_ACTIVE])->with('images')->limit(6)->all();
             \Yii::$app->cache->set('projects_popular', $projects, 3600*24*30);
         }
         return $projects;
@@ -33,22 +34,23 @@ class ProjectRepository extends Repository
             $projects = \Yii::$app->cache->get("projects_" . $filter);
             if (empty($projects)) {
                 $fil = Filter::findOne($filter);
-                $projects = $fil->getProjects()->with('images')->with('material');
+                $projects = $fil->getProjects()->andWhere(['status' => Project::STATUS_ACTIVE])->with('images', 'material');
                 \Yii::$app->cache->set("projects_" . $filter, $projects, 3600*24*30);
             }
             return $projects;
         }
         $projects = \Yii::$app->cache->get('projects');
         if (empty($projects)) {
-            $projects = Project::find()->with('images')->with('material');
+            $projects = Project::find()->andWhere(['status' => Project::STATUS_ACTIVE])->with('images', 'material');
             \Yii::$app->cache->set('projects', $projects, 3600*24*30);
         }
         return $projects;
     }
 
-    public function saveProject($project)
+    public function save($project)
     {
-        return $this->save($project);
+        if (!$return = $project->save()) throw new \RuntimeException('Saving error.');
+        return $return;
     }
 
     public function remove(Project $project)
@@ -57,9 +59,10 @@ class ProjectRepository extends Repository
         if (!$project->save()) throw new \RuntimeException('Removing error.');
     }
 
-    public function getProject($id)
+    public function get($id)
     {
-        return $this->get($id, new Project());
+        if (!$project = Project::findOne($id)) throw new NotFoundHttpException('Not found.');
+        return $project;
     }
 
     public function pagination($projects)
@@ -73,6 +76,6 @@ class ProjectRepository extends Repository
 
     private function getProjectFromFilters($filters)
     {
-        return Project::find()->andWhere(['in','filter_id', $filters])->with('images')->with('material');
+        return Project::find()->andWhere(['status' => Project::STATUS_ACTIVE])->andWhere(['in','filter_id', $filters])->with('images')->with('material');
     }
 }

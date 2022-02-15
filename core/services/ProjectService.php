@@ -31,13 +31,13 @@ class ProjectService
         foreach ($from->images as $image) {
             $project->addImage($image);
         }
-        $this->projects->saveProject($project);
+        $this->projects->save($project);
         return $project;
     }
 
     public function edit($id, ProjectFrom $from)
     {
-        $project = $this->projects->getProject($id);
+        $project = $this->projects->get($id);
         $project->edit(
             $from->title,
             $from->square,
@@ -52,13 +52,13 @@ class ProjectService
         foreach ($from->images as $image) {
             $project->addImage($image);
         }
-        $this->projects->saveProject($project);
+        $this->projects->save($project);
         return $project;
     }
 
     public function remove($id)
     {
-        $project = $this->projects->getProject($id);
+        $project = $this->projects->get($id);
         $this->projects->remove($project);
     }
 }

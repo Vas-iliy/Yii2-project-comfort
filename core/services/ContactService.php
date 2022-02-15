@@ -22,25 +22,25 @@ class ContactService
             $form->content,
             $form->status
         );
-        $this->contacts->saveContact($project);
+        $this->contacts->save($project);
         return $project;
     }
 
     public function edit($id, ContactFrom $form)
     {
-        $project = $this->contacts->getContact($id);
+        $project = $this->contacts->get($id);
         $project->edit(
             $form->title,
             $form->content,
             $form->status
         );
-        $this->contacts->saveContact($project);
+        $this->contacts->save($project);
         return $project;
     }
 
     public function remove($id)
     {
-        $project = $this->contacts->getContact($id);
+        $project = $this->contacts->get($id);
         $this->contacts->remove($project);
     }
 }

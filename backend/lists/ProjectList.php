@@ -7,6 +7,7 @@ use core\entities\Material;
 use core\entities\Project;
 use core\entities\ProjectImage;
 use core\forms\ProjectFrom;
+use core\helpers\StatusHelper;
 use yii\helpers\Url;
 
 class ProjectList
@@ -23,13 +24,10 @@ class ProjectList
             'price' => $project->price,
             'popular' => $project->popular,
             'filter' => $project->filter->filter,
+            'status' => StatusHelper::status($project->status, new Project()),
             'images' => array_map(function (ProjectImage $image) {
                 return $image->getThumbFileUrl('image', 'catalog_list');
             }, $project->images),
-            '_links' => [
-                'update' => ['href' => Url::to(['update', 'id' => $project->id], true)],
-                'delete' => ['href' => Url::to(['delete', 'id' => $project->id], true)],
-            ],
         ];
     }
 
@@ -60,9 +58,7 @@ class ProjectList
             'price' => $form->price,
             'popular' => $form->popular,
             'filter' => $form->filter,
-            'images' => array_map(function (ProjectImage $image) {
-                return $image->getThumbFileUrl('image', 'catalog_list');
-            }, $form->images),
+            'status' => $form->status,
         ];
     }
 }

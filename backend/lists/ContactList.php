@@ -4,6 +4,7 @@ namespace backend\lists;
 
 use core\entities\Contact;
 use core\forms\ContactFrom;
+use core\helpers\StatusHelper;
 
 class ContactList
 {
@@ -13,6 +14,7 @@ class ContactList
             'id' => $contact->id,
             'title' => $contact->title,
             'content' => $contact->content,
+            'status' => StatusHelper::status($contact->status, new Contact())
         ];
     }
 
@@ -21,6 +23,7 @@ class ContactList
         return [
             'title' => $form->title,
             'content' => $form->content,
+            'status' => $form->status
         ];
     }
 }

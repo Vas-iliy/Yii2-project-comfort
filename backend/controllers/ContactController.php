@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\lists\ContactList;
+use backend\lists\StatusList;
 use backend\providers\MapDataProvider;
 use core\entities\Contact;
 use core\forms\ContactFrom;
@@ -34,7 +35,8 @@ class ContactController extends Controller
         $form = new ContactFrom();
         AppController::actionCreate($form, $this->service);
         return [
-            'errors' => $form->errors
+            'errors' => $form->errors,
+            'status' => StatusList::formListStatus(),
         ];
     }
 
@@ -46,6 +48,7 @@ class ContactController extends Controller
         return [
             'project' => ContactList::formContact($form),
             'errors' => $form->errors,
+            'status' => StatusList::formListStatus(),
         ];
     }
 

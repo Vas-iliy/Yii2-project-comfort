@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\lists\ProjectList;
+use backend\lists\StatusList;
 use backend\providers\MapDataProvider;
 use core\entities\Filter;
 use core\entities\Material;
@@ -56,6 +57,7 @@ class ProjectController extends Controller
             'errors' => $form->errors,
             'filters' => new MapDataProvider($this->filters->getAll(), [$this, 'formListFilter']),
             'materials' => new MapDataProvider($this->materials->getAll(), [$this, 'formListMaterial']),
+            'status' => StatusList::formListStatus(),
         ];
     }
 
@@ -69,6 +71,7 @@ class ProjectController extends Controller
             'errors' => $form->errors,
             'filters' => new MapDataProvider($this->filters->getAll(), [$this, 'formListFilter']),
             'materials' => new MapDataProvider($this->materials->getAll(), [$this, 'formListMaterial']),
+            'status' => StatusList::formListStatus(),
         ];
     }
 

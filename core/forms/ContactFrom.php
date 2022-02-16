@@ -9,6 +9,7 @@ class ContactFrom extends Model
 {
     public $title;
     public $content;
+    public $status;
 
     private $_contact;
 
@@ -17,6 +18,7 @@ class ContactFrom extends Model
         if ($contact) {
             $this->title = $contact->title;
             $this->content = $contact->content;
+            $this->status = $contact->status;
             $this->_contact = $contact;
         }
         parent::__construct($config);
@@ -26,7 +28,8 @@ class ContactFrom extends Model
     {
         return [
             [['title', 'content'], 'required' , 'message' => 'Поле не заполнено'],
-            [['title', 'content'], 'string']
+            [['title', 'content'], 'string'],
+            ['status', 'boolean'],
         ];
     }
 }

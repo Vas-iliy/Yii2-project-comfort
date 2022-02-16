@@ -6,7 +6,7 @@ use core\entities\Project;
 use yii\base\Model;
 use yii\web\UploadedFile;
 
-class ProjectFrom extends Model
+class ProjectFrom extends CompositeForm
 {
     public $title;
     public $square;
@@ -16,12 +16,13 @@ class ProjectFrom extends Model
     public $popular;
     public $material;
     public $filter;
-    public $images;
+    public $status;
 
     private $_project;
 
     public function __construct(Project $project = null, $config = [])
     {
+        $this->images = new ImagesProjectForm();
         if ($project) {
             $this->title = $project->title;
             $this->square = $project->square;
@@ -31,7 +32,7 @@ class ProjectFrom extends Model
             $this->popular = $project->popular;
             $this->material = $project->material->id;
             $this->filter = $project->filter->id;
-            $this->images = $project->images;
+            $this->status = $project->status;
             $this->_project = $project;
         }
         parent::__construct($config);
@@ -40,12 +41,11 @@ class ProjectFrom extends Model
     public function rules()
     {
         return [
-            [['title', 'square', 'count_floors', 'description', 'price', 'popular', 'material', 'filter', 'images'], 'required' , 'message' => 'Поле не заполнено'],
+            [['title', 'square', 'count_floors', 'description', 'price', 'popular', 'material', 'filter'], 'required' , 'message' => 'Поле не заполнено'],
             [['title', 'description'], 'string'],
             [['count_floors', 'price', 'material', 'filter'], 'integer'],
             [['square'], 'number'],
-            [['popular'], 'boolean'],
-            ['images', 'each', 'rule' => ['image']],
+            [['popular', 'status'], 'boolean'],
         ];
     }
 
@@ -58,4 +58,8 @@ class ProjectFrom extends Model
         return false;
     }
 
+    protected function internalForms()
+    {
+        return ['images'];
+    }
 }

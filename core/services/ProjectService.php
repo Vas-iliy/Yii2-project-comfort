@@ -28,7 +28,7 @@ class ProjectService
             $from->filter,
             $from->status
         );
-        foreach ($from->images as $image) {
+        foreach ($from->images->images as $image) {
             $project->addImage($image);
         }
         $this->projects->save($project);

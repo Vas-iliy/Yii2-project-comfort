@@ -37,6 +37,15 @@ class HomeController extends AppControllers
         ];
     }
 
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+        ];
+    }
+
     public function actionIndex()
     {
         $this->contacts = $this->getContact();

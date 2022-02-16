@@ -1,7 +1,8 @@
 <section class="items">
     <div class="wrap">
         <span class="title">Каталог наших <span class="color-text"> проектов</span></span>
-        <? use yii\helpers\Url;
+        <? use core\repositories\FilterRepository;
+        use yii\helpers\Url;
         use yii\widgets\LinkPager;
 
         if(!empty($filters)):?>
@@ -26,7 +27,11 @@
                             </div>
                             <div class='menuitems pointerCursor hide'>
                                 <?foreach ($filters as $filter):?>
-                                    <a href="<?=Yii::$app->request->get('filter') ? Url::to(['', 'filter' => Yii::$app->request->get('filter').','.$filter['id']]) : Url::to(['', 'filter' => $filter['id']])?>">
+                                    <? $f = FilterRepository::countFilters(Yii::$app->request->get('filter').','.$filter['id']);
+                                    if(is_array($f)) {
+                                        $f = implode(',', FilterRepository::countFilters(Yii::$app->request->get('filter').','.$filter['id']));
+                                    } ?>
+                                    <a href="<?=Yii::$app->request->get('filter') ? Url::to(['', 'filter' => $f]) : Url::to(['', 'filter' => $filter['id']])?>">
                                     <div class="
                                     items-block__point
                                     <?=(is_string($isActive) && $filter['id'] == $isActive) ? ' active' : ''?>
@@ -52,8 +57,11 @@
             <?if($k == 0 || ($k/4) == 1):?>
             <div class="items-block__points">
             <?endif;?>
-
-            <a href="<?=Yii::$app->request->get('filter') ? Url::to(['', 'filter' => Yii::$app->request->get('filter').','.$filter['id']]) : Url::to(['', 'filter' => $filter['id']])?>">
+                <? $f = FilterRepository::countFilters(Yii::$app->request->get('filter').','.$filter['id']);
+                if(is_array($f)) {
+                    $f = implode(',', FilterRepository::countFilters(Yii::$app->request->get('filter').','.$filter['id']));
+                }?>
+                <a href="<?=Yii::$app->request->get('filter') ? Url::to(['', 'filter' => $f]) : Url::to(['', 'filter' => $filter['id']])?>">
                 <div class="
                 items-block__point
                 <?=(is_string($isActive) && $filter['id'] == $isActive) ? ' active' : ''?>

@@ -23,6 +23,7 @@ class ProjectRepository
     {
         if (!empty($filter)) {
             if (is_array($filter)) {
+                sort($filter, SORT_NUMERIC);
                 $str = trim(implode(',', $filter));
                 $projects = \Yii::$app->cache->get("projects_" . $str);
                 if (empty($projects)) {

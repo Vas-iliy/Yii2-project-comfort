@@ -44,8 +44,8 @@ class ProjectFrom extends CompositeForm
             [['title', 'square', 'count_floors', 'description', 'price', 'popular', 'material', 'filter'], 'required' , 'message' => 'Поле не заполнено'],
             [['title', 'description'], 'string'],
             [['count_floors', 'price', 'material', 'filter'], 'integer'],
-            [['square'], 'number'],
-            [['popular', 'status'], 'boolean'],
+            [['square', 'status'], 'number'],
+            [['popular'], 'boolean'],
         ];
     }
 

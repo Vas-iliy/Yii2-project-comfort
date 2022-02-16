@@ -29,7 +29,7 @@ class AdvantageFrom extends Model
         return [
             [['title', 'description'], 'required' , 'message' => 'Поле не заполнено'],
             [['title', 'description'], 'string'],
-            ['status', 'boolean'],
+            ['status', 'number'],
         ];
     }
 }

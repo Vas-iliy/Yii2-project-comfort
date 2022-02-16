@@ -25,6 +25,7 @@ AppAsset::register($this);
 
 <body>
 <?php $this->beginBody() ?>
+<?if(empty(Yii::$app->errorHandler->exception)):?>
 <header>
     <!-- Модальное окно -->
     <div class="modal">
@@ -111,6 +112,8 @@ AppAsset::register($this);
         </div>
     </section>
 </header>
+<?endif;?>
+
 <!-- Burger-menu -->
 <div class="menu-bg">
 </div>
@@ -152,6 +155,7 @@ AppAsset::register($this);
         'contacts' => $this->context->contacts,
     ])?>
 </main>
+<?if(empty(Yii::$app->errorHandler->exception)):?>
 <footer>
     <section class="footer">
         <div class="wrap">
@@ -209,6 +213,8 @@ AppAsset::register($this);
         </div>
     </section>
 </footer>
+<?endif;?>
+
 <?php $this->endBody() ?>
 </body>
 </html>

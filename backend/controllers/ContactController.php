@@ -7,6 +7,7 @@ use backend\lists\StatusList;
 use backend\providers\MapDataProvider;
 use core\entities\Contact;
 use core\forms\ContactFrom;
+use core\readModels\CacheReadRepository;
 use core\readModels\ContactReadRepository;
 use core\services\ContactService;
 use yii\rest\Controller;
@@ -33,7 +34,7 @@ class ContactController extends Controller
     public function actionCreate()
     {
         $form = new ContactFrom();
-        AppController::actionCreate($form, $this->service);
+        AppController::actionCreate($form, $this->service, CacheReadRepository::cacheContact());
         return [
             'errors' => $form->errors,
             'status' => StatusList::formListStatus(),
@@ -44,7 +45,7 @@ class ContactController extends Controller
     {
         $contact = $this->findModel($id);
         $form = new ContactFrom($contact);
-        AppController::actionUpdate($form, $this->service, $contact->id);
+        AppController::actionUpdate($form, $this->service, $contact->id, CacheReadRepository::cacheContact());
         return [
             'contact' => ContactList::formContact($form),
             'errors' => $form->errors,
@@ -54,7 +55,7 @@ class ContactController extends Controller
 
     public function actionDelete($id)
     {
-        AppController::actionDelete($id, $this->service);
+        AppController::actionDelete($id, $this->service, CacheReadRepository::cacheContact());
         return [];
     }
 

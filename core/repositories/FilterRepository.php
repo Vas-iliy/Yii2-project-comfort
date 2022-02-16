@@ -27,7 +27,16 @@ class FilterRepository
         return $filters;
     }
 
-    public function countFilters($filters)
+    public function getAllId()
+    {
+        $id = [];
+        foreach ($this->getAll() as $value) {
+            $id[] = $value['id'];
+        }
+        return $id;
+    }
+
+    public static function countFilters($filters)
     {
         if (preg_match('/,/', $filters)) {
             $arr = explode(',', $filters);

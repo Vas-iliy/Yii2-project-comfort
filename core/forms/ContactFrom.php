@@ -29,7 +29,7 @@ class ContactFrom extends Model
         return [
             [['title', 'content'], 'required' , 'message' => 'Поле не заполнено'],
             [['title', 'content'], 'string'],
-            ['status', 'boolean'],
+            ['status', 'number'],
         ];
     }
 }

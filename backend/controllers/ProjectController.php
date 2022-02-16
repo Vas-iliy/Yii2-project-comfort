@@ -9,6 +9,7 @@ use core\entities\Filter;
 use core\entities\Material;
 use core\entities\Project;
 use core\forms\ProjectFrom;
+use core\readModels\CacheReadRepository;
 use core\readModels\FilterReadRepository;
 use core\readModels\MaterialReadRepository;
 use core\readModels\ProjectReadRepository;
@@ -52,7 +53,7 @@ class ProjectController extends Controller
     public function actionCreate()
     {
         $form = new ProjectFrom();
-        AppController::actionCreate($form, $this->service);
+        AppController::actionCreate($form, $this->service, CacheReadRepository::cacheProject());
         return [
             'errors' => $form->errors,
             'filters' => new MapDataProvider($this->filters->getAll(), [$this, 'formListFilter']),
@@ -65,7 +66,7 @@ class ProjectController extends Controller
     {
         $project = $this->findModel($id);
         $form = new ProjectFrom($project);
-        AppController::actionUpdate($form, $this->service, $project->id);
+        AppController::actionUpdate($form, $this->service, $project->id, CacheReadRepository::cacheProject());
         return [
             'project' => ProjectList::formProject($form),
             'errors' => $form->errors,
@@ -77,7 +78,7 @@ class ProjectController extends Controller
 
     public function actionDelete($id)
     {
-        AppController::actionDelete($id, $this->service);
+        AppController::actionDelete($id, $this->service, CacheReadRepository::cacheProject());
         return [];
     }
 

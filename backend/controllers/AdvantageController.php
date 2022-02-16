@@ -8,6 +8,7 @@ use backend\providers\MapDataProvider;
 use core\entities\Advantage;
 use core\forms\AdvantageFrom;
 use core\readModels\AdvantageReadRepository;
+use core\readModels\CacheReadRepository;
 use core\services\AdvantageService;
 use yii\rest\Controller;
 use yii\web\NotFoundHttpException;
@@ -33,7 +34,7 @@ class AdvantageController extends Controller
     public function actionCreate()
     {
         $form = new AdvantageFrom();
-        AppController::actionCreate($form, $this->service);
+        AppController::actionCreate($form, $this->service, CacheReadRepository::cacheAdvantage());
         return [
             'errors' => $form->errors,
             'status' => StatusList::formListStatus(),
@@ -44,7 +45,7 @@ class AdvantageController extends Controller
     {
         $advantage = $this->findModel($id);
         $form = new AdvantageFrom($advantage);
-        AppController::actionUpdate($form, $this->service, $advantage->id);
+        AppController::actionUpdate($form, $this->service, $advantage->id, CacheReadRepository::cacheAdvantage());
         return [
             'advantage' => AdvantageList::formContact($form),
             'errors' => $form->errors,
@@ -54,7 +55,7 @@ class AdvantageController extends Controller
 
     public function actionDelete($id)
     {
-        AppController::actionDelete($id, $this->service);
+        AppController::actionDelete($id, $this->service, CacheReadRepository::cacheAdvantage());
         return [];
     }
 

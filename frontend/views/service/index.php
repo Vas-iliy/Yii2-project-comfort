@@ -1,5 +1,5 @@
 <? use yii\helpers\Html;
-
+if ($this->beginCache('service/index')):
 if(!empty($services)):?>
 <div>
     <div class="wrap">
@@ -128,3 +128,5 @@ if(!empty($services)):?>
         </div>
     </section>
 <?endif; endforeach; endif;?>
+<?$this->endCache();
+endif;?>

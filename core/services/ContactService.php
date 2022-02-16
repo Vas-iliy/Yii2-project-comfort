@@ -17,30 +17,30 @@ class ContactService
 
     public function create(ContactFrom $form)
     {
-        $project = Contact::create(
+        $contact = Contact::create(
             $form->title,
             $form->content,
-            $form->status
+            $form->status ?? null
         );
-        $this->contacts->save($project);
-        return $project;
+        $this->contacts->save($contact);
+        return $contact;
     }
 
     public function edit($id, ContactFrom $form)
     {
-        $project = $this->contacts->get($id);
-        $project->edit(
+        $contact = $this->contacts->get($id);
+        $contact->edit(
             $form->title,
             $form->content,
-            $form->status
+            $form->status ?? null
         );
-        $this->contacts->save($project);
-        return $project;
+        $this->contacts->save($contact);
+        return $contact;
     }
 
     public function remove($id)
     {
-        $project = $this->contacts->get($id);
-        $this->contacts->remove($project);
+        $contact = $this->contacts->get($id);
+        $this->contacts->remove($contact);
     }
 }

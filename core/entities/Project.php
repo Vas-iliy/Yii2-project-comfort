@@ -27,7 +27,7 @@ class Project extends ActiveRecord
         $project->popular = $popular;
         $project->material_id = $material;
         $project->filter_id = $filter;
-        $project->status = $status;
+        $project->status = $status ? $status : Project::STATUS_INACTIVE;
         return $project;
     }
 
@@ -41,7 +41,7 @@ class Project extends ActiveRecord
         $this->popular = $popular;
         $this->material_id = $material;
         $this->filter_id = $filter;
-        $this->status = $status;
+        $this->status = $status ? $status : Project::STATUS_INACTIVE;
     }
 
     public function addImage(UploadedFile $file)

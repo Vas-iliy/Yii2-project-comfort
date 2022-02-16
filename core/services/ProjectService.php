@@ -26,7 +26,7 @@ class ProjectService
             $from->popular,
             $from->material,
             $from->filter,
-            $from->status
+            $form->status ?? null
         );
         foreach ($from->images->images as $image) {
             $project->addImage($image);
@@ -47,7 +47,7 @@ class ProjectService
             $from->popular,
             $from->material,
             $from->filter,
-            $from->status
+            $form->status ?? null
         );
         foreach ($from->images as $image) {
             $project->addImage($image);

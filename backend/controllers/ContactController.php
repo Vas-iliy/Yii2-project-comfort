@@ -46,7 +46,7 @@ class ContactController extends Controller
         $form = new ContactFrom($contact);
         AppController::actionUpdate($form, $this->service, $contact->id);
         return [
-            'project' => ContactList::formContact($form),
+            'contact' => ContactList::formContact($form),
             'errors' => $form->errors,
             'status' => StatusList::formListStatus(),
         ];

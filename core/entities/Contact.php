@@ -17,17 +17,17 @@ class Contact extends ActiveRecord
 
     public static function create($title, $content, $status)
     {
-        $project = new static();
-        $project->title = $title;
-        $project->content = $content;
-        $project->status = $status;
-        return $project;
+        $contact = new static();
+        $contact->title = $title;
+        $contact->content = $content;
+        $contact->status = $status ? $status : Contact::STATUS_INACTIVE;
+        return $contact;
     }
 
     public function edit($title, $content, $status)
     {
         $this->title = $title;
         $this->content = $content;
-        $this->status = $status;
+        $this->status = $status ? $status : Contact::STATUS_INACTIVE;
     }
 }

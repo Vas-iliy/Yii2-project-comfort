@@ -2,21 +2,16 @@
 
 namespace core\readModels;
 
-use core\entities\Page;
+use core\entities\Advantage;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
 
-class PageReadRepository
+class AdvantageReadRepository
 {
     public function getAll()
     {
-        $query = Page::find();
+        $query = Advantage::find();
         return $this->getProvider($query);
-    }
-
-    public function find($id)
-    {
-        return Page::find()->andWhere(['id' => $id])->one();
     }
 
     private function getProvider(ActiveQuery $query)

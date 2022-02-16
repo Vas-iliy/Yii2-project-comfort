@@ -16,4 +16,22 @@ class AdvantageRepository
         }
         return $advantages;
     }
+
+    public function remove(Advantage $advantage)
+    {
+        $advantage->status = $advantage::STATUS_DELETED;
+        if (!$advantage->save()) throw new \RuntimeException('Removing error.');
+    }
+
+    public function get($id)
+    {
+        if (!$advantage = Advantage::findOne($id)) throw new NotFoundHttpException('Not found.');
+        return $advantage;
+    }
+
+    public function save($advantage)
+    {
+        if (!$return = $advantage->save()) throw new \RuntimeException('Saving error.');
+        return $return;
+    }
 }

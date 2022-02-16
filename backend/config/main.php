@@ -74,6 +74,12 @@ return [
                 'GET contact/<id:\d+>' => 'contact/update',
                 'PUT contact/<id:\d+>' => 'contact/update',
                 'DELETE contact/<id:\d+>' => 'contact/delete',
+
+                'GET advantage' => 'advantage/index',
+                'advantage/create' => 'advantage/create',
+                'GET advantage/<id:\d+>' => 'advantage/update',
+                'PUT advantage/<id:\d+>' => 'advantage/update',
+                'DELETE advantage/<id:\d+>' => 'advantage/delete',
             ],
         ],
 

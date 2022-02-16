@@ -14,4 +14,20 @@ class Advantage extends ActiveRecord
     {
         return 'advantages';
     }
+
+    public static function create($title, $description, $status)
+    {
+        $advantage = new static();
+        $advantage->title = $title;
+        $advantage->description = $description;
+        $advantage->status = $status ? $status : Advantage::STATUS_INACTIVE;
+        return $advantage;
+    }
+
+    public function edit($title, $description, $status)
+    {
+        $this->title = $title;
+        $this->description = $description;
+        $this->status = $status ? $status : Advantage::STATUS_INACTIVE;
+    }
 }

@@ -25,6 +25,16 @@ class ContactController extends Controller
         parent::__construct($id, $module, $config);
     }
 
+    public function verbs(): array
+    {
+        return [
+            'index' => ['GET'],
+            'create' => ['GET', 'POST'],
+            'update' => ['GET', 'PUT', 'PATCH'],
+            'delete' => ['DELETE'],
+        ];
+    }
+
     public function actionIndex()
     {
         $contacts= $this->contacts->getAll();

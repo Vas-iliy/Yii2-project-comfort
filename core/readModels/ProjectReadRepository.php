@@ -18,7 +18,7 @@ class ProjectReadRepository
 
     public function find($id)
     {
-        return Project::find()->andWhere(['id' => $id])->one();
+        return Project::findOne($id);
     }
 
     public function getImage($id)

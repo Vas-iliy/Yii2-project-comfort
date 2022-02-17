@@ -11,7 +11,6 @@ use core\readModels\CacheReadRepository;
 use core\readModels\ContactReadRepository;
 use core\services\ContactService;
 use yii\rest\Controller;
-use yii\web\NotFoundHttpException;
 
 class ContactController extends Controller
 {
@@ -53,7 +52,7 @@ class ContactController extends Controller
 
     public function actionUpdate($id)
     {
-        $contact = $this->findModel($id);
+        $contact = $this->contacts->find($id);
         $form = new ContactFrom($contact);
         AppController::actionUpdate($form, $this->service, $contact->id, CacheReadRepository::cacheContact());
         return [
@@ -67,15 +66,6 @@ class ContactController extends Controller
     {
         AppController::actionDelete($id, $this->service, CacheReadRepository::cacheContact());
         return [];
-    }
-
-    protected function findModel($id)
-    {
-        if (($model = Contact::findOne(['id' => $id])) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
     }
 
     public function serializeListItem(Contact $contact)

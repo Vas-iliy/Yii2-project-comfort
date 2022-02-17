@@ -14,7 +14,6 @@ class MaterialReadRepository
         return $this->getProvider($query);
     }
 
-
     public function find($id)
     {
         return Material::find()->andWhere(['id' => $id])->one();

@@ -14,6 +14,11 @@ class ContactReadRepository
         return $this->getProvider($query);
     }
 
+    public function find($id)
+    {
+        return Contact::findOne($id);
+    }
+
     private function getProvider(ActiveQuery $query)
     {
         return new ActiveDataProvider([

@@ -11,7 +11,6 @@ use core\readModels\AdvantageReadRepository;
 use core\readModels\CacheReadRepository;
 use core\services\AdvantageService;
 use yii\rest\Controller;
-use yii\web\NotFoundHttpException;
 
 class AdvantageController extends Controller
 {
@@ -53,7 +52,7 @@ class AdvantageController extends Controller
 
     public function actionUpdate($id)
     {
-        $advantage = $this->findModel($id);
+        $advantage = $this->advantages->find($id);
         $form = new AdvantageFrom($advantage);
         AppController::actionUpdate($form, $this->service, $advantage->id, CacheReadRepository::cacheAdvantage());
         return [
@@ -67,15 +66,6 @@ class AdvantageController extends Controller
     {
         AppController::actionDelete($id, $this->service, CacheReadRepository::cacheAdvantage());
         return [];
-    }
-
-    protected function findModel($id)
-    {
-        if (($model = Advantage::findOne(['id' => $id])) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
     }
 
     public function serializeListItem(Advantage $advantage)

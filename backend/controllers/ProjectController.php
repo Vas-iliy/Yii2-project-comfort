@@ -65,7 +65,7 @@ class ProjectController extends Controller
 
     public function actionUpdate($id)
     {
-        $project = $this->findModel($id);
+        $project = $this->projects->find($id);
         $form = new ProjectFrom($project);
         AppController::actionUpdate($form, $this->service, $project->id, CacheReadRepository::cacheProject());
         return [
@@ -97,16 +97,6 @@ class ProjectController extends Controller
             \Yii::$app->cache->delete($value);
         }
         return[];
-    }
-
-    protected function findModel($id)
-    {
-        if (($model = Project::findOne(['id' => $id])) !== null) {
-            return $model;
-        }
-        return [
-            'error' => 'The requested page does not exist.'
-        ];
     }
 
     public function serializeListItem(Project $project)

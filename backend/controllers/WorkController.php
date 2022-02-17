@@ -2,7 +2,6 @@
 
 namespace backend\controllers;
 
-use core\entities\work;
 use core\entities\workImage;
 use core\forms\workFrom;
 use core\readModels\CacheReadRepository;
@@ -45,7 +44,7 @@ class WorkController extends Controller
 
     public function actionUpdate($id)
     {
-        $work = $this->findModel($id);
+        $work = $this->works->find($id);
         $form = new WorkFrom($work);
         AppController::actionUpdate($form, $this->service, $work->id, CacheReadRepository::cacheWork());
         return [
@@ -68,15 +67,5 @@ class WorkController extends Controller
             \Yii::$app->cache->delete($value);
         }
         return[];
-    }
-
-    protected function findModel($id)
-    {
-        if (($model = Work::findOne(['id' => $id])) !== null) {
-            return $model;
-        }
-        return [
-            'error' => 'The requested page does not exist.'
-        ];
     }
 }

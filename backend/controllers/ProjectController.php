@@ -8,15 +8,15 @@ use backend\providers\MapDataProvider;
 use core\entities\Filter;
 use core\entities\Material;
 use core\entities\Project;
+use core\entities\ProjectImage;
 use core\forms\ProjectFrom;
 use core\readModels\CacheReadRepository;
 use core\readModels\FilterReadRepository;
 use core\readModels\MaterialReadRepository;
 use core\readModels\ProjectReadRepository;
 use core\services\ProjectService;
-use Yii;
+use yii\helpers\Url;
 use yii\rest\Controller;
-use yii\web\BadRequestHttpException;
 
 class ProjectController extends Controller
 {
@@ -41,6 +41,7 @@ class ProjectController extends Controller
             'create' => ['GET', 'POST'],
             'update' => ['GET', 'PUT', 'PATCH'],
             'delete' => ['DELETE'],
+            'delete-image' => ['DELETE'],
         ];
     }
 
@@ -68,8 +69,14 @@ class ProjectController extends Controller
         $form = new ProjectFrom($project);
         AppController::actionUpdate($form, $this->service, $project->id, CacheReadRepository::cacheProject());
         return [
-            'project' => ProjectList::formProject($form),
             'errors' => $form->errors,
+            'project' => ProjectList::formProject($form),
+            'images' => array_map(function (ProjectImage $image) {
+                return [
+                    'image' => $image->getThumbFileUrl('image', 'catalog_list'),
+                    '_links' => ['href' => Url::to(['delete-image', 'id' => $image->id], true)]
+                ];
+            }, $project->images),
             'filters' => new MapDataProvider($this->filters->getAll(), [$this, 'formListFilter']),
             'materials' => new MapDataProvider($this->materials->getAll(), [$this, 'formListMaterial']),
             'status' => StatusList::formListStatus(),
@@ -80,6 +87,13 @@ class ProjectController extends Controller
     {
         AppController::actionDelete($id, $this->service, CacheReadRepository::cacheProject());
         return [];
+    }
+
+    public function actionDeleteImage($id)
+    {
+        $image = $this->projects->getImage($id);
+        $this->service->deleteImage($image);
+        return[];
     }
 
     protected function findModel($id)

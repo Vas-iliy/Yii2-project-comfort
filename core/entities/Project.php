@@ -44,13 +44,6 @@ class Project extends ActiveRecord
         $this->status = $status ? $status : Project::STATUS_INACTIVE;
     }
 
-    public function addImage(UploadedFile $file)
-    {
-        $images = $this->images;
-        $images[] = ProjectImage::create($file);
-        $this->images = $images;
-    }
-
     public function getImages()
     {
         return $this->hasMany(ProjectImage::class, ['project_id' => 'id']);

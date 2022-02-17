@@ -9,12 +9,13 @@ class CacheReadRepository
     public static function cacheProject()
     {
         $cache = [];
+        $return = [];
         $filters = Filter::find()->select('id')->andWhere(['status' => Filter::STATUS_ACTIVE])->asArray()->all();
         foreach ($filters as $filter) $cache[] = $filter['id'];
         foreach (self::fillArray($cache) as $value) $cache[] = $value;
-        foreach ($cache as $value) $cache = 'projects_' . $value;
-        $cache[] = 'projects'; $cache[] = ['yii\widgets\FragmentCache', 'projects_home_page'];
-        return $cache;
+        foreach ($cache as $value) $return[] = 'projects_' . $value;
+        $return[] = 'projects'; $return[] = ['yii\widgets\FragmentCache', 'projects_home_page'];
+        return $return;
     }
 
     public static function cacheContact()

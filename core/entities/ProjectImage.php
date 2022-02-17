@@ -13,11 +13,17 @@ class ProjectImage extends ActiveRecord
         return 'project_images';
     }
 
-    public static function create(UploadedFile $file)
+    public static function create(UploadedFile $file, $id)
     {
         $image = new static();
         $image->image = $file;
+        $image->project_id = $id;
         return $image;
+    }
+
+    public function getProject()
+    {
+        return $this->hasOne(Project::class, ['id' => 'project_id']);
     }
 
     public function behaviors()

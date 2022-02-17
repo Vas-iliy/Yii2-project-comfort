@@ -68,6 +68,7 @@ return [
                 'GET project/<id:\d+>' => 'project/update',
                 'PUT project/<id:\d+>' => 'project/update',
                 'DELETE project/<id:\d+>' => 'project/delete',
+                'DELETE project/delete-image/<id:\d+>' => 'project/delete-image',
 
                 'GET contact' => 'contact/index',
                 'contact/create' => 'contact/create',

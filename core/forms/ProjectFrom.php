@@ -6,7 +6,7 @@ use core\entities\Project;
 use yii\base\Model;
 use yii\web\UploadedFile;
 
-class ProjectFrom extends CompositeForm
+class ProjectFrom extends Model
 {
     public $title;
     public $square;
@@ -17,12 +17,12 @@ class ProjectFrom extends CompositeForm
     public $material;
     public $filter;
     public $status;
+    public $images;
 
     private $_project;
 
     public function __construct(Project $project = null, $config = [])
     {
-        $this->images = new ImagesProjectForm();
         if ($project) {
             $this->title = $project->title;
             $this->square = $project->square;
@@ -46,6 +46,7 @@ class ProjectFrom extends CompositeForm
             [['count_floors', 'price', 'material', 'filter'], 'integer'],
             [['square', 'status'], 'number'],
             [['popular'], 'boolean'],
+            ['images', 'each', 'rule' => ['image']],
         ];
     }
 
@@ -56,10 +57,5 @@ class ProjectFrom extends CompositeForm
             return true;
         }
         return false;
-    }
-
-    protected function internalForms()
-    {
-        return ['images'];
     }
 }

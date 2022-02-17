@@ -4,6 +4,7 @@ namespace core\repositories;
 
 use core\entities\Filter;
 use core\entities\Project;
+use core\entities\ProjectImage;
 use yii\data\Pagination;
 use yii\web\NotFoundHttpException;
 
@@ -63,6 +64,12 @@ class ProjectRepository
     public function get($id)
     {
         if (!$project = Project::findOne($id)) throw new NotFoundHttpException('Not found.');
+        return $project;
+    }
+
+    public function getId($image_id)
+    {
+        if (!$project = ProjectImage::find()->select('project_id')->where(['id' => $image_id])->limit(1)->one()->project_id) throw new NotFoundHttpException('Not found.');
         return $project;
     }
 

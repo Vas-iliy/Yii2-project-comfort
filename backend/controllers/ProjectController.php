@@ -93,6 +93,9 @@ class ProjectController extends Controller
     {
         $image = $this->projects->getImage($id);
         $this->service->deleteImage($image);
+        foreach (CacheReadRepository::cacheProject() as $value) {
+            \Yii::$app->cache->delete($value);
+        }
         return[];
     }
 

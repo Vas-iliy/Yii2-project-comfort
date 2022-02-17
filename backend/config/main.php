@@ -81,6 +81,11 @@ return [
                 'GET advantage/<id:\d+>' => 'advantage/update',
                 'PUT advantage/<id:\d+>' => 'advantage/update',
                 'DELETE advantage/<id:\d+>' => 'advantage/delete',
+
+                'GET work' => 'work/index',
+                'GET work/<id:\d+>' => 'work/update',
+                'PUT work/<id:\d+>' => 'work/update',
+                'DELETE work/delete-image/<id:\d+>' => 'work/delete-image',
             ],
         ],
 

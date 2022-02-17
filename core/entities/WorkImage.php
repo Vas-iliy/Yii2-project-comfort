@@ -3,6 +3,7 @@
 namespace core\entities;
 
 use yii\db\ActiveRecord;
+use yii\web\UploadedFile;
 use yiidreamteam\upload\ImageUploadBehavior;
 
 class WorkImage extends ActiveRecord
@@ -10,6 +11,19 @@ class WorkImage extends ActiveRecord
     public static function tableName()
     {
         return 'works_images';
+    }
+
+    public static function create(UploadedFile $file, $id)
+    {
+        $image = new static();
+        $image->image = $file;
+        $image->work_id = $id;
+        return $image;
+    }
+
+    public function getWork()
+    {
+        return $this->hasOne(Work::class, ['id' => 'work_id']);
     }
 
     public function behaviors()

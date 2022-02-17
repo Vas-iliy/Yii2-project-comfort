@@ -18,6 +18,24 @@ class Service extends ActiveRecord
         return 'services';
     }
 
+    public static function create($title, $items, $description, $status)
+    {
+        $service = new static();
+        $service->title = $title;
+        $service->description = $description;
+        $service->items = $items;
+        $service->status = $status ? $status : Service::STATUS_INACTIVE;
+        return $service;
+    }
+
+    public function edit($title, $items, $description, $status)
+    {
+        $this->title = $title;
+        $this->description = $description;
+        $this->items = $items;
+        $this->status = $status ? $status : Service::STATUS_INACTIVE;
+    }
+
     public function getImages()
     {
         return $this->hasMany(ServiceImage::class, ['service_id' => 'id']);

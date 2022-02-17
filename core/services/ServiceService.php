@@ -2,68 +2,57 @@
 
 namespace core\services;
 
-use core\entities\Project;
-use core\entities\ProjectImage;
-use core\forms\ProjectFrom;
-use core\repositories\ProjectRepository;
+use core\entities\Service;
+use core\entities\ServiceImage;
+use core\forms\ServiceFrom;
+use core\repositories\ServiceRepository;
 
 class ServiceService
 {
-    private $projects;
+    private $services;
 
-    public function __construct(ProjectRepository $projects)
+    public function __construct(ServiceRepository $services)
     {
-        $this->projects = $projects;
+        $this->services = $services;
     }
 
-    public function create(ProjectFrom $form)
+    public function create(ServiceFrom $form)
     {
-        $project = Project::create(
+        $service = Service::create(
             $form->title,
-            $form->square,
-            $form->count_floors,
+            $form->items,
             $form->description,
-            $form->price,
-            $form->popular,
-            $form->material,
-            $form->filter,
             $form->status ?? null
         );
-        $this->transaction($project, $form);
-        return $project;
+        $this->transaction($service, $form);
+        return $service;
     }
 
-    public function edit($id, ProjectFrom $form)
+    public function edit($id, ServiceFrom $form)
     {
-        $project = $this->projects->get($id);
-        $project->edit(
+        $service = $this->services->get($id);
+        $service->edit(
             $form->title,
-            $form->square,
-            $form->count_floors,
+            $form->items,
             $form->description,
-            $form->price,
-            $form->popular,
-            $form->material,
-            $form->filter,
             $form->status ?? null
         );
-        $this->transaction($project, $form);
-        return $project;
+        $this->transaction($service, $form);
+        return $service;
     }
 
     public function remove($id)
     {
-        $project = $this->projects->get($id);
-        $this->projects->remove($project);
+        $service = $this->services->get($id);
+        $this->services->remove($service);
     }
 
-    public function deleteImage(ProjectImage $image)
+    public function deleteImage(ServiceImage $image)
     {
-        $projectId = $this->projects->getId($image->id);
         if ($image) {
             $arr = explode('.', $image->image);
             $extension = $arr[count($arr)-1];
-            if (unlink(\Yii::getAlias("@staticRoot/origin/projects/{$projectId}/{$image->id}") . '.' . $extension)) {
+            if (unlink(\Yii::getAlias("@staticRoot/origin/services/{$image->id}") . '.' . $extension)) {
                 $image->delete();
                 return true;
             }
@@ -71,19 +60,19 @@ class ServiceService
         return false;
     }
 
-    private function transaction(Project $project, ProjectFrom $form)
+    private function transaction(Service $service, ServiceFrom $form)
     {
         $transaction = \Yii::$app->getDb()->beginTransaction();
-        if (!$this->projects->save($project) || !$this->createImages($form, $project)) {
+        if (!$this->services->save($service) || !$this->createImages($form, $service)) {
             $transaction->rollBack();
         }
         $transaction->commit();
     }
 
-    private function createImages(ProjectFrom $form, Project $project)
+    private function createImages(ServiceFrom $form, Service $service)
     {
         foreach ($form->images as $image) {
-            $image = ProjectImage::create($image, $project->id);
+            $image = ServiceImage::create($image, $service->id);
             if (!$image->save()) {
                 return false;
             }

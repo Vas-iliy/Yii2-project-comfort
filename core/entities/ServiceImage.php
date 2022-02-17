@@ -3,6 +3,7 @@
 namespace core\entities;
 
 use yii\db\ActiveRecord;
+use yii\web\UploadedFile;
 use yiidreamteam\upload\ImageUploadBehavior;
 
 class ServiceImage extends ActiveRecord
@@ -10,6 +11,14 @@ class ServiceImage extends ActiveRecord
     public static function tableName()
     {
         return 'service_images';
+    }
+
+    public static function create(UploadedFile $file, $id)
+    {
+        $image = new static();
+        $image->image = $file;
+        $image->service_id = $id;
+        return $image;
     }
 
     public function behaviors()

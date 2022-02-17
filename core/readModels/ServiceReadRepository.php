@@ -2,8 +2,8 @@
 
 namespace core\readModels;
 
-use core\entities\Project;
-use core\entities\ProjectImage;
+use core\entities\Service;
+use core\entities\ServiceImage;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
 use yii\web\NotFoundHttpException;
@@ -12,19 +12,19 @@ class ServiceReadRepository
 {
     public function getAll()
     {
-        $query = Project::find()->with('filter', 'images', 'material');
+        $query = Service::find()->with('points', 'images');
         return $this->getProvider($query);
     }
 
     public function find($id)
     {
-        return Project::findOne($id);
+        return Service::findOne($id);
     }
 
     public function getImage($id)
     {
-        if (!$project = ProjectImage::findOne($id)) throw new NotFoundHttpException('Not found.');
-        return $project;
+        if (!$service = ServiceImage::findOne($id)) throw new NotFoundHttpException('Not found.');
+        return $service;
     }
 
     private function getProvider(ActiveQuery $query)

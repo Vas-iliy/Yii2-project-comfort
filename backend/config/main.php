@@ -86,6 +86,13 @@ return [
                 'GET work/<id:\d+>' => 'work/update',
                 'PUT work/<id:\d+>' => 'work/update',
                 'DELETE work/delete-image/<id:\d+>' => 'work/delete-image',
+
+                'GET service' => 'service/index',
+                'service/create' => 'service/create',
+                'GET service/<id:\d+>' => 'service/update',
+                'PUT service/<id:\d+>' => 'service/update',
+                'DELETE service/<id:\d+>' => 'service/delete',
+                'DELETE service/delete-image/<id:\d+>' => 'service/delete-image',
             ],
         ],
 

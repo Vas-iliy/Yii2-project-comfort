@@ -15,6 +15,13 @@ class Client extends ActiveRecord
         return 'clients';
     }
 
+
+    public function edit($status)
+    {
+        $this->status = $status ? $status : Client::STATUS_NEW;
+        $this->updated_at = time();
+    }
+
     public function behaviors()
     {
         return [

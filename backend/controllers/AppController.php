@@ -27,14 +27,16 @@ class AppController extends Controller
         }
     }
 
-    public static function actionUpdate($form, $service, $id, $cache)
+    public static function actionUpdate($form, $service, $id, $cache = null)
     {
         if ($form->load(Yii::$app->request->getBodyParams(), '') && $form->validate()) {
             try {
                 if ($service->edit($id, $form)) {
                     Yii::$app->getResponse()->setStatusCode(201);
-                    foreach ($cache as $value) {
-                        Yii::$app->cache->delete($value);
+                    if ($cache) {
+                        foreach ($cache as $value) {
+                            Yii::$app->cache->delete($value);
+                        }
                     }
                 }
             } catch (\DomainException $e) {

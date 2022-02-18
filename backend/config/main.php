@@ -130,6 +130,13 @@ return [
                 'GET material/<id:\d+>' => 'material/update',
                 'PUT material/<id:\d+>' => 'material/update',
                 'DELETE material/<id:\d+>' => 'material/delete',
+
+                'GET client' => 'client/index',
+                'GET client/new' => 'client/client',
+                'client/create' => 'client/create',
+                'GET client/<id:\d+>' => 'client/update',
+                'PUT client/<id:\d+>' => 'client/update',
+                'DELETE client/<id:\d+>' => 'client/delete',
             ],
         ],
 

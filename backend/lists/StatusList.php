@@ -23,4 +23,18 @@ class StatusList
             ]
         ];
     }
+
+    public static function formListClient()
+    {
+        return [
+            [
+                'id' => 0,
+                'status' => 'New'
+            ],
+            [
+                'id' => 1,
+                'status' => 'Admin'
+            ],
+        ];
+    }
 }

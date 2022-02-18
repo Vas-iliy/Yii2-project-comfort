@@ -25,4 +25,21 @@ class StatusHelper
             'status' => $string
         ];
     }
+
+    public static function client($status, $class)
+    {
+        switch ($status) {
+            case $class::STATUS_NEW:
+                $string = 'New';
+                break;
+            case $class::STATUS_ADMIN:
+                $string = 'Admin';
+                break;
+        }
+
+        return [
+            'id' => $status,
+            'status' => $string
+        ];
+    }
 }

@@ -35,4 +35,14 @@ class ClientService
         \Yii::$app->session->setFlash('success', 'error');
         return false;
     }
+
+    public function edit($id, ClientForm $form)
+    {
+        $contact = $this->clients->get($id);
+        $contact->edit(
+            $form->status ?? null
+        );
+        $this->clients->save($contact);
+        return $contact;
+    }
 }

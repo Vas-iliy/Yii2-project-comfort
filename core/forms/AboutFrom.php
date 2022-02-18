@@ -2,7 +2,7 @@
 
 namespace core\forms;
 
-use core\entities\Contact;
+use core\entities\About;
 use yii\base\Model;
 
 class AboutFrom extends Model
@@ -11,15 +11,15 @@ class AboutFrom extends Model
     public $description;
     public $status;
 
-    private $_contact;
+    private $_about;
 
-    public function __construct(Contact $contact = null, $config = [])
+    public function __construct(About $about= null, $config = [])
     {
-        if ($contact) {
-            $this->title = $contact->title;
-            $this->description = $contact->description;
-            $this->status = $contact->status;
-            $this->_contact = $contact;
+        if ($about) {
+            $this->title = $about->title;
+            $this->description = $about->description;
+            $this->status = $about->status;
+            $this->_about= $about;
         }
         parent::__construct($config);
     }

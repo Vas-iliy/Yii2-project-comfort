@@ -1,8 +1,7 @@
-<? use yii\db\ActiveRecord;
-use yii\helpers\Html;
+<? use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-
+if ($this->beginCache('about_page', ['duration' => 3600])):
 if(!empty($states)):?>
 <section class="point">
     <div class="wrap">
@@ -86,3 +85,6 @@ if(!empty($states)):?>
         </div>
     </div>
 </div>
+
+<?    $this->endCache();
+endif;?>

@@ -2,24 +2,24 @@
 
 namespace backend\controllers;
 
-use backend\lists\ContactList;
+use backend\lists\AboutList;
 use backend\lists\StatusList;
 use backend\providers\MapDataProvider;
-use core\entities\Contact;
-use core\forms\ContactFrom;
+use core\entities\About;
+use core\forms\AboutFrom;
+use core\readModels\AboutReadRepository;
 use core\readModels\CacheReadRepository;
-use core\readModels\ContactReadRepository;
-use core\services\ContactService;
+use core\services\AboutService;
 use yii\rest\Controller;
 
 class AboutController extends Controller
 {
-    private $contacts;
+    private $abouts;
     private $service;
 
-    public function __construct($id, $module, ContactReadRepository $contacts, ContactService $service, $config = [])
+    public function __construct($id, $module, AboutReadRepository $abouts, AboutService $service, $config = [])
     {
-        $this->contacts = $contacts;
+        $this->abouts = $abouts;
         $this->service = $service;
         parent::__construct($id, $module, $config);
     }
@@ -36,14 +36,14 @@ class AboutController extends Controller
 
     public function actionIndex()
     {
-        $contacts= $this->contacts->getAll();
-        return new MapDataProvider($contacts, [$this, 'serializeListItem']);
+        $abouts= $this->abouts->getAll();
+        return new MapDataProvider($abouts, [$this, 'serializeListItem']);
     }
 
     public function actionCreate()
     {
-        $form = new ContactFrom();
-        AppController::actionCreate($form, $this->service, CacheReadRepository::cacheContact());
+        $form = new AboutFrom();
+        AppController::actionCreate($form, $this->service, CacheReadRepository::cacheAbout());
         return [
             'errors' => $form->errors,
             'status' => StatusList::formListStatus(),
@@ -52,11 +52,11 @@ class AboutController extends Controller
 
     public function actionUpdate($id)
     {
-        $contact = $this->contacts->find($id);
-        $form = new ContactFrom($contact);
-        AppController::actionUpdate($form, $this->service, $contact->id, CacheReadRepository::cacheContact());
+        $about = $this->abouts->find($id);
+        $form = new AboutFrom($about);
+        AppController::actionUpdate($form, $this->service, $about->id, CacheReadRepository::cacheAbout());
         return [
-            'contact' => ContactList::formContact($form),
+            'about' => AboutList::formContact($form),
             'errors' => $form->errors,
             'status' => StatusList::formListStatus(),
         ];
@@ -64,12 +64,12 @@ class AboutController extends Controller
 
     public function actionDelete($id)
     {
-        AppController::actionDelete($id, $this->service, CacheReadRepository::cacheContact());
+        AppController::actionDelete($id, $this->service, CacheReadRepository::cacheAbout());
         return [];
     }
 
-    public function serializeListItem(Contact $contact)
+    public function serializeListItem(About $about)
     {
-        return ContactList::serializeListItem($contact);
+        return AboutList::serializeListItem($about);
     }
 }

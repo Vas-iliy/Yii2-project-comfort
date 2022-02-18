@@ -96,6 +96,12 @@ return [
                 'GET service-point/<id:\d+>' => 'service-point/update',
                 'PUT service-point/<id:\d+>' => 'service-point/update',
                 'DELETE service-point/<id:\d+>' => 'service-point/delete',
+
+                'GET about' => 'about/index',
+                'about/create' => 'about/create',
+                'GET about/<id:\d+>' => 'about/update',
+                'PUT about/<id:\d+>' => 'about/update',
+                'DELETE about/<id:\d+>' => 'about/delete',
             ],
         ],
 

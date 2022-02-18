@@ -18,4 +18,22 @@ class AboutRepository
         }
         return $about;
     }
+
+    public function remove(About $about)
+    {
+        $about->status = $about::STATUS_DELETED;
+        if (!$about->save()) throw new \RuntimeException('Removing error.');
+    }
+
+    public function get($id)
+    {
+        if (!$about = About::findOne($id)) throw new NotFoundHttpException('Not found.');
+        return $about;
+    }
+
+    public function save($about)
+    {
+        if (!$return = $about->save()) throw new \RuntimeException('Saving error.');
+        return $return;
+    }
 }

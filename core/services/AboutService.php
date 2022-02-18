@@ -2,45 +2,48 @@
 
 namespace core\services;
 
+use core\entities\About;
 use core\entities\Contact;
+use core\forms\AboutFrom;
 use core\forms\ContactFrom;
+use core\repositories\AboutRepository;
 use core\repositories\ContactRepository;
 
 class AboutService
 {
-    private $contacts;
+    private $abouts;
 
-    public function __construct(ContactRepository $contacts)
+    public function __construct(AboutRepository $abouts)
     {
-        $this->contacts = $contacts;
+        $this->abouts = $abouts;
     }
 
-    public function create(ContactFrom $form)
+    public function create(AboutFrom $form)
     {
-        $contact = Contact::create(
+        $about = About::create(
             $form->title,
-            $form->content,
+            $form->description,
             $form->status ?? null
         );
-        $this->contacts->save($contact);
-        return $contact;
+        $this->abouts->save($about);
+        return $about;
     }
 
-    public function edit($id, ContactFrom $form)
+    public function edit($id, AboutFrom $form)
     {
-        $contact = $this->contacts->get($id);
-        $contact->edit(
+        $about = $this->abouts->get($id);
+        $about->edit(
             $form->title,
-            $form->content,
+            $form->description,
             $form->status ?? null
         );
-        $this->contacts->save($contact);
-        return $contact;
+        $this->abouts->save($about);
+        return $about;
     }
 
     public function remove($id)
     {
-        $contact = $this->contacts->get($id);
-        $this->contacts->remove($contact);
+        $about = $this->abouts->get($id);
+        $this->abouts->remove($about);
     }
 }

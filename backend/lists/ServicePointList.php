@@ -2,41 +2,34 @@
 
 namespace backend\lists;
 
-use core\entities\Filter;
-use core\entities\Material;
-use core\entities\Project;
-use core\entities\ProjectImage;
-use core\entities\Service;
-use core\entities\ServiceImage;
-use core\forms\ProjectFrom;
-use core\forms\ServiceFrom;
-use core\helpers\StatusHelper;
+use core\entities\ServicePoint;
+use core\forms\ServicePointFrom;
 use yii\helpers\Json;
-use yii\helpers\Url;
 
 class ServicePointList
 {
-    public static function serializeListItem(Service $service)
+    public static function serializeListItem(ServicePoint $point)
     {
         return [
-            'id' => $service->id,
-            'title' => $service->title,
-            'description' => $service->description,
-            'items' => array_filter(Json::decode($service->getAttribute('items_json'))),
-            'status' => StatusHelper::status($service->status, new Service()),
-            'images' => array_map(function (ServiceImage $image) {
-                return $image->getThumbFileUrl('image', 'catalog_list');
-            }, $service->images),
+            'id service' => $point->service->id,
+            'title service' => $point->service->title,
+            'id' => $point->id,
+            'title' => $point->title,
+            'description' => $point->description,
+            'items' => array_filter(Json::decode($point->getAttribute('items_json'))),
         ];
     }
 
-    public static function formService(ServiceFrom $form)
+    public static function formService(ServicePointFrom $form)
     {
         return [
             'title' => $form->title,
             'description' => $form->description,
-            'items' => $form->textItems,
-            'status' => $form->status,
+            'textItems' => $form->textItems,
+            'service' => [
+                'id' => $form->service->id,
+                'title' => $form->service->title,
+            ],
         ];
     }
 }

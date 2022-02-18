@@ -2,10 +2,8 @@
 
 namespace core\forms;
 
-use core\entities\Service;
 use core\entities\ServicePoint;
 use yii\base\Model;
-use yii\web\UploadedFile;
 
 class ServicePointFrom extends Model
 {
@@ -13,7 +11,6 @@ class ServicePointFrom extends Model
     public $description;
     public $textItems;
     public $service;
-    public $status;
 
     private $_point;
 
@@ -24,7 +21,6 @@ class ServicePointFrom extends Model
             $this->description = $point->description;
             $this->textItems = implode(PHP_EOL, $point->items);
             $this->service = $point->service;
-            $this->status = $point->status;
             $this->_point = $point;
         }
         parent::__construct($config);
@@ -33,9 +29,9 @@ class ServicePointFrom extends Model
     public function rules()
     {
         return [
-            [['title', 'description'], 'required' , 'message' => 'Поле не заполнено'],
+            [['title', 'description', 'service'], 'required' , 'message' => 'Поле не заполнено'],
             [['title', 'description', 'textItems'], 'string'],
-            [['status', 'service'], 'integer'],
+            [['service'], 'integer'],
         ];
     }
 

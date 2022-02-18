@@ -2,12 +2,9 @@
 
 namespace core\readModels;
 
-use core\entities\Service;
-use core\entities\ServiceImage;
 use core\entities\ServicePoint;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
-use yii\web\NotFoundHttpException;
 
 class ServicePointReadRepository
 {

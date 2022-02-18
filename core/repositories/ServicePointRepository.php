@@ -2,39 +2,25 @@
 
 namespace core\repositories;
 
-use core\entities\Service;
-use core\entities\ServiceImage;
-use core\helpers\TitleHelper;
+use core\entities\ServicePoint;
 use yii\web\NotFoundHttpException;
 
 class ServicePointRepository
 {
-    public function getAll()
+    public function save($point)
     {
-        $services = \Yii::$app->cache->get('services');
-        if (empty($services)) {
-            if (!$services = Service::find()->andWhere(['status' => Service::STATUS_ACTIVE])->all()) throw new NotFoundHttpException('Not found.');
-            $services = TitleHelper::editTitle($services);
-            \Yii::$app->cache->set('services', $services, 3600*24*30);
-        }
-        return $services;
-    }
-
-    public function save($service)
-    {
-        if (!$return = $service->save()) throw new \RuntimeException('Saving error.');
+        if (!$return = $point->save()) throw new \RuntimeException('Saving error.');
         return $return;
     }
     
-    public function remove(Service $service)
+    public function remove(ServicePoint $point)
     {
-        $service->status = $service::STATUS_DELETED;
-        if (!$service->save()) throw new \RuntimeException('Removing error.');
+        if (!$point->delete()) throw new \RuntimeException('Removing error.');
     }
 
     public function get($id)
     {
-        if (!$service = Service::findOne($id)) throw new NotFoundHttpException('Not found.');
-        return $service;
+        if (!$point = ServicePoint::findOne($id)) throw new NotFoundHttpException('Not found.');
+        return $point;
     }
 }

@@ -7,10 +7,6 @@ use yii\helpers\Json;
 
 class ServicePoint extends ActiveRecord
 {
-    const STATUS_DELETED = 0;
-    const STATUS_INACTIVE = 9;
-    const STATUS_ACTIVE = 10;
-
     public $items;
 
     public static function tableName()
@@ -18,24 +14,22 @@ class ServicePoint extends ActiveRecord
         return 'service_points';
     }
 
-    public static function create($title, $items, $description, $service, $status)
+    public static function create($title, $items, $description, $service)
     {
         $point = new static();
         $point->title = $title;
         $point->description = $description;
         $point->items = $items;
         $point->service_id = $service;
-        $point->status = $status ? $status : Service::STATUS_INACTIVE;
         return $point;
     }
 
-    public function edit($title, $items, $description, $service, $status)
+    public function edit($title, $items, $description, $service)
     {
         $this->title = $title;
         $this->description = $description;
         $this->items = $items;
-        $this->service = $service;
-        $this->status = $status ? $status : Service::STATUS_INACTIVE;
+        $this->service_id = $service;
     }
     
     public function getService()

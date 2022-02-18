@@ -35,7 +35,7 @@ class ServiceList
         return [
             'title' => $form->title,
             'description' => $form->description,
-            'items' => $form->textItems,
+            'textItems' => $form->textItems,
             'status' => $form->status,
         ];
     }

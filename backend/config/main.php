@@ -81,18 +81,21 @@ return [
                 'GET advantage/<id:\d+>' => 'advantage/update',
                 'PUT advantage/<id:\d+>' => 'advantage/update',
                 'DELETE advantage/<id:\d+>' => 'advantage/delete',
-
                 'GET work' => 'work/index',
                 'GET work/<id:\d+>' => 'work/update',
                 'PUT work/<id:\d+>' => 'work/update',
                 'DELETE work/delete-image/<id:\d+>' => 'work/delete-image',
-
                 'GET service' => 'service/index',
                 'service/create' => 'service/create',
                 'GET service/<id:\d+>' => 'service/update',
                 'PUT service/<id:\d+>' => 'service/update',
                 'DELETE service/<id:\d+>' => 'service/delete',
                 'DELETE service/delete-image/<id:\d+>' => 'service/delete-image',
+                'GET service-point' => 'service-point/index',
+                'service-point/create' => 'service-point/create',
+                'GET service-point/<id:\d+>' => 'service-point/update',
+                'PUT service-point/<id:\d+>' => 'service-point/update',
+                'DELETE service-point/<id:\d+>' => 'service-point/delete',
             ],
         ],
 

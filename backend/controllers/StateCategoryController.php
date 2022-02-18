@@ -2,24 +2,24 @@
 
 namespace backend\controllers;
 
-use backend\lists\ContactList;
+use backend\lists\StateCategoryList;
 use backend\lists\StatusList;
 use backend\providers\MapDataProvider;
-use core\entities\Contact;
-use core\forms\ContactFrom;
+use core\entities\StateCategory;
+use core\forms\StateCategoryFrom;
 use core\readModels\CacheReadRepository;
-use core\readModels\ContactReadRepository;
-use core\services\ContactService;
+use core\readModels\StateCategoryReadRepository;
+use core\services\StateCategoryService;
 use yii\rest\Controller;
 
 class StateCategoryController extends Controller
 {
-    private $contacts;
+    private $categories;
     private $service;
 
-    public function __construct($id, $module, ContactReadRepository $contacts, ContactService $service, $config = [])
+    public function __construct($id, $module, StateCategoryReadRepository $categories, StateCategoryService $service, $config = [])
     {
-        $this->contacts = $contacts;
+        $this->categories = $categories;
         $this->service = $service;
         parent::__construct($id, $module, $config);
     }
@@ -36,14 +36,14 @@ class StateCategoryController extends Controller
 
     public function actionIndex()
     {
-        $contacts= $this->contacts->getAll();
-        return new MapDataProvider($contacts, [$this, 'serializeListItem']);
+        $categories= $this->categories->getAll();
+        return new MapDataProvider($categories, [$this, 'serializeListItem']);
     }
 
     public function actionCreate()
     {
-        $form = new ContactFrom();
-        AppController::actionCreate($form, $this->service, CacheReadRepository::cacheContact());
+        $form = new StateCategoryFrom();
+        AppController::actionCreate($form, $this->service, CacheReadRepository::cacheCategory());
         return [
             'errors' => $form->errors,
             'status' => StatusList::formListStatus(),
@@ -52,11 +52,11 @@ class StateCategoryController extends Controller
 
     public function actionUpdate($id)
     {
-        $contact = $this->contacts->find($id);
-        $form = new ContactFrom($contact);
-        AppController::actionUpdate($form, $this->service, $contact->id, CacheReadRepository::cacheContact());
+        $category = $this->categories->find($id);
+        $form = new StateCategoryFrom($category);
+        AppController::actionUpdate($form, $this->service, $category->id, CacheReadRepository::cacheCategory());
         return [
-            'contact' => ContactList::formContact($form),
+            'contact' => StateCategoryList::formCategory($form),
             'errors' => $form->errors,
             'status' => StatusList::formListStatus(),
         ];
@@ -64,12 +64,12 @@ class StateCategoryController extends Controller
 
     public function actionDelete($id)
     {
-        AppController::actionDelete($id, $this->service, CacheReadRepository::cacheContact());
+        AppController::actionDelete($id, $this->service, CacheReadRepository::cacheCategory());
         return [];
     }
 
-    public function serializeListItem(Contact $contact)
+    public function serializeListItem(StateCategory $category)
     {
-        return ContactList::serializeListItem($contact);
+        return StateCategoryList::serializeListItem($category);
     }
 }

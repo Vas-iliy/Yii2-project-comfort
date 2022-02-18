@@ -2,27 +2,25 @@
 
 namespace backend\lists;
 
-use core\entities\Contact;
-use core\forms\ContactFrom;
+use core\entities\StateCategory;
+use core\forms\StateCategoryFrom;
 use core\helpers\StatusHelper;
 
 class StateCategoryList
 {
-    public static function serializeListItem(Contact $contact)
+    public static function serializeListItem(StateCategory $category)
     {
         return [
-            'id' => $contact->id,
-            'title' => $contact->title,
-            'content' => $contact->content,
-            'status' => StatusHelper::status($contact->status, new Contact())
+            'id' => $category->id,
+            'title' => $category->title,
+            'status' => StatusHelper::status($category->status, new StateCategory())
         ];
     }
 
-    public static function formContact(ContactFrom $form)
+    public static function formCategory(StateCategoryFrom $form)
     {
         return [
             'title' => $form->title,
-            'content' => $form->content,
             'status' => $form->status
         ];
     }

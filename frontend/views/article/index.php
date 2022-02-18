@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+if ($this->beginCache('states_page', ['duration' => 3600*24*30])):
 if(!empty($categories) && !empty($categories[0]->states)):?>
 <section class="advice">
     <div class="wrap">
@@ -58,3 +59,5 @@ if(!empty($categories) && !empty($categories[0]->states)):?>
 </section>
 <?endif; endforeach;?>
 <?endif;?>
+<?  $this->endCache();
+endif;?>

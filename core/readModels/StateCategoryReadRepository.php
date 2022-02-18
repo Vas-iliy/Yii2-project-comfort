@@ -2,7 +2,7 @@
 
 namespace core\readModels;
 
-use core\entities\Contact;
+use core\entities\StateCategory;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
 
@@ -10,13 +10,13 @@ class StateCategoryReadRepository
 {
     public function getAll()
     {
-        $query = Contact::find();
+        $query = StateCategory::find();
         return $this->getProvider($query);
     }
 
     public function find($id)
     {
-        return Contact::findOne($id);
+        return StateCategory::findOne($id);
     }
 
     private function getProvider(ActiveQuery $query)

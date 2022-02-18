@@ -2,45 +2,43 @@
 
 namespace core\services;
 
-use core\entities\Contact;
-use core\forms\ContactFrom;
-use core\repositories\ContactRepository;
+use core\entities\StateCategory;
+use core\forms\StateCategoryFrom;
+use core\repositories\StateCategoryRepository;
 
 class StateCategoryService
 {
     private $categories;
 
-    public function __construct(ContactRepository $categories)
+    public function __construct(StateCategoryRepository $categories)
     {
-        $this->contacts = $categories;
+        $this->categories = $categories;
     }
 
-    public function create(ContactFrom $form)
+    public function create(StateCategoryFrom $form)
     {
-        $category = Contact::create(
+        $category = StateCategory::create(
             $form->title,
-            $form->content,
             $form->status ?? null
         );
-        $this->contacts->save($category);
+        $this->categories->save($category);
         return $category;
     }
 
-    public function edit($id, ContactFrom $form)
+    public function edit($id, StateCategoryFrom $form)
     {
-        $category = $this->contacts->get($id);
+        $category = $this->categories->get($id);
         $category->edit(
             $form->title,
-            $form->content,
             $form->status ?? null
         );
-        $this->contacts->save($category);
+        $this->categories->save($category);
         return $category;
     }
 
     public function remove($id)
     {
-        $category = $this->contacts->get($id);
-        $this->contacts->remove($category);
+        $category = $this->categories->get($id);
+        $this->categories->remove($category);
     }
 }

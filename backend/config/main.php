@@ -108,6 +108,11 @@ return [
                 'GET question/<id:\d+>' => 'question/update',
                 'PUT question/<id:\d+>' => 'question/update',
                 'DELETE question/<id:\d+>' => 'question/delete',
+                'GET state-category' => 'state-category/index',
+                'state-category/create' => 'state-category/create',
+                'GET state-category/<id:\d+>' => 'state-category/update',
+                'PUT state-category/<id:\d+>' => 'state-category/update',
+                'DELETE state-category/<id:\d+>' => 'state-category/delete',
             ],
         ],
 

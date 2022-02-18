@@ -10,14 +10,14 @@ class StateCategoryFrom extends Model
     public $title;
     public $status;
 
-    private $_contact;
+    private $_category;
 
-    public function __construct(StateCategory $contact = null, $config = [])
+    public function __construct(StateCategory $category = null, $config = [])
     {
-        if ($contact) {
-            $this->title = $contact->title;
-            $this->status = $contact->status;
-            $this->_contact = $contact;
+        if ($category) {
+            $this->title = $category->title;
+            $this->status = $category->status;
+            $this->_category = $category;
         }
         parent::__construct($config);
     }

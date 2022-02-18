@@ -1,4 +1,5 @@
-<? use yii\helpers\Html;
+<? use core\entities\ServicePoint;
+use yii\helpers\Html;
 if ($this->beginCache('service/index')):
 if(!empty($services)):?>
 <div>
@@ -20,7 +21,7 @@ if(!empty($services)):?>
             <?endif;?>
             <div class="roof-block__items">
                 <div class="roof-block__content">
-                    <?if(!empty($services[0]->points)): foreach ($services[0]->points as $point):?>
+                    <?if(!empty($services[0]->getPoints()->andWhere(['status' => ServicePoint::STATUS_ACTIVE])->all())): foreach ($services[0]->getPoints()->andWhere(['status' => ServicePoint::STATUS_ACTIVE])->all() as $point):?>
                         <span class="roof-block__title"><?=$point->title?></span>
                         <p class="text"><?=$point->description?></p>
                         <?if(!empty($point->items)):?>
@@ -126,7 +127,7 @@ if(!empty($services)):?>
                 <?endif;?>
                 <div class="roof-block__items">
                     <div class="roof-block__content">
-                    <?if(!empty($service->points)): foreach ($service->points as $point):?>
+                    <?if(!empty($service->getPoints()->andWhere(['status' => ServicePoint::STATUS_ACTIVE])->all())): foreach ($service->getPoints()->andWhere(['status' => ServicePoint::STATUS_ACTIVE])->all() as $point):?>
                     <span class="roof-block__title"><?=$point->title?></span>
                     <p class="text"><?=$point->description?></p>
                     <?if(!empty($point->items)):?>

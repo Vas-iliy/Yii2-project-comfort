@@ -10,12 +10,12 @@ class StateCategoryRepository
 {
     public function getAll()
     {
-        $states = \Yii::$app->cache->get('states');
-        if (empty($states)) {
-            if (!$states = StateCategory::find()->andWhere(['status' => StateCategory::STATUS_ACTIVE])->all()) throw new NotFoundHttpException('Not found.');
-            $states = TitleHelper::editTitle($states);
-            \Yii::$app->cache->set('states', $states, 3600*24*30);
+        $categories = \Yii::$app->cache->get('states');
+        if (empty($categories)) {
+            if (!$categories = StateCategory::find()->andWhere(['status' => StateCategory::STATUS_ACTIVE])->all()) throw new NotFoundHttpException('Not found.');
+            $categories = TitleHelper::editTitle($categories);
+            \Yii::$app->cache->set('states', $categories, 3600*24*30);
         }
-        return $states;
+        return $categories;
     }
 }

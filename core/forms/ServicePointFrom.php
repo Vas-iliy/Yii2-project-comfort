@@ -11,6 +11,7 @@ class ServicePointFrom extends Model
     public $description;
     public $textItems;
     public $service;
+    public $status;
 
     private $_point;
 
@@ -20,7 +21,8 @@ class ServicePointFrom extends Model
             $this->title = $point->title;
             $this->description = $point->description;
             $this->textItems = implode(PHP_EOL, $point->items);
-            $this->service = $point->service;
+            $this->service = $point->service->id;
+            $this->status = $point->status;
             $this->_point = $point;
         }
         parent::__construct($config);
@@ -31,7 +33,7 @@ class ServicePointFrom extends Model
         return [
             [['title', 'description', 'service'], 'required' , 'message' => 'Поле не заполнено'],
             [['title', 'description', 'textItems'], 'string'],
-            [['service'], 'integer'],
+            [['service', 'status'], 'integer'],
         ];
     }
 

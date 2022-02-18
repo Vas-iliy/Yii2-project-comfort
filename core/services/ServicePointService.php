@@ -21,7 +21,8 @@ class ServicePointService
             $form->title,
             $form->items,
             $form->description,
-            $form->service
+            $form->service,
+            $form->status ?? null
         );
         $this->points->save($point);
         return $point;
@@ -34,7 +35,8 @@ class ServicePointService
             $form->title,
             $form->items,
             $form->description,
-            $form->service
+            $form->service,
+            $form->status ?? null
         );
         $this->points->save($point);
         return $point;

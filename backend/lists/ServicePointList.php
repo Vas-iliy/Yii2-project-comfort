@@ -2,8 +2,10 @@
 
 namespace backend\lists;
 
+use core\entities\Service;
 use core\entities\ServicePoint;
 use core\forms\ServicePointFrom;
+use core\helpers\StatusHelper;
 use yii\helpers\Json;
 
 class ServicePointList
@@ -17,6 +19,8 @@ class ServicePointList
             'title' => $point->title,
             'description' => $point->description,
             'items' => array_filter(Json::decode($point->getAttribute('items_json'))),
+            'status' => StatusHelper::status($point->status, new ServicePoint())
+
         ];
     }
 
@@ -27,6 +31,15 @@ class ServicePointList
             'title' => $point->title,
             'description' => $point->description,
             'items' => array_filter(Json::decode($point->getAttribute('items_json'))),
+            'status' => StatusHelper::status($point->status, new ServicePoint())
+        ];
+    }
+
+    public static function formListService(Service $service)
+    {
+        return [
+            'id' => $service->id,
+            'title' => $service->title
         ];
     }
 
@@ -36,11 +49,9 @@ class ServicePointList
         return [
             'title' => $form->title,
             'description' => $form->description,
+            'service' => $form->service,
             'textItems' => $form->textItems,
-            'service' => [
-                'id' => $form->service->id,
-                'title' => $form->service->title,
-            ],
+            'status' => $form->status
         ];
     }
 }

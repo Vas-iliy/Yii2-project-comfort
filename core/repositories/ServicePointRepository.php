@@ -15,7 +15,8 @@ class ServicePointRepository
     
     public function remove(ServicePoint $point)
     {
-        if (!$point->delete()) throw new \RuntimeException('Removing error.');
+        $point->status = $point::STATUS_DELETED;
+        if (!$point->save()) throw new \RuntimeException('Removing error.');
     }
 
     public function get($id)

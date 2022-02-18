@@ -5,21 +5,25 @@ namespace backend\controllers;
 use backend\lists\ServicePointList;
 use backend\lists\StatusList;
 use backend\providers\MapDataProvider;
+use core\entities\Service;
 use core\entities\ServicePoint;
 use core\forms\ServicePointFrom;
 use core\readModels\CacheReadRepository;
 use core\readModels\ServicePointReadRepository;
+use core\readModels\ServiceReadRepository;
 use core\services\ServicePointService;
 use yii\rest\Controller;
 
 class ServicePointController extends Controller
 {
     private $points;
+    private $services;
     private $service;
 
-    public function __construct($id, $module, ServicePointReadRepository $points, ServicePointService $service, $config = [])
+    public function __construct($id, $module, ServicePointReadRepository $points, ServiceReadRepository $services, ServicePointService $service, $config = [])
     {
         $this->points = $points;
+        $this->services = $services;
         $this->service = $service;
         parent::__construct($id, $module, $config);
     }
@@ -46,6 +50,8 @@ class ServicePointController extends Controller
         AppController::actionCreate($form, $this->service, CacheReadRepository::cacheService());
         return [
             'errors' => $form->errors,
+            'services' => new MapDataProvider($this->services->getAll(), [$this, 'formListService']),
+            'status' => StatusList::formListStatus(),
         ];
     }
 
@@ -57,6 +63,8 @@ class ServicePointController extends Controller
         return [
             'errors' => $form->errors,
             'point' => ServicePointList::formService($form),
+            'services' => new MapDataProvider($this->services->getAll(), [$this, 'formListService']),
+            'status' => StatusList::formListStatus(),
         ];
     }
 
@@ -69,5 +77,10 @@ class ServicePointController extends Controller
     public function serializeListItem(ServicePoint $point)
     {
         return ServicePointList::serializeListItem($point);
+    }
+
+    public function formListService(Service $service)
+    {
+        return ServicePointList::formListService($service);
     }
 }

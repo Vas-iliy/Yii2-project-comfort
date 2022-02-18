@@ -1,4 +1,5 @@
-<? use yii\helpers\Html;
+<? use core\entities\State;
+use yii\helpers\Html;
 use yii\helpers\Url;
 
 if(!empty($categories) && !empty($categories[0]->states)):?>
@@ -6,7 +7,7 @@ if(!empty($categories) && !empty($categories[0]->states)):?>
     <div class="wrap">
         <span class="title"><?=$categories[0]->title?></span>
         <div class="advice-block">
-            <?foreach ($categories[0]->states as $state):?>
+            <?foreach ($categories[0]->getStates()->andWhere(['status' => State::STATUS_ACTIVE])->all() as $state):?>
             <a href="<?=Url::to(['state', 'id' => $state->id])?>">
                 <div class="advice-block__item">
                     <div class="advice-block__image">
@@ -36,12 +37,12 @@ if(!empty($categories) && !empty($categories[0]->states)):?>
 </section>
 <?endif;?>
 <?if(!empty($categories)):?>
-<?foreach ($categories as $k => $category): if ($k > 0 && !empty($category->states)):?>
+<?foreach ($categories as $k => $category): if ($k > 0 && !empty($category->getStates()->andWhere(['status' => State::STATUS_ACTIVE])->all())):?>
 <section class="advice">
     <div class="wrap">
         <span class="title"><?=$category->title?></span>
         <div class="advice-block">
-            <?foreach ($category->states as $state):?>
+            <?foreach ($category->getStates()->andWhere(['status' => State::STATUS_ACTIVE])->all() as $state):?>
                 <a href="<?=Url::to(['state', 'id' => $state->id])?>">
                     <div class="advice-block__item">
                         <div class="advice-block__image">

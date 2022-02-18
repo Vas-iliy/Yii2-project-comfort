@@ -62,7 +62,7 @@ class ServicePointController extends Controller
         AppController::actionUpdate($form, $this->service, $point->id, CacheReadRepository::cacheService());
         return [
             'errors' => $form->errors,
-            'point' => ServicePointList::formService($form),
+            'point' => ServicePointList::formPoint($form),
             'services' => new MapDataProvider($this->services->getAll(), [$this, 'formListService']),
             'status' => StatusList::formListStatus(),
         ];

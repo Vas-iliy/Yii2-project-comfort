@@ -9,11 +9,13 @@ class FilterRepository
 {
     public function getFilter()
     {
-        $filters = \Yii::$app->cache->get('filter_home');
+        /*$filters = \Yii::$app->cache->get('filter_home');
         if (empty($filters)) {
             $filters = Filter::find()->andWhere(['top' => 1, 'status' => Filter::STATUS_ACTIVE])->limit(6)->orderBy('order')->all();
             \Yii::$app->cache->set('filter_home', $filters, 3600*24*30);
-        }
+        }*/
+        $filters = Filter::find()->andWhere(['top' => 1, 'status' => Filter::STATUS_ACTIVE])->limit(6)->orderBy('order')->all();
+
         return $filters;
     }
 

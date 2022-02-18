@@ -113,6 +113,11 @@ return [
                 'GET state-category/<id:\d+>' => 'state-category/update',
                 'PUT state-category/<id:\d+>' => 'state-category/update',
                 'DELETE state-category/<id:\d+>' => 'state-category/delete',
+                'GET state' => 'state/index',
+                'state/create' => 'state/create',
+                'GET state/<id:\d+>' => 'state/update',
+                'PUT state/<id:\d+>' => 'state/update',
+                'DELETE state/<id:\d+>' => 'state/delete',
             ],
         ],
 

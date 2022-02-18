@@ -2,6 +2,7 @@
 
 namespace backend\lists;
 
+use core\entities\State;
 use core\entities\StateCategory;
 use core\forms\StateCategoryFrom;
 use core\helpers\StatusHelper;
@@ -13,6 +14,9 @@ class StateCategoryList
         return [
             'id' => $category->id,
             'title' => $category->title,
+            'states' => array_map(function (State $state) {
+                return StateList::serializeListState($state);
+            }, $category->states),
             'status' => StatusHelper::status($category->status, new StateCategory())
         ];
     }

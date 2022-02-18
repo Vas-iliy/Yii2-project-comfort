@@ -13,8 +13,11 @@ class ServicePointList
     public static function serializeListItem(ServicePoint $point)
     {
         return [
-            'id service' => $point->service->id,
-            'title service' => $point->service->title,
+            'service' => [
+                'id' => $point->service->id,
+                'title' => $point->service->title,
+                'status' => StatusHelper::status($point->service->status, Service::class)
+            ],
             'id' => $point->id,
             'title' => $point->title,
             'description' => $point->description,
@@ -44,7 +47,7 @@ class ServicePointList
     }
 
 
-    public static function formService(ServicePointFrom $form)
+    public static function formPoint(ServicePointFrom $form)
     {
         return [
             'title' => $form->title,

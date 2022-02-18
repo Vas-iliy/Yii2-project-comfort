@@ -2,62 +2,56 @@
 
 namespace backend\lists;
 
-use core\entities\Filter;
-use core\entities\Material;
-use core\entities\Project;
-use core\entities\ProjectImage;
-use core\forms\ProjectFrom;
+use core\entities\State;
+use core\entities\StateCategory;
+use core\forms\StateUpdateFrom;
 use core\helpers\StatusHelper;
-use yii\helpers\Url;
 
 class StateList
 {
-    public static function serializeListItem(Project $project)
+    public static function serializeListItem(State $state)
     {
         return [
-            'id' => $project->id,
-            'title' => $project->title,
-            'square' => $project->square,
-            'count' => $project->count_floors,
-            'material' => $project->material->material,
-            'text' => $project->description,
-            'price' => $project->price,
-            'popular' => $project->popular,
-            'filter' => $project->filter->filter,
-            'status' => StatusHelper::status($project->status, new Project()),
-            'images' => array_map(function (ProjectImage $image) {
-                return $image->getThumbFileUrl('image', 'catalog_list');
-            }, $project->images),
+            'category' => [
+                'id' => $state->category->id,
+                'title' => $state->category->title,
+                'status' => StatusHelper::status($state->category->status, StateCategory::class)
+            ],
+            'id' => $state->id,
+            'title' => $state->title,
+            'recommendation' => $state->title_recommendation,
+            'content' => $state->content,
+            'status' => StatusHelper::status($state->status, new State()),
+            'image' => $state->getThumbFileUrl('image', 'catalog_list')
         ];
     }
 
-    public static function formListFilter(Filter $filter)
+    public static function serializeListState(State $state)
     {
         return [
-            'id' => $filter->id,
-            'title' => $filter->filter
+            'title' => $state->title,
+            'recommendation' => $state->title_recommendation,
+            'content' => $state->content,
+            'status' => StatusHelper::status($state->status, new State()),
+            'image' => $state->getThumbFileUrl('image', 'catalog_list')
         ];
     }
 
-    public static function formListMaterial(Material $material)
+    public static function formListCategory(StateCategory $category)
     {
         return [
-            'id' => $material->id,
-            'title' => $material->material
+            'id' => $category->id,
+            'title' => $category->title
         ];
     }
 
-    public static function formProject(ProjectFrom $form)
+    public static function formState(StateUpdateFrom $form)
     {
         return [
             'title' => $form->title,
-            'square' => $form->square,
-            'count_floors' => $form->count_floors,
-            'material' => $form->material,
-            'description' => $form->description,
-            'price' => $form->price,
-            'popular' => $form->popular,
-            'filter' => $form->filter,
+            'title_recommendation' => $form->title_recommendation,
+            'content' => $form->content,
+            'category' => $form->category,
             'status' => $form->status,
         ];
     }

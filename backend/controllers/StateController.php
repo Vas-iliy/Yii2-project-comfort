@@ -2,34 +2,29 @@
 
 namespace backend\controllers;
 
-use backend\lists\ProjectList;
+use backend\lists\StateList;
 use backend\lists\StatusList;
 use backend\providers\MapDataProvider;
-use core\entities\Filter;
-use core\entities\Material;
-use core\entities\Project;
-use core\entities\ProjectImage;
-use core\forms\ProjectFrom;
+use core\entities\State;
+use core\entities\StateCategory;
+use core\forms\StateFrom;
+use core\forms\StateUpdateFrom;
 use core\readModels\CacheReadRepository;
-use core\readModels\FilterReadRepository;
-use core\readModels\MaterialReadRepository;
-use core\readModels\ProjectReadRepository;
-use core\services\ProjectService;
-use yii\helpers\Url;
+use core\readModels\StateCategoryReadRepository;
+use core\readModels\StateReadRepository;
+use core\services\StateService;
 use yii\rest\Controller;
 
 class StateController extends Controller
 {
-    private $projects;
-    private $filters;
-    private $materials;
+    private $states;
+    private $categories;
     private $service;
 
-    public function __construct($id, $module, ProjectReadRepository $projects, FilterReadRepository $filters, MaterialReadRepository $materials, ProjectService $service, $config = [])
+    public function __construct($id, $module, StateReadRepository $states, StateCategoryReadRepository $categories, StateService $service, $config = [])
     {
-        $this->projects = $projects;
-        $this->filters = $filters;
-        $this->materials = $materials;
+        $this->states = $states;
+        $this->categories = $categories;
         $this->service = $service;
         parent::__construct($id, $module, $config);
     }
@@ -41,77 +36,53 @@ class StateController extends Controller
             'create' => ['GET', 'POST'],
             'update' => ['GET', 'PUT', 'PATCH'],
             'delete' => ['DELETE'],
-            'delete-image' => ['DELETE'],
         ];
     }
 
     public function actionIndex()
     {
-        $projects = $this->projects->getAll();
-        return new MapDataProvider($projects, [$this, 'serializeListItem']);
+        $states = $this->states->getAll();
+        return new MapDataProvider($states, [$this, 'serializeListItem']);
     }
 
     public function actionCreate()
     {
-        $form = new ProjectFrom();
-        AppController::actionCreate($form, $this->service, CacheReadRepository::cacheProject());
+        $form = new StateFrom();
+        AppController::actionCreate($form, $this->service, CacheReadRepository::cacheCategory());
         return [
             'errors' => $form->errors,
-            'filters' => new MapDataProvider($this->filters->getAll(), [$this, 'formListFilter']),
-            'materials' => new MapDataProvider($this->materials->getAll(), [$this, 'formListMaterial']),
+            'categories' => new MapDataProvider($this->categories->getAll(), [$this, 'formListCategory']),
             'status' => StatusList::formListStatus(),
         ];
     }
 
     public function actionUpdate($id)
     {
-        $project = $this->projects->find($id);
-        $form = new ProjectFrom($project);
-        AppController::actionUpdate($form, $this->service, $project->id, CacheReadRepository::cacheProject());
+        $state = $this->states->find($id);
+        $form = new StateUpdateFrom($state);
+        AppController::actionUpdate($form, $this->service, $state->id, CacheReadRepository::cacheCategory());
         return [
             'errors' => $form->errors,
-            'project' => ProjectList::formProject($form),
-            'images' => array_map(function (ProjectImage $image) {
-                return [
-                    'image' => $image->getThumbFileUrl('image', 'catalog_list'),
-                    '_links' => ['href' => Url::to(['delete-image', 'id' => $image->id], true)]
-                ];
-            }, $project->images),
-            'filters' => new MapDataProvider($this->filters->getAll(), [$this, 'formListFilter']),
-            'materials' => new MapDataProvider($this->materials->getAll(), [$this, 'formListMaterial']),
+            'state' => StateList::formState($form),
+            'image' => $state->getThumbFileUrl('image', 'catalog_list'),
+            'categories' => new MapDataProvider($this->categories->getAll(), [$this, 'formListCategory']),
             'status' => StatusList::formListStatus(),
         ];
     }
 
     public function actionDelete($id)
     {
-        AppController::actionDelete($id, $this->service, CacheReadRepository::cacheProject());
+        AppController::actionDelete($id, $this->service, CacheReadRepository::cacheCategory());
         return [];
     }
 
-    public function actionDeleteImage($id)
+    public function serializeListItem(State $state)
     {
-        $image = $this->projects->getImage($id);
-        $this->service->deleteImage($image);
-        foreach (CacheReadRepository::cacheProject() as $value) {
-            \Yii::$app->cache->delete($value);
-        }
-        return[];
+        return StateList::serializeListItem($state);
     }
 
-    public function serializeListItem(Project $project)
+    public function formListCategory(StateCategory $category)
     {
-        return ProjectList::serializeListItem($project);
-    }
-
-    public function formListFilter(Filter $filter)
-    {
-        return ProjectList::formListFilter($filter);
-
-    }
-
-    public function formListMaterial(Material $material)
-    {
-        return ProjectList::formListMaterial($material);
+        return StateList::formListCategory($category);
     }
 }

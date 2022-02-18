@@ -29,12 +29,6 @@ class StateRepository
         if (!$state->save()) throw new \RuntimeException('Removing error.');
     }
 
-    public function removeImage(State $state)
-    {
-        $state->image = null;
-        if (!$state->save()) throw new \RuntimeException('Removing Image error.');
-    }
-
     public function getState($id)
     {
         if (!$state = State::findOne($id)) throw new NotFoundHttpException('Not found.');

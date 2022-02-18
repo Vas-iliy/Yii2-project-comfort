@@ -7,8 +7,10 @@ use core\entities\ProjectImage;
 use core\entities\State;
 use core\forms\ProjectFrom;
 use core\forms\StateFrom;
+use core\forms\StateUpdateFrom;
 use core\repositories\ProjectRepository;
 use core\repositories\StateRepository;
+use yii\web\UploadedFile;
 
 class StateService
 {
@@ -34,17 +36,28 @@ class StateService
         return $state;
     }
 
-    public function edit($id, StateFrom $form)
+    public function edit($id, StateUpdateFrom $form)
     {
         $state = $this->states->getState($id);
-        $state->edit(
-            $form->title,
-            $form->title_recommendation,
-            $form->content,
-            $form->category,
-            $form->status ?? null,
-            $form->image
-        );
+        if (UploadedFile::getInstance($form, 'image')) {
+            $state->edit(
+                $form->title,
+                $form->title_recommendation,
+                $form->content,
+                $form->category,
+                $form->status ?? null,
+                $form->image
+            );
+        } else {
+            $state->editNoImage(
+                $form->title,
+                $form->title_recommendation,
+                $form->content,
+                $form->category,
+                $form->status ?? null
+            );
+        }
+
         $this->states->save($state);
         return $state;
     }
@@ -53,18 +66,5 @@ class StateService
     {
         $state = $this->states->getState($id);
         $this->states->remove($state);
-    }
-
-    public function deleteImage(State $state)
-    {
-        if ($state) {
-            $arr = explode('.', $state->image);
-            $extension = $arr[count($arr)-1];
-            if (unlink(\Yii::getAlias("@staticRoot/origin/states/{$state->id}") . '.' . $extension)) {
-                $this->states->removeImage($state);
-                return true;
-            }
-        }
-        return false;
     }
 }

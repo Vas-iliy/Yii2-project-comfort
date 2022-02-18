@@ -39,6 +39,16 @@ class State extends ActiveRecord
         $this->image = $file;
     }
 
+    public function editNoImage($title, $title_recommendation, $content, $category, $status)
+    {
+        $this->title = $title;
+        $this->title_recommendation = $title_recommendation;
+        $this->content = $content;
+        $this->category_id = $category;
+        $this->status = $status ? $status : State::STATUS_INACTIVE;
+    }
+
+
     public function getCategory()
     {
         return $this->hasOne(StateCategory::class, ['id' => 'category_id']);

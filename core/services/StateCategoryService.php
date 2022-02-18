@@ -3,7 +3,7 @@
 namespace core\services;
 
 use core\entities\StateCategory;
-use core\forms\StateCategoryFrom;
+use core\forms\StateCategoryForm;
 use core\repositories\StateCategoryRepository;
 
 class StateCategoryService
@@ -15,7 +15,7 @@ class StateCategoryService
         $this->categories = $categories;
     }
 
-    public function create(StateCategoryFrom $form)
+    public function create(StateCategoryForm $form)
     {
         $category = StateCategory::create(
             $form->title,
@@ -25,7 +25,7 @@ class StateCategoryService
         return $category;
     }
 
-    public function edit($id, StateCategoryFrom $form)
+    public function edit($id, StateCategoryForm $form)
     {
         $category = $this->categories->get($id);
         $category->edit(

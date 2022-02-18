@@ -2,24 +2,24 @@
 
 namespace core\forms;
 
-use core\entities\Advantage;
+use core\entities\About;
 use yii\base\Model;
 
-class AdvantageFrom extends Model
+class AboutForm extends Model
 {
     public $title;
     public $description;
     public $status;
 
-    private $_advantage;
+    private $_about;
 
-    public function __construct(Advantage $advantage = null, $config = [])
+    public function __construct(About $about= null, $config = [])
     {
-        if ($advantage) {
-            $this->title = $advantage->title;
-            $this->description = $advantage->description;
-            $this->status = $advantage->status;
-            $this->_advantage = $advantage;
+        if ($about) {
+            $this->title = $about->title;
+            $this->description = $about->description;
+            $this->status = $about->status;
+            $this->_about= $about;
         }
         parent::__construct($config);
     }

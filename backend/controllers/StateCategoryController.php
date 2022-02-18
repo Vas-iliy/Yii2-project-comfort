@@ -6,7 +6,7 @@ use backend\lists\StateCategoryList;
 use backend\lists\StatusList;
 use backend\providers\MapDataProvider;
 use core\entities\StateCategory;
-use core\forms\StateCategoryFrom;
+use core\forms\StateCategoryForm;
 use core\readModels\CacheReadRepository;
 use core\readModels\StateCategoryReadRepository;
 use core\services\StateCategoryService;
@@ -42,7 +42,7 @@ class StateCategoryController extends Controller
 
     public function actionCreate()
     {
-        $form = new StateCategoryFrom();
+        $form = new StateCategoryForm();
         AppController::actionCreate($form, $this->service, CacheReadRepository::cacheCategory());
         return [
             'errors' => $form->errors,
@@ -53,7 +53,7 @@ class StateCategoryController extends Controller
     public function actionUpdate($id)
     {
         $category = $this->categories->find($id);
-        $form = new StateCategoryFrom($category);
+        $form = new StateCategoryForm($category);
         AppController::actionUpdate($form, $this->service, $category->id, CacheReadRepository::cacheCategory());
         return [
             'contact' => StateCategoryList::formCategory($form),

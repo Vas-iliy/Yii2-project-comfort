@@ -3,7 +3,7 @@
 namespace backend\lists;
 
 use core\entities\About;
-use core\forms\AboutFrom;
+use core\forms\AboutForm;
 use core\helpers\StatusHelper;
 
 class AboutList
@@ -18,7 +18,7 @@ class AboutList
         ];
     }
 
-    public static function formAbout(AboutFrom $form)
+    public static function formAbout(AboutForm $form)
     {
         return [
             'title' => $form->title,

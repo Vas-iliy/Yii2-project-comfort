@@ -4,7 +4,7 @@ namespace core\services;
 
 use core\entities\Service;
 use core\entities\ServiceImage;
-use core\forms\ServiceFrom;
+use core\forms\ServiceForm;
 use core\repositories\ServiceRepository;
 
 class ServiceService
@@ -16,7 +16,7 @@ class ServiceService
         $this->services = $services;
     }
 
-    public function create(ServiceFrom $form)
+    public function create(ServiceForm $form)
     {
         $service = Service::create(
             $form->title,
@@ -28,7 +28,7 @@ class ServiceService
         return $service;
     }
 
-    public function edit($id, ServiceFrom $form)
+    public function edit($id, ServiceForm $form)
     {
         $service = $this->services->get($id);
         $service->edit(
@@ -60,7 +60,7 @@ class ServiceService
         return false;
     }
 
-    private function transaction(Service $service, ServiceFrom $form)
+    private function transaction(Service $service, ServiceForm $form)
     {
         $transaction = \Yii::$app->getDb()->beginTransaction();
         if (!$this->services->save($service) || !$this->createImages($form, $service)) {
@@ -69,7 +69,7 @@ class ServiceService
         $transaction->commit();
     }
 
-    private function createImages(ServiceFrom $form, Service $service)
+    private function createImages(ServiceForm $form, Service $service)
     {
         foreach ($form->images as $image) {
             $image = ServiceImage::create($image, $service->id);

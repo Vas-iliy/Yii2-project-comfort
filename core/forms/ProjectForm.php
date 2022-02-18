@@ -6,7 +6,7 @@ use core\entities\Project;
 use yii\base\Model;
 use yii\web\UploadedFile;
 
-class ProjectFrom extends Model
+class ProjectForm extends Model
 {
     public $title;
     public $square;

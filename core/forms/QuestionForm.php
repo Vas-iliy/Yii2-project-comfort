@@ -5,7 +5,7 @@ namespace core\forms;
 use core\entities\Question;
 use yii\base\Model;
 
-class QuestionFrom extends Model
+class QuestionForm extends Model
 {
     public $title;
     public $description;

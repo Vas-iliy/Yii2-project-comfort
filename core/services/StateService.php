@@ -5,9 +5,9 @@ namespace core\services;
 use core\entities\Project;
 use core\entities\ProjectImage;
 use core\entities\State;
-use core\forms\ProjectFrom;
-use core\forms\StateFrom;
-use core\forms\StateUpdateFrom;
+use core\forms\ProjectForm;
+use core\forms\StateForm;
+use core\forms\StateUpdateForm;
 use core\repositories\ProjectRepository;
 use core\repositories\StateRepository;
 use yii\web\UploadedFile;
@@ -21,7 +21,7 @@ class StateService
         $this->states = $states;
     }
 
-    public function create(StateFrom $form)
+    public function create(StateForm $form)
     {
         $state = State::create(
             $form->title,
@@ -36,7 +36,7 @@ class StateService
         return $state;
     }
 
-    public function edit($id, StateUpdateFrom $form)
+    public function edit($id, StateUpdateForm $form)
     {
         $state = $this->states->getState($id);
         if (UploadedFile::getInstance($form, 'image')) {

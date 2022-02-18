@@ -4,7 +4,7 @@ namespace backend\lists;
 
 use core\entities\State;
 use core\entities\StateCategory;
-use core\forms\StateUpdateFrom;
+use core\forms\StateUpdateForm;
 use core\helpers\StatusHelper;
 
 class StateList
@@ -45,7 +45,7 @@ class StateList
         ];
     }
 
-    public static function formState(StateUpdateFrom $form)
+    public static function formState(StateUpdateForm $form)
     {
         return [
             'title' => $form->title,

@@ -3,7 +3,7 @@
 namespace backend\lists;
 
 use core\entities\Advantage;
-use core\forms\AdvantageFrom;
+use core\forms\AdvantageForm;
 use core\helpers\StatusHelper;
 
 class AdvantageList
@@ -18,7 +18,7 @@ class AdvantageList
         ];
     }
 
-    public static function formContact(AdvantageFrom $form)
+    public static function formContact(AdvantageForm $form)
     {
         return [
             'title' => $form->title,

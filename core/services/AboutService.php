@@ -3,7 +3,7 @@
 namespace core\services;
 
 use core\entities\About;
-use core\forms\AboutFrom;
+use core\forms\AboutForm;
 use core\repositories\AboutRepository;
 
 class AboutService
@@ -15,7 +15,7 @@ class AboutService
         $this->abouts = $abouts;
     }
 
-    public function create(AboutFrom $form)
+    public function create(AboutForm $form)
     {
         $about = About::create(
             $form->title,
@@ -26,7 +26,7 @@ class AboutService
         return $about;
     }
 
-    public function edit($id, AboutFrom $form)
+    public function edit($id, AboutForm $form)
     {
         $about = $this->abouts->get($id);
         $about->edit(

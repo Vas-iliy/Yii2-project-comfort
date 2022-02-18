@@ -9,8 +9,8 @@ use core\entities\ProjectImage;
 use core\entities\Service;
 use core\entities\ServiceImage;
 use core\entities\ServicePoint;
-use core\forms\ProjectFrom;
-use core\forms\ServiceFrom;
+use core\forms\ProjectForm;
+use core\forms\ServiceForm;
 use core\helpers\StatusHelper;
 use yii\helpers\Json;
 use yii\helpers\Url;
@@ -34,7 +34,7 @@ class ServiceList
         ];
     }
 
-    public static function formService(ServiceFrom $form)
+    public static function formService(ServiceForm $form)
     {
         return [
             'title' => $form->title,

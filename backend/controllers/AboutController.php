@@ -6,7 +6,7 @@ use backend\lists\AboutList;
 use backend\lists\StatusList;
 use backend\providers\MapDataProvider;
 use core\entities\About;
-use core\forms\AboutFrom;
+use core\forms\AboutForm;
 use core\readModels\AboutReadRepository;
 use core\readModels\CacheReadRepository;
 use core\services\AboutService;
@@ -42,7 +42,7 @@ class AboutController extends Controller
 
     public function actionCreate()
     {
-        $form = new AboutFrom();
+        $form = new AboutForm();
         AppController::actionCreate($form, $this->service, CacheReadRepository::cacheAbout());
         return [
             'errors' => $form->errors,
@@ -53,7 +53,7 @@ class AboutController extends Controller
     public function actionUpdate($id)
     {
         $about = $this->abouts->find($id);
-        $form = new AboutFrom($about);
+        $form = new AboutForm($about);
         AppController::actionUpdate($form, $this->service, $about->id, CacheReadRepository::cacheAbout());
         return [
             'about' => AboutList::formAbout($form),

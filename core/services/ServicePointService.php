@@ -3,7 +3,7 @@
 namespace core\services;
 
 use core\entities\ServicePoint;
-use core\forms\ServicePointFrom;
+use core\forms\ServicePointForm;
 use core\repositories\ServicePointRepository;
 
 class ServicePointService
@@ -15,7 +15,7 @@ class ServicePointService
         $this->points = $points;
     }
 
-    public function create(ServicePointFrom $form)
+    public function create(ServicePointForm $form)
     {
         $point = ServicePoint::create(
             $form->title,
@@ -28,7 +28,7 @@ class ServicePointService
         return $point;
     }
 
-    public function edit($id, ServicePointFrom $form)
+    public function edit($id, ServicePointForm $form)
     {
         $point = $this->points->get($id);
         $point->edit(

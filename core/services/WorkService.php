@@ -4,7 +4,7 @@ namespace core\services;
 
 use core\entities\Work;
 use core\entities\WorkImage;
-use core\forms\WorkFrom;
+use core\forms\WorkForm;
 use core\repositories\WorkRepository;
 
 class WorkService
@@ -16,7 +16,7 @@ class WorkService
         $this->works = $works;
     }
 
-    public function edit($id, WorkFrom $form)
+    public function edit($id, WorkForm $form)
     {
         $work = $this->works->get($id);
         $work->edit(
@@ -39,7 +39,7 @@ class WorkService
         return false;
     }
 
-    private function transaction(Work $work, WorkFrom $form)
+    private function transaction(Work $work, WorkForm $form)
     {
         $transaction = \Yii::$app->getDb()->beginTransaction();
         if (!$this->works->save($work) || !$this->createImages($form, $work)) {
@@ -48,7 +48,7 @@ class WorkService
         $transaction->commit();
     }
 
-    private function createImages(WorkFrom $form, Work $work)
+    private function createImages(WorkForm $form, Work $work)
     {
         foreach ($form->images as $image) {
             $image = WorkImage::create($image, $work->id);

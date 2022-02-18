@@ -5,7 +5,7 @@ namespace core\forms;
 use core\entities\ServicePoint;
 use yii\base\Model;
 
-class ServicePointFrom extends Model
+class ServicePointForm extends Model
 {
     public $title;
     public $description;

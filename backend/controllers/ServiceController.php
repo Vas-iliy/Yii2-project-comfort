@@ -7,7 +7,7 @@ use backend\lists\StatusList;
 use backend\providers\MapDataProvider;
 use core\entities\Service;
 use core\entities\ServiceImage;
-use core\forms\ServiceFrom;
+use core\forms\ServiceForm;
 use core\readModels\CacheReadRepository;
 use core\readModels\ServiceReadRepository;
 use core\services\ServiceService;
@@ -45,7 +45,7 @@ class ServiceController extends Controller
 
     public function actionCreate()
     {
-        $form = new ServiceFrom();
+        $form = new ServiceForm();
         AppController::actionCreate($form, $this->service, CacheReadRepository::cacheService());
         return [
             'errors' => $form->errors,
@@ -56,7 +56,7 @@ class ServiceController extends Controller
     public function actionUpdate($id)
     {
         $service = $this->services->find($id);
-        $form = new ServiceFrom($service);
+        $form = new ServiceForm($service);
         AppController::actionUpdate($form, $this->service, $service->id, CacheReadRepository::cacheService());
         return [
             'errors' => $form->errors,

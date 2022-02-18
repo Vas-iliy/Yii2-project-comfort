@@ -6,7 +6,7 @@ use backend\lists\ContactList;
 use backend\lists\StatusList;
 use backend\providers\MapDataProvider;
 use core\entities\Contact;
-use core\forms\ContactFrom;
+use core\forms\ContactForm;
 use core\readModels\CacheReadRepository;
 use core\readModels\ContactReadRepository;
 use core\services\ContactService;
@@ -42,7 +42,7 @@ class ContactController extends Controller
 
     public function actionCreate()
     {
-        $form = new ContactFrom();
+        $form = new ContactForm();
         AppController::actionCreate($form, $this->service, CacheReadRepository::cacheContact());
         return [
             'errors' => $form->errors,
@@ -53,7 +53,7 @@ class ContactController extends Controller
     public function actionUpdate($id)
     {
         $contact = $this->contacts->find($id);
-        $form = new ContactFrom($contact);
+        $form = new ContactForm($contact);
         AppController::actionUpdate($form, $this->service, $contact->id, CacheReadRepository::cacheContact());
         return [
             'contact' => ContactList::formContact($form),

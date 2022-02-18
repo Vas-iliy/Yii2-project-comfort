@@ -6,7 +6,7 @@ use core\entities\Work;
 use yii\base\Model;
 use yii\web\UploadedFile;
 
-class WorkFrom extends Model
+class WorkForm extends Model
 {
     public $description;
     public $images;

@@ -4,7 +4,7 @@ namespace backend\lists;
 
 use core\entities\State;
 use core\entities\StateCategory;
-use core\forms\StateCategoryFrom;
+use core\forms\StateCategoryForm;
 use core\helpers\StatusHelper;
 
 class StateCategoryList
@@ -21,7 +21,7 @@ class StateCategoryList
         ];
     }
 
-    public static function formCategory(StateCategoryFrom $form)
+    public static function formCategory(StateCategoryForm $form)
     {
         return [
             'title' => $form->title,

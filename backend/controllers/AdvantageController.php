@@ -6,7 +6,7 @@ use backend\lists\AdvantageList;
 use backend\lists\StatusList;
 use backend\providers\MapDataProvider;
 use core\entities\Advantage;
-use core\forms\AdvantageFrom;
+use core\forms\AdvantageForm;
 use core\readModels\AdvantageReadRepository;
 use core\readModels\CacheReadRepository;
 use core\services\AdvantageService;
@@ -42,7 +42,7 @@ class AdvantageController extends Controller
 
     public function actionCreate()
     {
-        $form = new AdvantageFrom();
+        $form = new AdvantageForm();
         AppController::actionCreate($form, $this->service, CacheReadRepository::cacheAdvantage());
         return [
             'errors' => $form->errors,
@@ -53,7 +53,7 @@ class AdvantageController extends Controller
     public function actionUpdate($id)
     {
         $advantage = $this->advantages->find($id);
-        $form = new AdvantageFrom($advantage);
+        $form = new AdvantageForm($advantage);
         AppController::actionUpdate($form, $this->service, $advantage->id, CacheReadRepository::cacheAdvantage());
         return [
             'advantage' => AdvantageList::formContact($form),

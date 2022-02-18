@@ -4,7 +4,7 @@ namespace backend\lists;
 
 use core\entities\Service;
 use core\entities\ServicePoint;
-use core\forms\ServicePointFrom;
+use core\forms\ServicePointForm;
 use core\helpers\StatusHelper;
 use yii\helpers\Json;
 
@@ -47,7 +47,7 @@ class ServicePointList
     }
 
 
-    public static function formPoint(ServicePointFrom $form)
+    public static function formPoint(ServicePointForm $form)
     {
         return [
             'title' => $form->title,

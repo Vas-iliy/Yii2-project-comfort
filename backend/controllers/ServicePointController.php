@@ -7,7 +7,7 @@ use backend\lists\StatusList;
 use backend\providers\MapDataProvider;
 use core\entities\Service;
 use core\entities\ServicePoint;
-use core\forms\ServicePointFrom;
+use core\forms\ServicePointForm;
 use core\readModels\CacheReadRepository;
 use core\readModels\ServicePointReadRepository;
 use core\readModels\ServiceReadRepository;
@@ -46,7 +46,7 @@ class ServicePointController extends Controller
 
     public function actionCreate()
     {
-        $form = new ServicePointFrom();
+        $form = new ServicePointForm();
         AppController::actionCreate($form, $this->service, CacheReadRepository::cacheService());
         return [
             'errors' => $form->errors,
@@ -58,7 +58,7 @@ class ServicePointController extends Controller
     public function actionUpdate($id)
     {
         $point = $this->points->find($id);
-        $form = new ServicePointFrom($point);
+        $form = new ServicePointForm($point);
         AppController::actionUpdate($form, $this->service, $point->id, CacheReadRepository::cacheService());
         return [
             'errors' => $form->errors,

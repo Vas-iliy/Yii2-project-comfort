@@ -3,7 +3,7 @@
 namespace backend\lists;
 
 use core\entities\Question;
-use core\forms\QuestionFrom;
+use core\forms\QuestionForm;
 use core\helpers\StatusHelper;
 
 class QuestionList
@@ -18,7 +18,7 @@ class QuestionList
         ];
     }
 
-    public static function formQuestion(QuestionFrom $form)
+    public static function formQuestion(QuestionForm $form)
     {
         return [
             'title' => $form->title,

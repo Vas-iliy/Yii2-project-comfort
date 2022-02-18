@@ -3,7 +3,7 @@
 namespace core\services;
 
 use core\entities\Contact;
-use core\forms\ContactFrom;
+use core\forms\ContactForm;
 use core\repositories\ContactRepository;
 
 class ContactService
@@ -15,7 +15,7 @@ class ContactService
         $this->contacts = $contacts;
     }
 
-    public function create(ContactFrom $form)
+    public function create(ContactForm $form)
     {
         $contact = Contact::create(
             $form->title,
@@ -26,7 +26,7 @@ class ContactService
         return $contact;
     }
 
-    public function edit($id, ContactFrom $form)
+    public function edit($id, ContactForm $form)
     {
         $contact = $this->contacts->get($id);
         $contact->edit(

@@ -3,7 +3,7 @@
 namespace backend\lists;
 
 use core\entities\Contact;
-use core\forms\ContactFrom;
+use core\forms\ContactForm;
 use core\helpers\StatusHelper;
 
 class ContactList
@@ -18,7 +18,7 @@ class ContactList
         ];
     }
 
-    public static function formContact(ContactFrom $form)
+    public static function formContact(ContactForm $form)
     {
         return [
             'title' => $form->title,

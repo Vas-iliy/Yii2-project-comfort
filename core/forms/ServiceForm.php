@@ -6,7 +6,7 @@ use core\entities\Service;
 use yii\base\Model;
 use yii\web\UploadedFile;
 
-class ServiceFrom extends Model
+class ServiceForm extends Model
 {
     public $title;
     public $description;

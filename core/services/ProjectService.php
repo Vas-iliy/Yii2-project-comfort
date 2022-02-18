@@ -4,7 +4,7 @@ namespace core\services;
 
 use core\entities\Project;
 use core\entities\ProjectImage;
-use core\forms\ProjectFrom;
+use core\forms\ProjectForm;
 use core\repositories\ProjectRepository;
 
 class ProjectService
@@ -16,7 +16,7 @@ class ProjectService
         $this->projects = $projects;
     }
 
-    public function create(ProjectFrom $form)
+    public function create(ProjectForm $form)
     {
         $project = Project::create(
             $form->title,
@@ -33,7 +33,7 @@ class ProjectService
         return $project;
     }
 
-    public function edit($id, ProjectFrom $form)
+    public function edit($id, ProjectForm $form)
     {
         $project = $this->projects->get($id);
         $project->edit(
@@ -71,7 +71,7 @@ class ProjectService
         return false;
     }
 
-    private function transaction(Project $project, ProjectFrom $form)
+    private function transaction(Project $project, ProjectForm $form)
     {
         $transaction = \Yii::$app->getDb()->beginTransaction();
         if (!$this->projects->save($project) || !$this->createImages($form, $project)) {
@@ -80,7 +80,7 @@ class ProjectService
         $transaction->commit();
     }
 
-    private function createImages(ProjectFrom $form, Project $project)
+    private function createImages(ProjectForm $form, Project $project)
     {
         foreach ($form->images as $image) {
             $image = ProjectImage::create($image, $project->id);

@@ -5,7 +5,7 @@ namespace core\forms;
 use core\entities\StateCategory;
 use yii\base\Model;
 
-class StateCategoryFrom extends Model
+class StateCategoryForm extends Model
 {
     public $title;
     public $status;

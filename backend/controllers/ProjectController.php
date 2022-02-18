@@ -9,7 +9,7 @@ use core\entities\Filter;
 use core\entities\Material;
 use core\entities\Project;
 use core\entities\ProjectImage;
-use core\forms\ProjectFrom;
+use core\forms\ProjectForm;
 use core\readModels\CacheReadRepository;
 use core\readModels\FilterReadRepository;
 use core\readModels\MaterialReadRepository;
@@ -53,7 +53,7 @@ class ProjectController extends Controller
 
     public function actionCreate()
     {
-        $form = new ProjectFrom();
+        $form = new ProjectForm();
         AppController::actionCreate($form, $this->service, CacheReadRepository::cacheProject());
         return [
             'errors' => $form->errors,
@@ -66,7 +66,7 @@ class ProjectController extends Controller
     public function actionUpdate($id)
     {
         $project = $this->projects->find($id);
-        $form = new ProjectFrom($project);
+        $form = new ProjectForm($project);
         AppController::actionUpdate($form, $this->service, $project->id, CacheReadRepository::cacheProject());
         return [
             'errors' => $form->errors,

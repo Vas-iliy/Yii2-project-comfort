@@ -6,7 +6,7 @@ use core\entities\Filter;
 use core\entities\Material;
 use core\entities\Project;
 use core\entities\ProjectImage;
-use core\forms\ProjectFrom;
+use core\forms\ProjectForm;
 use core\helpers\StatusHelper;
 use yii\helpers\Url;
 
@@ -47,7 +47,7 @@ class ProjectList
         ];
     }
 
-    public static function formProject(ProjectFrom $form)
+    public static function formProject(ProjectForm $form)
     {
         return [
             'title' => $form->title,

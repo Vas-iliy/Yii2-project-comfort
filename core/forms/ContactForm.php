@@ -5,7 +5,7 @@ namespace core\forms;
 use core\entities\Contact;
 use yii\base\Model;
 
-class ContactFrom extends Model
+class ContactForm extends Model
 {
     public $title;
     public $content;

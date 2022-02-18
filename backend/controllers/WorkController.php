@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use core\entities\workImage;
-use core\forms\workFrom;
+use core\forms\WorkForm;
 use core\readModels\CacheReadRepository;
 use core\readModels\workReadRepository;
 use core\services\workService;
@@ -45,7 +45,7 @@ class WorkController extends Controller
     public function actionUpdate($id)
     {
         $work = $this->works->find($id);
-        $form = new WorkFrom($work);
+        $form = new WorkForm($work);
         AppController::actionUpdate($form, $this->service, $work->id, CacheReadRepository::cacheWork());
         return [
             'errors' => $form->errors,

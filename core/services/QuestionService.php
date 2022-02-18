@@ -3,7 +3,7 @@
 namespace core\services;
 
 use core\entities\Question;
-use core\forms\QuestionFrom;
+use core\forms\QuestionForm;
 use core\repositories\QuestionRepository;
 
 class QuestionService
@@ -15,7 +15,7 @@ class QuestionService
         $this->questions = $questions;
     }
 
-    public function create(QuestionFrom $form)
+    public function create(QuestionForm $form)
     {
         $question = Question::create(
             $form->title,
@@ -26,7 +26,7 @@ class QuestionService
         return $question;
     }
 
-    public function edit($id, QuestionFrom $form)
+    public function edit($id, QuestionForm $form)
     {
         $question = $this->questions->get($id);
         $question->edit(

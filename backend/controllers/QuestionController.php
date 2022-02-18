@@ -8,8 +8,8 @@ use backend\lists\StatusList;
 use backend\providers\MapDataProvider;
 use core\entities\About;
 use core\entities\Question;
-use core\forms\AboutFrom;
-use core\forms\QuestionFrom;
+use core\forms\AboutForm;
+use core\forms\QuestionForm;
 use core\readModels\AboutReadRepository;
 use core\readModels\CacheReadRepository;
 use core\readModels\QuestionReadRepository;
@@ -47,7 +47,7 @@ class QuestionController extends Controller
 
     public function actionCreate()
     {
-        $form = new QuestionFrom();
+        $form = new QuestionForm();
         AppController::actionCreate($form, $this->service, CacheReadRepository::cacheQuestion());
         return [
             'errors' => $form->errors,
@@ -58,7 +58,7 @@ class QuestionController extends Controller
     public function actionUpdate($id)
     {
         $question = $this->questions->find($id);
-        $form = new QuestionFrom($question);
+        $form = new QuestionForm($question);
         AppController::actionUpdate($form, $this->service, $question->id, CacheReadRepository::cacheQuestion());
         return [
             'about' => QuestionList::formQuestion($form),

@@ -8,6 +8,7 @@ use core\entities\Project;
 use core\entities\ProjectImage;
 use core\entities\Service;
 use core\entities\ServiceImage;
+use core\entities\ServicePoint;
 use core\forms\ProjectFrom;
 use core\forms\ServiceFrom;
 use core\helpers\StatusHelper;
@@ -24,6 +25,9 @@ class ServiceList
             'description' => $service->description,
             'items' => array_filter(Json::decode($service->getAttribute('items_json'))),
             'status' => StatusHelper::status($service->status, new Service()),
+            'points' => array_map(function (ServicePoint $point) {
+                return ServicePointList::serializeListService($point);
+            }, $service->points),
             'images' => array_map(function (ServiceImage $image) {
                 return $image->getThumbFileUrl('image', 'catalog_list');
             }, $service->images),

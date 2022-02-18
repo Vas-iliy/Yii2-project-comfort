@@ -20,6 +20,17 @@ class ServicePointList
         ];
     }
 
+    public static function serializeListService(ServicePoint $point)
+    {
+        return [
+            'id' => $point->id,
+            'title' => $point->title,
+            'description' => $point->description,
+            'items' => array_filter(Json::decode($point->getAttribute('items_json'))),
+        ];
+    }
+
+
     public static function formService(ServicePointFrom $form)
     {
         return [

@@ -18,4 +18,22 @@ class QuestionRepository
         }
         return $questions;
     }
+
+    public function remove(Question $about)
+    {
+        $about->status = $about::STATUS_DELETED;
+        if (!$about->save()) throw new \RuntimeException('Removing error.');
+    }
+
+    public function get($id)
+    {
+        if (!$about = Question::findOne($id)) throw new NotFoundHttpException('Not found.');
+        return $about;
+    }
+
+    public function save($about)
+    {
+        if (!$return = $about->save()) throw new \RuntimeException('Saving error.');
+        return $return;
+    }
 }

@@ -16,7 +16,7 @@ class FilterReadRepository
 
     public function find($id)
     {
-        return Filter::find()->andWhere(['id' => $id])->one();
+        return Filter::findOne($id);
     }
 
     private function getProvider(ActiveQuery $query)

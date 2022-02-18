@@ -16,6 +16,24 @@ class Filter extends ActiveRecord
         return 'filters';
     }
 
+    public static function create($title, $status, $top = null, $file = null)
+    {
+        $filter = new static();
+        $filter->filter = $title;
+        $filter->top = $top;
+        $filter->status = $status ? $status : Filter::STATUS_INACTIVE;
+        $filter->image = $file;
+        return $filter;
+    }
+
+    public function edit($filter, $status, $top = null, $file = null)
+    {
+        $this->filter = $filter;
+        $this->top = $top;
+        $this->status = $status ? $status : Filter::STATUS_INACTIVE;
+        $this->image = $file;
+    }
+
     public function getProjects()
     {
         return $this->hasMany(Project::class, ['filter_id' => 'id']);

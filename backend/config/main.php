@@ -118,6 +118,12 @@ return [
                 'GET state/<id:\d+>' => 'state/update',
                 'PUT state/<id:\d+>' => 'state/update',
                 'DELETE state/<id:\d+>' => 'state/delete',
+
+                'GET filter' => 'filter/index',
+                'filter/create' => 'filter/create',
+                'GET filter/<id:\d+>' => 'filter/update',
+                'PUT filter/<id:\d+>' => 'filter/update',
+                'DELETE filter/<id:\d+>' => 'filter/delete',
             ],
         ],
 

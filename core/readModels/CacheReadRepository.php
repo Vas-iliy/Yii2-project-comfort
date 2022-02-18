@@ -53,6 +53,11 @@ class CacheReadRepository
         return ['states', ['yii\widgets\FragmentCache', 'states_page']];
     }
 
+    public static function cacheFilter()
+    {
+        return ['filter_home', 'filters', ['yii\widgets\FragmentCache', 'filters_home_page']];
+    }
+
     private static function fillArray($incomeArr) {
         $outcomeArr = [];
         $firstLetter = $incomeArr[0];

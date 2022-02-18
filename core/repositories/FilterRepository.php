@@ -9,13 +9,11 @@ class FilterRepository
 {
     public function getFilter()
     {
-        /*$filters = \Yii::$app->cache->get('filter_home');
+        $filters = \Yii::$app->cache->get('filter_home');
         if (empty($filters)) {
-            $filters = Filter::find()->andWhere(['top' => 1, 'status' => Filter::STATUS_ACTIVE])->limit(6)->orderBy('order')->all();
+            $filters = Filter::find()->andWhere(['top' => 1, 'status' => Filter::STATUS_ACTIVE])->limit(6)->all();
             \Yii::$app->cache->set('filter_home', $filters, 3600*24*30);
-        }*/
-        $filters = Filter::find()->andWhere(['top' => 1, 'status' => Filter::STATUS_ACTIVE])->limit(6)->orderBy('order')->all();
-
+        }
         return $filters;
     }
 
@@ -36,6 +34,24 @@ class FilterRepository
             $id[] = $value['id'];
         }
         return $id;
+    }
+
+    public function remove(Filter $filter)
+    {
+        $filter->status = $filter::STATUS_DELETED;
+        if (!$filter->save()) throw new \RuntimeException('Removing error.');
+    }
+
+    public function get($id)
+    {
+        if (!$filter = Filter::findOne($id)) throw new NotFoundHttpException('Not found.');
+        return $filter;
+    }
+
+    public function save($filter)
+    {
+        if (!$return = $filter->save()) throw new \RuntimeException('Saving error.');
+        return $return;
     }
 
     public static function countFilters($filters)

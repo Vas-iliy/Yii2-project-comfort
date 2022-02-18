@@ -3,6 +3,7 @@
 namespace core\entities;
 
 use yii\db\ActiveRecord;
+use yii\web\UploadedFile;
 use yiidreamteam\upload\ImageUploadBehavior;
 
 class State extends ActiveRecord
@@ -14,6 +15,28 @@ class State extends ActiveRecord
     public static function tableName()
     {
         return 'states';
+    }
+
+    public static function create($title, $title_recommendation, $content, $category, $status, UploadedFile $file)
+    {
+        $project = new static();
+        $project->title = $title;
+        $project->title_recommendation = $title_recommendation;
+        $project->content = $content;
+        $project->category_id = $category;
+        $project->status = $status ? $status : State::STATUS_INACTIVE;
+        $project->image = $file;
+        return $project;
+    }
+
+    public function edit($title, $title_recommendation, $content, $category, $status, UploadedFile $file)
+    {
+        $this->title = $title;
+        $this->title_recommendation = $title_recommendation;
+        $this->content = $content;
+        $this->category_id = $category;
+        $this->status = $status ? $status : State::STATUS_INACTIVE;
+        $this->image = $file;
     }
 
     public function getCategory()

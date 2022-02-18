@@ -15,6 +15,20 @@ class StateCategory extends ActiveRecord
         return 'states_category';
     }
 
+    public static function create($title, $status)
+    {
+        $contact = new static();
+        $contact->title = $title;
+        $contact->status = $status ? $status : StateCategory::STATUS_INACTIVE;
+        return $contact;
+    }
+
+    public function edit($title, $status)
+    {
+        $this->title = $title;
+        $this->status = $status ? $status : StateCategory::STATUS_INACTIVE;
+    }
+
     public function getStates()
     {
         return $this->hasMany(State::class, ['category_id' => 'id']);

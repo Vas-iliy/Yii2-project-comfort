@@ -18,4 +18,22 @@ class StateCategoryRepository
         }
         return $categories;
     }
+
+    public function remove(StateCategory $category)
+    {
+        $category->status = $category::STATUS_DELETED;
+        if (!$category->save()) throw new \RuntimeException('Removing error.');
+    }
+
+    public function get($id)
+    {
+        if (!$category = StateCategory::findOne($id)) throw new NotFoundHttpException('Not found.');
+        return $category;
+    }
+
+    public function save($category)
+    {
+        if (!$return = $category->save()) throw new \RuntimeException('Saving error.');
+        return $return;
+    }
 }

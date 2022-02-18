@@ -16,4 +16,22 @@ class MaterialRepository
         }
         return $materials;
     }
+
+    public function remove(Material $material)
+    {
+        $material->status = $material::STATUS_DELETED;
+        if (!$material->save()) throw new \RuntimeException('Removing error.');
+    }
+
+    public function get($id)
+    {
+        if (!$material = Material::findOne($id)) throw new NotFoundHttpException('Not found.');
+        return $material;
+    }
+
+    public function save($material)
+    {
+        if (!$return = $material->save()) throw new \RuntimeException('Saving error.');
+        return $return;
+    }
 }

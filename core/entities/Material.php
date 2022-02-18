@@ -14,4 +14,18 @@ class Material extends ActiveRecord
     {
         return 'materials';
     }
+
+    public static function create($title,  $status)
+    {
+        $contact = new static();
+        $contact->material = $title;
+        $contact->status = $status ? $status : Material::STATUS_INACTIVE;
+        return $contact;
+    }
+
+    public function edit($title,  $status)
+    {
+        $this->material = $title;
+        $this->status = $status ? $status : Material::STATUS_INACTIVE;
+    }
 }

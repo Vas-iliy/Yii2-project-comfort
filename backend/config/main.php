@@ -124,6 +124,12 @@ return [
                 'GET filter/<id:\d+>' => 'filter/update',
                 'PUT filter/<id:\d+>' => 'filter/update',
                 'DELETE filter/<id:\d+>' => 'filter/delete',
+
+                'GET material' => 'material/index',
+                'material/create' => 'material/create',
+                'GET material/<id:\d+>' => 'material/update',
+                'PUT material/<id:\d+>' => 'material/update',
+                'DELETE material/<id:\d+>' => 'material/delete',
             ],
         ],
 

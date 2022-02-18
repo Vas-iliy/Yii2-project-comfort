@@ -58,6 +58,11 @@ class CacheReadRepository
         return ['filter_home', 'filters', ['yii\widgets\FragmentCache', 'filters_home_page']];
     }
 
+    public static function cacheMaterial()
+    {
+        return ['materials'];
+    }
+
     private static function fillArray($incomeArr) {
         $outcomeArr = [];
         $firstLetter = $incomeArr[0];

@@ -3,23 +3,28 @@
 namespace backend\controllers;
 
 use backend\lists\AboutList;
+use backend\lists\QuestionList;
 use backend\lists\StatusList;
 use backend\providers\MapDataProvider;
 use core\entities\About;
+use core\entities\Question;
 use core\forms\AboutFrom;
+use core\forms\QuestionFrom;
 use core\readModels\AboutReadRepository;
 use core\readModels\CacheReadRepository;
+use core\readModels\QuestionReadRepository;
 use core\services\AboutService;
+use core\services\QuestionService;
 use yii\rest\Controller;
 
 class QuestionController extends Controller
 {
-    private $abouts;
+    private $questions;
     private $service;
 
-    public function __construct($id, $module, AboutReadRepository $abouts, AboutService $service, $config = [])
+    public function __construct($id, $module, QuestionReadRepository $questions, QuestionService $service, $config = [])
     {
-        $this->abouts = $abouts;
+        $this->questions = $questions;
         $this->service = $service;
         parent::__construct($id, $module, $config);
     }
@@ -36,14 +41,14 @@ class QuestionController extends Controller
 
     public function actionIndex()
     {
-        $abouts= $this->abouts->getAll();
-        return new MapDataProvider($abouts, [$this, 'serializeListItem']);
+        $questions= $this->questions->getAll();
+        return new MapDataProvider($questions, [$this, 'serializeListItem']);
     }
 
     public function actionCreate()
     {
-        $form = new AboutFrom();
-        AppController::actionCreate($form, $this->service, CacheReadRepository::cacheAbout());
+        $form = new QuestionFrom();
+        AppController::actionCreate($form, $this->service, CacheReadRepository::cacheQuestion());
         return [
             'errors' => $form->errors,
             'status' => StatusList::formListStatus(),
@@ -52,11 +57,11 @@ class QuestionController extends Controller
 
     public function actionUpdate($id)
     {
-        $about = $this->abouts->find($id);
-        $form = new AboutFrom($about);
-        AppController::actionUpdate($form, $this->service, $about->id, CacheReadRepository::cacheAbout());
+        $question = $this->questions->find($id);
+        $form = new QuestionFrom($question);
+        AppController::actionUpdate($form, $this->service, $question->id, CacheReadRepository::cacheQuestion());
         return [
-            'about' => AboutList::formContact($form),
+            'about' => QuestionList::formQuestion($form),
             'errors' => $form->errors,
             'status' => StatusList::formListStatus(),
         ];
@@ -64,12 +69,12 @@ class QuestionController extends Controller
 
     public function actionDelete($id)
     {
-        AppController::actionDelete($id, $this->service, CacheReadRepository::cacheAbout());
+        AppController::actionDelete($id, $this->service, CacheReadRepository::cacheQuestion());
         return [];
     }
 
-    public function serializeListItem(About $about)
+    public function serializeListItem(Question $question)
     {
-        return AboutList::serializeListItem($about);
+        return QuestionList::serializeListItem($question);
     }
 }

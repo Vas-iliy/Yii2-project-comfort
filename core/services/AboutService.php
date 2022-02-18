@@ -3,11 +3,8 @@
 namespace core\services;
 
 use core\entities\About;
-use core\entities\Contact;
 use core\forms\AboutFrom;
-use core\forms\ContactFrom;
 use core\repositories\AboutRepository;
-use core\repositories\ContactRepository;
 
 class AboutService
 {

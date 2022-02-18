@@ -1,7 +1,7 @@
 <? use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-if ($this->beginCache('about_page', ['duration' => 3600])):
+if ($this->beginCache('about_page', ['duration' => 3600*24*30])):
 if(!empty($states)):?>
 <section class="point">
     <div class="wrap">

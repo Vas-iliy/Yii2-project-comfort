@@ -26,7 +26,7 @@ class ArticleController extends AppControllers
         return [
             [
                 'class' => 'yii\filters\PageCache',
-                'only' => ['index', 'question'],
+                'only' => ['index'],
                 'duration' => 3600*24*30,
             ],
         ];

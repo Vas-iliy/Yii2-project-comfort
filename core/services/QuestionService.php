@@ -2,48 +2,45 @@
 
 namespace core\services;
 
-use core\entities\About;
-use core\entities\Contact;
-use core\forms\AboutFrom;
-use core\forms\ContactFrom;
-use core\repositories\AboutRepository;
-use core\repositories\ContactRepository;
+use core\entities\Question;
+use core\forms\QuestionFrom;
+use core\repositories\QuestionRepository;
 
 class QuestionService
 {
-    private $abouts;
+    private $questions;
 
-    public function __construct(AboutRepository $abouts)
+    public function __construct(QuestionRepository $questions)
     {
-        $this->abouts = $abouts;
+        $this->questions = $questions;
     }
 
-    public function create(AboutFrom $form)
+    public function create(QuestionFrom $form)
     {
-        $about = About::create(
+        $question = Question::create(
             $form->title,
             $form->description,
             $form->status ?? null
         );
-        $this->abouts->save($about);
-        return $about;
+        $this->questions->save($question);
+        return $question;
     }
 
-    public function edit($id, AboutFrom $form)
+    public function edit($id, QuestionFrom $form)
     {
-        $about = $this->abouts->get($id);
-        $about->edit(
+        $question = $this->questions->get($id);
+        $question->edit(
             $form->title,
             $form->description,
             $form->status ?? null
         );
-        $this->abouts->save($about);
-        return $about;
+        $this->questions->save($question);
+        return $question;
     }
 
     public function remove($id)
     {
-        $about = $this->abouts->get($id);
-        $this->abouts->remove($about);
+        $question = $this->questions->get($id);
+        $this->questions->remove($question);
     }
 }

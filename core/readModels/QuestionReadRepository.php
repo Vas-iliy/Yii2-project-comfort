@@ -2,7 +2,7 @@
 
 namespace core\readModels;
 
-use core\entities\About;
+use core\entities\Question;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
 
@@ -10,13 +10,13 @@ class QuestionReadRepository
 {
     public function getAll()
     {
-        $query = About::find();
+        $query = Question::find();
         return $this->getProvider($query);
     }
 
     public function find($id)
     {
-        return About::findOne($id);
+        return Question::findOne($id);
     }
 
     private function getProvider(ActiveQuery $query)

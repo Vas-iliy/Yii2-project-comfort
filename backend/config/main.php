@@ -102,6 +102,12 @@ return [
                 'GET about/<id:\d+>' => 'about/update',
                 'PUT about/<id:\d+>' => 'about/update',
                 'DELETE about/<id:\d+>' => 'about/delete',
+
+                'GET question' => 'question/index',
+                'question/create' => 'question/create',
+                'GET question/<id:\d+>' => 'question/update',
+                'PUT question/<id:\d+>' => 'question/update',
+                'DELETE question/<id:\d+>' => 'question/delete',
             ],
         ],
 

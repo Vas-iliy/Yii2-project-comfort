@@ -18,7 +18,7 @@ class AboutList
         ];
     }
 
-    public static function formContact(AboutFrom $form)
+    public static function formAbout(AboutFrom $form)
     {
         return [
             'title' => $form->title,

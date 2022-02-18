@@ -2,7 +2,7 @@
 
 namespace core\forms;
 
-use core\entities\About;
+use core\entities\Question;
 use yii\base\Model;
 
 class QuestionFrom extends Model
@@ -13,13 +13,13 @@ class QuestionFrom extends Model
 
     private $_about;
 
-    public function __construct(About $about= null, $config = [])
+    public function __construct(Question $question= null, $config = [])
     {
-        if ($about) {
-            $this->title = $about->title;
-            $this->description = $about->description;
-            $this->status = $about->status;
-            $this->_about= $about;
+        if ($question) {
+            $this->title = $question->title;
+            $this->description = $question->description;
+            $this->status = $question->status;
+            $this->_about= $question;
         }
         parent::__construct($config);
     }

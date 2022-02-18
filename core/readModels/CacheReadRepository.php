@@ -43,6 +43,11 @@ class CacheReadRepository
         return ['about_states', ['yii\widgets\FragmentCache', 'about_page']];
     }
 
+    public static function cacheQuestion()
+    {
+        return ['questions', ['yii\widgets\FragmentCache', 'questions_page']];
+    }
+
     private static function fillArray($incomeArr) {
         $outcomeArr = [];
         $firstLetter = $incomeArr[0];

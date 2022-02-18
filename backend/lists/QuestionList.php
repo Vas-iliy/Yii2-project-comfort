@@ -2,27 +2,27 @@
 
 namespace backend\lists;
 
-use core\entities\Contact;
-use core\forms\ContactFrom;
+use core\entities\Question;
+use core\forms\QuestionFrom;
 use core\helpers\StatusHelper;
 
 class QuestionList
 {
-    public static function serializeListItem(Contact $contact)
+    public static function serializeListItem(Question $question)
     {
         return [
-            'id' => $contact->id,
-            'title' => $contact->title,
-            'content' => $contact->content,
-            'status' => StatusHelper::status($contact->status, new Contact())
+            'id' => $question->id,
+            'title' => $question->title,
+            'description' => $question->description,
+            'status' => StatusHelper::status($question->status, new Question())
         ];
     }
 
-    public static function formContact(ContactFrom $form)
+    public static function formQuestion(QuestionFrom $form)
     {
         return [
             'title' => $form->title,
-            'content' => $form->content,
+            'description' => $form->description,
             'status' => $form->status
         ];
     }

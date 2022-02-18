@@ -1,3 +1,4 @@
+<?if ($this->beginCache('questions_page', ['duration' => 3600*24*30])):?>
 <?if(!empty($questions)):?>
 <section class="point">
     <div class="wrap">
@@ -28,3 +29,5 @@
     </div>
 </section>
 <?endif;?>
+<?$this->endCache();
+endif;?>

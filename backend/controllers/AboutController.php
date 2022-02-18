@@ -56,7 +56,7 @@ class AboutController extends Controller
         $form = new AboutFrom($about);
         AppController::actionUpdate($form, $this->service, $about->id, CacheReadRepository::cacheAbout());
         return [
-            'about' => AboutList::formContact($form),
+            'about' => AboutList::formAbout($form),
             'errors' => $form->errors,
             'status' => StatusList::formListStatus(),
         ];

@@ -48,7 +48,7 @@ class StateController extends Controller
     public function actionCreate()
     {
         $form = new StateForm();
-        AppController::actionCreate($form, $this->service, CacheReadRepository::cacheCategory());
+        AppController::actionCreate($form, $this->service, CacheReadRepository::cacheState());
         return [
             'errors' => $form->errors,
             'categories' => new MapDataProvider($this->categories->getAll(), [$this, 'formListCategory']),
@@ -60,7 +60,7 @@ class StateController extends Controller
     {
         $state = $this->states->find($id);
         $form = new StateUpdateForm($state);
-        AppController::actionUpdate($form, $this->service, $state->id, CacheReadRepository::cacheCategory());
+        AppController::actionUpdate($form, $this->service, $state->id, CacheReadRepository::cacheState());
         return [
             'errors' => $form->errors,
             'state' => StateList::formState($form),
@@ -72,7 +72,7 @@ class StateController extends Controller
 
     public function actionDelete($id)
     {
-        AppController::actionDelete($id, $this->service, CacheReadRepository::cacheCategory());
+        AppController::actionDelete($id, $this->service, CacheReadRepository::cacheState());
         return [];
     }
 

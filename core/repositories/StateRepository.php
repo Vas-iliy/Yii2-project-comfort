@@ -11,8 +11,8 @@ class StateRepository
     {
         $state = \Yii::$app->cache->get("state_$id");
         if (empty($state)) {
-            $state = State::find()->andWhere(['status' => State::STATUS_ACTIVE])->limit(1)->one();
-            \Yii::$app->cache->set("projects_$id", $state, 3600*24*30);
+            $state = State::find()->andWhere(['status' => State::STATUS_ACTIVE, 'id' => $id])->limit(1)->one();
+            \Yii::$app->cache->set("state_$id", $state, 3600*24*30);
         }
         return $state;
     }

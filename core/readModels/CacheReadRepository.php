@@ -3,6 +3,7 @@
 namespace core\readModels;
 
 use core\entities\Filter;
+use core\entities\State;
 
 class CacheReadRepository
 {
@@ -11,10 +12,22 @@ class CacheReadRepository
         $cache = [];
         $return = [];
         $filters = Filter::find()->select('id')->andWhere(['status' => Filter::STATUS_ACTIVE])->asArray()->all();
-        foreach ($filters as $filter) $cache[] = $filter['id'];
-        foreach (self::fillArray($cache) as $value) $cache[] = $value;
-        foreach ($cache as $value) $return[] = 'projects_' . $value;
+        if (!empty($filters)) {
+            foreach ($filters as $filter) $cache[] = $filter['id'];
+            foreach (self::fillArray($cache) as $value) $cache[] = $value;
+            foreach ($cache as $value) $return[] = 'projects_' . $value;
+        }
         $return[] = 'projects'; $return[] = ['yii\widgets\FragmentCache', 'projects_home_page'];
+        return $return;
+    }
+
+    public static function cacheState()
+    {
+        $return = [];
+        $states= State::find()->select('id')->andWhere(['status' => State::STATUS_ACTIVE])->asArray()->all();
+        if (!empty($states)) {
+            foreach ($states as $state) $return[] = 'state_' . $state['id'];
+        }
         return $return;
     }
 

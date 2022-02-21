@@ -177,7 +177,7 @@ AppAsset::register($this);
                             <?=Html::img(Yii::getAlias('@static/origin/icons/facebook-icon.svg'))?>
                         </a>
                         <a href="#" target="_blank">
-                            <?=Html::img(Yii::getAlias('@static/origin/icons/twitter-icon.svg', ['class' => 'twitter']))?>
+                            <?=Html::img(Yii::getAlias('@static/origin/icons/twitter-icon.svg'), ['class' => 'twitter'])?>
                         </a>
                     </div>
                     <div class="footer-block__politic foothide">
@@ -203,7 +203,7 @@ AppAsset::register($this);
                         <?=Html::img(Yii::getAlias('@static/origin/icons/facebook-icon.svg'))?>
                     </a>
                     <a href="#" target="_blank">
-                        <?=Html::img(Yii::getAlias('@static/origin/icons/twitter-icon.svg', ['class' => 'twitter']))?>
+                        <?=Html::img(Yii::getAlias('@static/origin/icons/twitter-icon.svg'), ['class' => 'twitter'])?>
                     </a>
                 </div>
                 <div class="footer-block__politic footvis">

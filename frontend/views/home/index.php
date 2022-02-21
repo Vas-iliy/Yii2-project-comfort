@@ -16,7 +16,7 @@ if ($this->beginCache('filters_home_page', ['duration' => 3600 * 24 * 30])):?>
                                         <a href="<?=Url::to(['project/index', 'filter' => $filters[0]->id])?>">
                                             <div class="projects-block__title big">
                                                 <span class="projects-block__name bigT"><?=$filters[0]->filter?></span>
-                                                <img src="img/icons/arrow-icon.svg" alt="">
+                                                <?=Html::img(Yii::getAlias('@static/origin/icons/arrow-icon.svg'))?>
                                             </div>
                                         </a>
                                     </div>
@@ -27,7 +27,7 @@ if ($this->beginCache('filters_home_page', ['duration' => 3600 * 24 * 30])):?>
                                         <a href="<?=Url::to(['project/index', 'filter' => $filters[1]->id])?>">
                                             <div class="projects-block__title big">
                                                 <span class="projects-block__name bigT"><?=$filters[1]->filter?></span>
-                                                <img src="img/icons/arrow-icon.svg" alt="">
+                                                <?=Html::img(Yii::getAlias('@static/origin/icons/arrow-icon.svg'))?>
                                             </div>
                                         </a>
                                     </div>
@@ -40,7 +40,7 @@ if ($this->beginCache('filters_home_page', ['duration' => 3600 * 24 * 30])):?>
                                         <a href="<?=Url::to(['project/index', 'filter' => $filters[1]->id])?>">
                                             <div class="projects-block__title big">
                                                 <span class="projects-block__name bigT"><?=$filters[1]->filter?></span>
-                                                <img src="img/icons/arrow-icon.svg" alt="">
+                                                <?=Html::img(Yii::getAlias('@static/origin/icons/arrow-icon.svg'))?>
                                             </div>
                                         </a>
                                     </div>
@@ -51,7 +51,7 @@ if ($this->beginCache('filters_home_page', ['duration' => 3600 * 24 * 30])):?>
                                         <a href="<?=Url::to(['project/index', 'filter' => $filters[2]->id])?>">
                                             <div class="projects-block__title big">
                                                 <span class="projects-block__name bigT"><?=$filters[2]->filter?></span>
-                                                <img src="img/icons/arrow-icon.svg" alt="">
+                                                <?=Html::img(Yii::getAlias('@static/origin/icons/arrow-icon.svg'))?>
                                             </div>
                                         </a>
                                     </div>
@@ -62,7 +62,7 @@ if ($this->beginCache('filters_home_page', ['duration' => 3600 * 24 * 30])):?>
                                         <a href="<?=Url::to(['project/index', 'filter' => $filters[3]->id])?>">
                                             <div class="projects-block__title big">
                                                 <span class="projects-block__name bigT"><?=$filters[3]->filter?></span>
-                                                <img src="img/icons/arrow-icon.svg" alt="">
+                                                <?=Html::img(Yii::getAlias('@static/origin/icons/arrow-icon.svg'))?>
                                             </div>
                                         </a>
                                     </div>
@@ -76,7 +76,7 @@ if ($this->beginCache('filters_home_page', ['duration' => 3600 * 24 * 30])):?>
                                     <a href="<?=Url::to(['project/index', 'filter' => $filters[3]->id])?>">
                                         <div class="projects-block__title big">
                                             <span class="projects-block__name bigT"><?=$filters[3]->filter?></span>
-                                            <img src="img/icons/arrow-icon.svg" alt="">
+                                            <?=Html::img(Yii::getAlias('@static/origin/icons/arrow-icon.svg'))?>
                                         </div>
                                     </a>
                                 </div>
@@ -89,7 +89,7 @@ if ($this->beginCache('filters_home_page', ['duration' => 3600 * 24 * 30])):?>
                                             <a href="<?=Url::to(['project/index', 'filter' => $filter->id])?>">
                                                 <div class="projects-block__title">
                                                     <span class="projects-block__name"><?=$filter->filter?></span>
-                                                    <img src="img/icons/arrow-icon.svg" alt="">
+                                                    <?=Html::img(Yii::getAlias('@static/origin/icons/arrow-icon.svg'))?>
                                                 </div>
                                             </a>
                                         </div>

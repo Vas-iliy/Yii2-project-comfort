@@ -69,12 +69,12 @@ if(!empty($states)):?>
             <div class="modalform-block__wrap">
                 <div class="modalform-block__head">
                     <div class="modalform-block__exit">
-                        <img src="img/icons/close-icon.png" alt="">
+                        <?=Html::img(Yii::getAlias('@static/origin/icons/close-icon.png'))?>
                     </div>
                 </div>
                 <div class="modalform-block__body">
                     <div class="modalform-block__image">
-                        <img src="img/icons/form-icon.svg" alt="">
+                        <?=Html::img(Yii::getAlias('@static/origin/icons/form-icon.svg'))?>
                     </div>
                     <span class="modalform-block__title">Спасибо за Ваш отзыв</span>
                     <span class="modalform-block__subtitle">Мы надеемся, что наше совместное

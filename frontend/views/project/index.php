@@ -2,6 +2,7 @@
     <div class="wrap">
         <span class="title">Каталог наших <span class="color-text"> проектов</span></span>
         <? use core\repositories\FilterRepository;
+        use yii\helpers\Html;
         use yii\helpers\Url;
         use yii\widgets\LinkPager;
 
@@ -23,7 +24,7 @@
                                 <?else:?>
                                     Выберите фильтр
                                 <?endif;?>
-                                <img class="fa fa-angle-right" src="img/icons/js-arrow.svg" alt="">
+                                <?=Html::img(Yii::getAlias('@static/origin/icons/js-arrow.svg'))?>
                             </div>
                             <div class='menuitems pointerCursor hide'>
                                 <?foreach ($filters as $filter):?>
@@ -42,7 +43,7 @@
                                     }?>
                                     ">
                                         <span><?=$filter['filter']?></span>
-                                        <img src="img/icons/delete-icon.svg" class="hide" alt="">
+                                        <?=Html::img(Yii::getAlias('@static/origin/icons/delete-icon.svg'), ['class' => 'hide'])?>
                                     </div>
                                 </a>
                                 <?endforeach;?>
@@ -72,7 +73,7 @@
                         }?>
                 ">
                         <span><?=$filter['filter']?></span>
-                        <img src="img/icons/delete-icon.svg" class="hide" alt="">
+                    <?=Html::img(Yii::getAlias('@static/origin/icons/delete-icon.svg'), ['class' => 'hide'])?>
                 </div>
             </a>
             <?if($k == 3 || $k == 7 || $k == 11 || $k == count($filters) - 1):?>

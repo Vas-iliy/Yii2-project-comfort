@@ -1,4 +1,6 @@
-<?if ($this->beginCache('questions_page', ['duration' => 3600*24*30])):?>
+<? use yii\helpers\Html;
+
+if ($this->beginCache('questions_page', ['duration' => 3600*24*30])):?>
 <?if(!empty($questions)):?>
 <section class="point">
     <div class="wrap">
@@ -18,7 +20,9 @@
                         <div class="point-block__name">
                             <span class="title"><?=$question->title?></span>
                         </div>
-                        <div class="point-block__arrow"><img src="img/icons/js-arrow.svg" alt=""></div>
+                        <div class="point-block__arrow">
+                            <?=Html::img(Yii::getAlias('@static/origin/icons/js-arrow.svg'))?>
+                        </div>
                     </div>
                     <div class="point-block__info">
                         <p class="text"><?=$question->description?></p>

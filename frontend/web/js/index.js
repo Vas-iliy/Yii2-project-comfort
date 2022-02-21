@@ -89,13 +89,6 @@ if (herobtn) {
     document.body.style.overflow = "hidden"
   })
 }
-if (popularbtn) {
-  popularbtn.addEventListener('click', function () {
-    modal.classList.add('activity')
-    document.body.style.overflow = "hidden"
-  })
-}
-
 
 if (exit) {
   exit.addEventListener('click', function () {

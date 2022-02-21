@@ -38,8 +38,8 @@ foreach ($projects as $project):?>
                             <a href="#">Построить</a>
                         </div>
                         <div class="popular-block__value">
-                            <span class="popular-block__price"><span class="small-text">от</span> <?=number_format($project->price, 0, '', ' ')?></span> <img
-                                src="img/icons/ruble-icon.svg" alt="">
+                            <span class="popular-block__price"><span class="small-text">от</span> <?=number_format($project->price, 0, '', ' ')?></span>
+                            <?=Html::img(Yii::getAlias('@static/origin/icons/ruble-icon.svg'))?>
                         </div>
                     </div>
                 </div>

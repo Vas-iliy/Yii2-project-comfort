@@ -12,7 +12,7 @@
     </div>
 </section>
 <?endif;?>
-<!--<section class="map">
+<section class="map">
     <div style="position:relative;overflow:hidden;"><a
             href="https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps"
             style="color:#eee;font-size:12px;position:absolute;top:0px;">Москва</a><a
@@ -20,4 +20,4 @@
             style="color:#eee;font-size:12px;position:absolute;top:14px;">Москва — Яндекс.Карты</a><iframe
             src="https://yandex.ru/map-widget/v1/-/CCUyrVvv3D" width="100%" height="505" frameborder="0"
             allowfullscreen="true" style="position:relative;"></iframe></div>
-</section>-->
+</section>

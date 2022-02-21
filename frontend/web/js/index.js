@@ -79,6 +79,7 @@ if (active)
 
 
 let herobtn = document.querySelector('.hero-block__btn')
+let popularbtn = document.querySelector('.popular-block__btn')
 let modal = document.querySelector('.modal')
 let exit = document.querySelector('.modal-block__exit')
 
@@ -88,6 +89,13 @@ if (herobtn) {
     document.body.style.overflow = "hidden"
   })
 }
+if (popularbtn) {
+  popularbtn.addEventListener('click', function () {
+    modal.classList.add('activity')
+    document.body.style.overflow = "hidden"
+  })
+}
+
 
 if (exit) {
   exit.addEventListener('click', function () {

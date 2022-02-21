@@ -34,10 +34,11 @@ AppAsset::register($this);
                 <div class="modal-block__wrapper">
                     <div class="modal-block__head">
                         <div class="modal-block__logo">
-                            <img src="img/icons/form-logo.png" alt="">
+                            <?=Html::img(Yii::getAlias('@static/origin/icons/form-logo.png'))?>
+
                         </div>
                         <div class="modal-block__exit">
-                            <img src="img/icons/form-close.png" alt="">
+                            <?=Html::img(Yii::getAlias('@static/origin/icons/form-close.png'))?>
                         </div>
                     </div>
                     <?=$this->render('_form', [
@@ -55,12 +56,12 @@ AppAsset::register($this);
                 <div class="modalform-block__wrap">
                     <div class="modalform-block__head">
                         <div class="modalform-block__exit">
-                            <img src="img/icons/close-icon.png" alt="">
+                            <?=Html::img(Yii::getAlias('@static/origin/icons/close-icon.png'))?>
                         </div>
                     </div>
                     <div class="modalform-block__body">
                         <div class="modalform-block__image">
-                            <img src="img/icons/form-icon.svg" alt="">
+                            <?=Html::img(Yii::getAlias('@static/origin/icons/form-icon.svg'))?>
                         </div>
                         <span class="modalform-block__title">Спасибо за Вашу активность</span>
                         <span class="modalform-block__subtitle"><?=(Yii::$app->session->hasFlash('success') == 'error') ? 'Мы ранее уже приняли ваш запрос.' : ''?>В скором времени с вами свяжутся </span>
@@ -77,11 +78,11 @@ AppAsset::register($this);
             <div class="wrap">
                 <div class="head-block">
                     <div class="burger-menu">
-                        <img src="img/icons/menu-btn.png" alt="">
+                        <?=Html::img(Yii::getAlias('@static/origin/icons/menu-btn.png'))?>
                     </div>
                     <a href="<?=Url::home()?>">
                         <div class="head-block__logo">
-                            <img src="img/icons/head-logo.png" alt="">
+                            <?=Html::img(Yii::getAlias('@static/origin/icons/head-logo.png'))?>
                         </div>
                     </a>
                     <?if(!empty($this->context->pages)):?>
@@ -134,14 +135,14 @@ AppAsset::register($this);
             <a href="#" target="_blank">
                 <div class="menu-block__item">
                     <div class="menu-block__image">
-                        <img src="img/blocks/burger/burger-icon1.svg" alt="">
+                        <?=Html::img(Yii::getAlias('@static/origin/blocks/burger/burger-icon1.svg'))?>
                     </div>
                 </div>
             </a>
             <a href="#" target="_blank">
                 <div class="menu-block__item">
                     <div class="menu-block__image">
-                        <img src="img/blocks/burger/burger-icon2.svg" alt="">
+                        <?=Html::img(Yii::getAlias('@static/origin/blocks/burger/burger-icon2.svg'))?>
                     </div>
                 </div>
             </a>
@@ -163,7 +164,7 @@ AppAsset::register($this);
                 <div class="footer-block__contacts">
                     <div class="footer-block__links">
                         <a href="<?=Url::home()?>">
-                            <img src="img/icons/footer-logo.png" alt="">
+                            <?=Html::img(Yii::getAlias('@static/origin/icons/footer-logo.png'))?>
                         </a>
                         <?foreach ($this->context->pages as $page):?>
                             <?if ($page->alias != ''):?>
@@ -173,10 +174,10 @@ AppAsset::register($this);
                     </div>
                     <div class="footer-block__social foothide">
                         <a href="#" target="_blank">
-                            <img src="img/icons/facebook-icon.svg" alt="">
+                            <?=Html::img(Yii::getAlias('@static/origin/icons/facebook-icon.svg'))?>
                         </a>
                         <a href="#" target="_blank">
-                            <img src="img/icons/twitter-icon.svg" class="twitter" alt="">
+                            <?=Html::img(Yii::getAlias('@static/origin/icons/twitter-icon.svg', ['class' => 'twitter']))?>
                         </a>
                     </div>
                     <div class="footer-block__politic foothide">
@@ -188,7 +189,7 @@ AppAsset::register($this);
                     <span class="footer-block__title">Остались вопросы ?</span>
                     <div class="footer-block__call">
                         <div class="footer-block__vision">
-                            <img src="img/icons/phone-icon.svg" alt="">
+                            <?=Html::img(Yii::getAlias('@static/origin/icons/phone-icon.svg'))?>
                         </div>
                         <span class="footer-block__pol">Позвоните нам,
                 мы с радостью внесём ясность и ответим на все вопросы </span>
@@ -199,10 +200,10 @@ AppAsset::register($this);
                 </div>
                 <div class="footer-block__social footvisible">
                     <a href="#" target="_blank">
-                        <img src="img/icons/facebook-icon.svg" alt="">
+                        <?=Html::img(Yii::getAlias('@static/origin/icons/facebook-icon.svg'))?>
                     </a>
                     <a href="#" target="_blank">
-                        <img src="img/icons/twitter-icon.svg" class="twitter" alt="">
+                        <?=Html::img(Yii::getAlias('@static/origin/icons/twitter-icon.svg', ['class' => 'twitter']))?>
                     </a>
                 </div>
                 <div class="footer-block__politic footvis">

@@ -20,6 +20,6 @@ class ClientRepository
 
     public function isActive($phone)
     {
-        return Client::find()->select('id')->where(['phone' => $phone])->where(['status' => Client::STATUS_NEW])->limit(1)->one();
+        return Client::find()->select('id')->andWhere(['phone' => $phone, 'status' => Client::STATUS_NEW])->limit(1)->one();
     }
 }

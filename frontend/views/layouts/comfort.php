@@ -64,7 +64,7 @@ AppAsset::register($this);
                             <?=Html::img(Yii::getAlias('@static/origin/icons/form-icon.svg'))?>
                         </div>
                         <span class="modalform-block__title">Спасибо за Вашу активность</span>
-                        <span class="modalform-block__subtitle"><?=(Yii::$app->session->hasFlash('success') == 'error') ? 'Мы ранее уже приняли ваш запрос.' : ''?>В скором времени с вами свяжутся </span>
+                        <span class="modalform-block__subtitle">В скором времени с вами свяжутся </span>
                         <a href="<?=Url::home()?>" class="modalform-block__btn">На главную</a>
                     </div>
                 </div>

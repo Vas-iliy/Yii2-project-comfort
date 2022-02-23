@@ -2,7 +2,6 @@
 
 namespace core\forms\frontend;
 
-use core\entities\Client;
 use yii\base\Model;
 
 class ClientForm extends Model
@@ -11,17 +10,6 @@ class ClientForm extends Model
     public $phone;
     public $material;
     public $status;
-
-    public function __construct(Client $client = null, $config = [])
-    {
-        if ($client) {
-            $this->status = $client->status;
-            $this->phone = $client->phone;
-            $this->name = $client->name;
-            $this->material = $client->material;
-        }
-        parent::__construct($config);
-    }
 
     public function rules()
     {

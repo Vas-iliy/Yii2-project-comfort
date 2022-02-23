@@ -163,6 +163,7 @@ if (faqItems.length > 0)
 
 //Валидация
 $("#cphones").mask("+7 (000) 000-00-00");
+$("#phone").mask("+7 (000) 000-00-00");
 
 //Выбор фильтра
 function toggleClass(elem, className) {

@@ -16,6 +16,8 @@ if(!empty($states)):?>
     </div>
 </section>
 <?endif;?>
+    <?    $this->endCache();
+endif;?>
 <section class="form">
     <?if(!empty($images)):?>
     <div class="form-block__image invis">
@@ -25,7 +27,7 @@ if(!empty($states)):?>
     <div class="wrap">
         <div class="form-block">
             <?$form = ActiveForm::begin([
-                'options' => ['class' => 'form-block__action'],
+                'options' => ['class' => 'form-block__action '],
                 'fieldConfig' => [
                     'errorOptions' => ['class' => 'error']
                 ],
@@ -38,7 +40,7 @@ if(!empty($states)):?>
                         <?= $form->field($model, 'name')->textInput(['id' => 'name', 'placeholder' => 'Ваше имя'])->label(false)?>
                     </div>
                     <div class="form-block__input">
-                        <?= $form->field($model, 'phone')->textInput(['id' => 'cphones', 'placeholder' => 'Номер телефона'])->label(false)?>
+                        <?= $form->field($model, 'phone')->textInput(['id' => 'phone', 'placeholder' => 'Номер телефона', 'maxlength' => 18])->label(false)?>
                     </div>
                     <div class="form-block__input">
                         <?= $form->field($model, 'email')->textInput(['id' => 'email', 'placeholder' => 'Ваш email'])->label(false)?>
@@ -86,5 +88,4 @@ if(!empty($states)):?>
     </div>
 </div>
 
-<?    $this->endCache();
-endif;?>
+

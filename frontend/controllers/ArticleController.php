@@ -25,6 +25,7 @@ class ArticleController extends AppControllers
     {
         $this->contacts = $this->getContact();
         $this->page = $this->getPage('article');
+        $this->setMeta('Articles');
         $categories = $this->category->getAll();
         $question = $this->getPage('article/question');
         return $this->render('index', compact('categories', 'question'));
@@ -33,6 +34,8 @@ class ArticleController extends AppControllers
     public function actionState($id)
     {
         $this->page = $this->state->get($id);
+        $this->setMeta('State');
+
 
         return $this->render('state', [
             'page' => $this->page,
@@ -43,6 +46,8 @@ class ArticleController extends AppControllers
     {
         $this->contacts = $this->getContact();
         $this->page = $this->getPage('article/question');
+        $this->setMeta('Questions');
+
         $questions = $this->questions->getAll();
         return $this->render('question', compact('questions'));
     }

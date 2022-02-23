@@ -22,6 +22,7 @@ class ProjectController extends AppControllers
     {
         $this->page = $this->getPage('project');
         $this->contacts = $this->getContact();
+        $this->setMeta('Projects');
         $filters = $this->filters->getAll();
         $isActive = FilterRepository::countFilters($this->request->get('filter'));
         $projects = $this->projects->pagination($this->projects->getProjects($isActive));

@@ -111,7 +111,6 @@ let recallmodal = document.querySelector('.recallmodal')
 let exitmodal = document.querySelector('.recallmodal-block__exit')
 let openmodal = document.querySelectorAll('.recall-block__readmore')
 
-
 if (openmodal)
   openmodal.forEach(function (entrys) {
     entrys.addEventListener('click', function () {
@@ -119,7 +118,6 @@ if (openmodal)
       document.body.style.overflow = "hidden"
     });
   });
-
 
 if (exitmodal) {
   exitmodal.addEventListener('click', function () {
@@ -139,9 +137,6 @@ if (menuBtn) {
     document.body.style.overflow = "hidden"
   })
 }
-
-
-
 
 const hideMenu = document.querySelector('.menu-block')
 const menuBg = document.querySelector('.menu-bg')

@@ -39,6 +39,7 @@ class HomeController extends AppControllers
     {
         $this->contacts = $this->getContact();
         $this->page = $this->getPage('');
+        $this->setMeta('ARTICOMFORT');
         $filters = $this->filters->getFilter();
         $projects = $this->projects->getProjectPopular();
         return $this->render('index', compact('filters', 'projects'));
@@ -48,6 +49,7 @@ class HomeController extends AppControllers
     {
         $this->contacts = $this->getContact();
         $this->page = $this->getPage('home/about');
+        $this->setMeta('About');
         $states = $this->about_us->getAll();
         $images = $this->contactImages->getContacts();
         $model = new ReviewForm();

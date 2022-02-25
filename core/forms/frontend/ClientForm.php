@@ -10,6 +10,7 @@ class ClientForm extends Model
     public $phone;
     public $material;
     public $status;
+    public $verifyCode;
 
     public function rules()
     {
@@ -19,6 +20,7 @@ class ClientForm extends Model
             [['name'], 'string', 'min' => 2, 'tooShort' => 'Минимум 2 символа'],
             ['material', 'string'],
             ['status', 'boolean'],
+            ['verifyCode', 'captcha', 'captchaAction' => 'home/captcha'],
         ];
     }
 

@@ -1,5 +1,6 @@
 <div class="modal-block__form">
-    <? use yii\helpers\Html;
+    <? use yii\captcha\Captcha;
+    use yii\helpers\Html;
     use yii\widgets\ActiveForm;
 
     $form = ActiveForm::begin([
@@ -24,6 +25,14 @@
     <div class="form-block__inputs">
         <div class="form-block__input h20">
             <?= $form->field($model, 'material')->dropDownList($materials, ['prompt' => 'Материал'])->label(false)?>
+        </div>
+    </div>
+    <div class="form-block__inputs">
+        <div class="form-block__input h20">
+            <?= $form->field($model, 'verifyCode')->widget(Captcha::class, [
+                'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-3">{input}</div></div>',
+                'captchaAction' => 'home/captcha',
+            ])->label(false) ?>
         </div>
     </div>
     <div class="form-block__btn">

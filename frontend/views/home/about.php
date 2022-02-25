@@ -1,4 +1,5 @@
-<? use yii\helpers\Html;
+<? use yii\captcha\Captcha;
+use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 if ($this->beginCache('about_page', ['duration' => 3600*24*30])):
@@ -18,6 +19,9 @@ if(!empty($states)):?>
 <?endif;?>
     <?    $this->endCache();
 endif;?>
+<!--<h1>
+<?/*=Yii::$app->cache->get('banClient')*/?>
+</h1>-->
 <section class="form">
     <?if(!empty($images)):?>
     <div class="form-block__image invis">
@@ -48,6 +52,14 @@ endif;?>
                 </div>
                 <div class="form-block__textarea">
                     <?= $form->field($model, 'subject')->textarea(['cols' => 30, 'rows' => 10, 'placeholder' => 'Напишите нам'])->label(false)?>
+                </div>
+                <div class="form-block__inputs">
+                <div class="form-block__input">
+                    <?= $form->field($model, 'verifyCode')->widget(Captcha::class, [
+                        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-3">{input}</div></div>',
+                        'captchaAction' => 'home/captcha'
+                    ])->label(false) ?>
+                </div>
                 </div>
                 <div class="form-block__btn">
                     <?= Html::submitButton('Отправить', ['class' => 'form-block__button disabled', 'id' => 'submit']) ?>

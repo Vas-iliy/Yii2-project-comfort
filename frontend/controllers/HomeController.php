@@ -32,6 +32,13 @@ class HomeController extends AppControllers
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'foreColor' => 0xFE980F, // цвет символов
+                'minLength' => 5, // минимальное количество символов
+                'maxLength' => 8, // максимальное
+                'offset' => 10, // расстояние между символами (можно отрицательное)
+            ],
         ];
     }
 

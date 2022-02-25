@@ -10,6 +10,7 @@ class ReviewForm extends Model
     public $email;
     public $phone;
     public $subject;
+    public $verifyCode;
 
     public function rules()
     {
@@ -17,7 +18,8 @@ class ReviewForm extends Model
             [['name', 'phone', 'email' ,'subject'], 'required' , 'message' => 'Поле не заполнено'],
             [['phone'], 'string', 'min' => 18, 'max' => 18,  'tooShort' => 'Введите номер полностью',  'tooLong' => 'Введите номер полностью'],
             [['name'], 'string', 'min' => 2, 'tooShort' => 'Минимум 2 символа'],
-            ['email', 'email', 'message' => 'Введите правильный email']
+            ['email', 'email', 'message' => 'Введите правильный email'],
+            ['verifyCode', 'captcha', 'captchaAction' => 'home/captcha'],
         ];
     }
 

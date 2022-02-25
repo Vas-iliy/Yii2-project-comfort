@@ -21,7 +21,7 @@ class ClientService
         if (empty($this->clients->isActive($form->phone))) {
             $client = Client::client($form->name, $form->phone, $form->material);
             $this->clients->save($client);
-            $sent = \Yii::$app->mailer
+            /*$sent = \Yii::$app->mailer
                 ->compose(
                     ['html' => 'client-html', 'text' => 'client-text'],
                     ['model' => $form]
@@ -29,10 +29,9 @@ class ClientService
                 ->setTo(Yii::$app->params['adminEmail'])
                 ->setSubject('Потенциальный клиент: ' . $form->name)
                 ->send();
-            if (!$sent) throw new \RuntimeException('Sending error.');
+            if (!$sent) throw new \RuntimeException('Sending error.');*/
             return $client;
         }
-        \Yii::$app->session->setFlash('success', 'error');
         return false;
     }
 

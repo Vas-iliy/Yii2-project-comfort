@@ -17,8 +17,12 @@ class ReviewService
 
     public function create(ReviewForm $form)
     {
-        $review = Review::review($form->name, $form->phone, $form->email, $form->subject);
-        $this->reviews->save($review);
-        return $review;
+        if (empty($this->reviews->isActive($form->phone))) {
+            $review = Review::review($form->name, $form->phone, $form->email, $form->subject);
+            $this->reviews->save($review);
+            return $review;
+        }
+        return false;
     }
+
 }

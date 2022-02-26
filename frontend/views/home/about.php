@@ -53,14 +53,7 @@ endif;?>
                 <div class="form-block__textarea">
                     <?= $form->field($model, 'subject')->textarea(['cols' => 30, 'rows' => 10, 'placeholder' => 'Напишите нам'])->label(false)?>
                 </div>
-                <div class="form-block__inputs">
-                <div class="form-block__input">
-                    <?= $form->field($model, 'verifyCode')->widget(Captcha::class, [
-                        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-3">{input}</div></div>',
-                        'captchaAction' => 'home/captcha'
-                    ])->label(false) ?>
-                </div>
-                </div>
+                <?= $form->field($model, 'reCaptcha')->widget(\kekaadrenalin\recaptcha3\ReCaptchaWidget::class) ?>
                 <div class="form-block__btn">
                     <?= Html::submitButton('Отправить', ['class' => 'form-block__button disabled', 'id' => 'submit']) ?>
                 </div>

@@ -27,14 +27,7 @@
             <?= $form->field($model, 'material')->dropDownList($materials, ['prompt' => 'Материал'])->label(false)?>
         </div>
     </div>
-    <div class="form-block__inputs">
-        <div class="form-block__input h20">
-            <?= $form->field($model, 'verifyCode')->widget(Captcha::class, [
-                'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-3">{input}</div></div>',
-                'captchaAction' => 'home/captcha',
-            ])->label(false) ?>
-        </div>
-    </div>
+    <?= $form->field($model, 'reCaptcha')->widget(\kekaadrenalin\recaptcha3\ReCaptchaWidget::class) ?>
     <div class="form-block__btn">
         <?= Html::submitButton('Отправить', ['class' => 'form-block__button small disabled', 'id' => 'submit']) ?>
     </div>

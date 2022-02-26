@@ -2,6 +2,7 @@
 
 namespace core\forms\frontend;
 
+use kekaadrenalin\recaptcha3\ReCaptchaValidator;
 use yii\base\Model;
 
 class ClientForm extends Model
@@ -10,7 +11,7 @@ class ClientForm extends Model
     public $phone;
     public $material;
     public $status;
-    public $verifyCode;
+    public $reCaptcha;
 
     public function rules()
     {
@@ -20,7 +21,7 @@ class ClientForm extends Model
             [['name'], 'string', 'min' => 2, 'tooShort' => 'Минимум 2 символа'],
             ['material', 'string'],
             ['status', 'boolean'],
-            ['verifyCode', 'captcha', 'captchaAction' => 'home/captcha'],
+            [['reCaptcha'], ReCaptchaValidator::class, 'acceptance_score' => 0]
         ];
     }
 

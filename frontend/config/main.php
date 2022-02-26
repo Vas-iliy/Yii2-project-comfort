@@ -19,6 +19,12 @@ return [
     'layout' => 'comfort',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+
+        'reCaptcha3' => [
+            'class'      => 'kekaadrenalin\recaptcha3\ReCaptcha',
+            'site_key'   => '6LcNBqEeAAAAAKmPway_7P7jLHY6DlHnKXB4Pwcj',
+            'secret_key' => '6LcNBqEeAAAAAACZEA90LZuvTrzAOqvNLlIqQAWq',
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
             'baseUrl' => '',

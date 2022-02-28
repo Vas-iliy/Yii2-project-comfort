@@ -28,7 +28,7 @@ class ServiceController extends AppControllers
     {
         $this->page = $this->getPage('service');
         $services = $this->services->getAll();
-        $this->setMeta('Services');
+        $this->setMeta('Услуги');
         $advantage = $this->getPage('advantage');
         $advantages = $this->advantages->getAll();
         $workImages = $this->workImages->getAll();

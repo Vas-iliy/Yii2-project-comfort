@@ -25,7 +25,7 @@ class ArticleController extends AppControllers
     {
         $this->contacts = $this->getContact();
         $this->page = $this->getPage('article');
-        $this->setMeta('Articles');
+        $this->setMeta('Полезные статьи');
         $categories = $this->category->getAll();
         $question = $this->getPage('article/question');
         return $this->render('index', compact('categories', 'question'));
@@ -46,7 +46,7 @@ class ArticleController extends AppControllers
     {
         $this->contacts = $this->getContact();
         $this->page = $this->getPage('article/question');
-        $this->setMeta('Questions');
+        $this->setMeta('Вопросы');
 
         $questions = $this->questions->getAll();
         return $this->render('question', compact('questions'));

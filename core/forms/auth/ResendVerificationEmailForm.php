@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace core\forms\auth;
 
 use yii\base\Model;
@@ -16,4 +16,4 @@ class ResendVerificationEmailForm extends Model
             ['email', 'email'],
         ];
     }
-}
+}*/

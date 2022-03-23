@@ -1,0 +1,90 @@
+a:2:{i:0;a:2:{i:0;s:7859:"            <section class="projects">
+            <div class="wrap">
+                <div class="projects-block">
+                    <span class="title">Каталог наших <span class="color-text"> проектов</span></span>
+                    <div class="projects-block__wrap">
+                        <div class="projects-block__items first">
+                            <div class="projects-block__hidden">
+                                <div class="projects-block__item bigitem">
+                                    <div class="projects-block__image">
+                                        <img class="image" src="http://files/origin/filters/9.png" alt="">                                        <a href="/project?filter=9">
+                                            <div class="projects-block__title big">
+                                                <span class="projects-block__name bigT">Из профилированного бруса</span>
+                                                <img src="http://files/origin/icons/arrow-icon.svg" alt="">                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="projects-block__item hidden">
+                                    <div class="projects-block__image">
+                                        <img class="image" src="http://files/origin/filters/10.png" alt="">                                        <a href="/project?filter=10">
+                                            <div class="projects-block__title big">
+                                                <span class="projects-block__name bigT">Бани</span>
+                                                <img src="http://files/origin/icons/arrow-icon.svg" alt="">                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="projects-block__cards">
+                                <div class="projects-block__item mini visible">
+                                    <div class="projects-block__image">
+                                        <img class="image" src="http://files/origin/filters/10.png" alt="">                                        <a href="/project?filter=10">
+                                            <div class="projects-block__title big">
+                                                <span class="projects-block__name bigT">Бани</span>
+                                                <img src="http://files/origin/icons/arrow-icon.svg" alt="">                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="projects-block__item mini">
+                                    <div class="projects-block__image">
+                                        <img class="image" src="http://files/origin/filters/11.png" alt="">                                        <a href="/project?filter=11">
+                                            <div class="projects-block__title big">
+                                                <span class="projects-block__name bigT">Из клееного бруса</span>
+                                                <img src="http://files/origin/icons/arrow-icon.svg" alt="">                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="projects-block__item hidden">
+                                    <div class="projects-block__image">
+                                        <img class="image" src="http://files/origin/filters/12.png" alt="">                                        <a href="/project?filter=12">
+                                            <div class="projects-block__title big">
+                                                <span class="projects-block__name bigT">Комбинированные дома</span>
+                                                <img src="http://files/origin/icons/arrow-icon.svg" alt="">                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="projects-block__items">
+                            <div class="projects-block__item visible">
+                                <div class="projects-block__image">
+                                    <img class="image" src="http://files/origin/filters/12.png" alt="">                                    <a href="/project?filter=12">
+                                        <div class="projects-block__title big">
+                                            <span class="projects-block__name bigT">Комбинированные дома</span>
+                                            <img src="http://files/origin/icons/arrow-icon.svg" alt="">                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                                                                                                                                                                                                                                                                                                                                                <div class="projects-block__item">
+                                        <div class="projects-block__image">
+                                            <img class="image" src="http://files/origin/filters/13.png" alt="">                                            <a href="/project?filter=13">
+                                                <div class="projects-block__title">
+                                                    <span class="projects-block__name">Каркасные дома</span>
+                                                    <img src="http://files/origin/icons/arrow-icon.svg" alt="">                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                                                                                                                <div class="projects-block__item">
+                                        <div class="projects-block__image">
+                                            <img class="image" src="http://files/origin/filters/14.png" alt="">                                            <a href="/project?filter=14">
+                                                <div class="projects-block__title">
+                                                    <span class="projects-block__name">Из газобетона</span>
+                                                    <img src="http://files/origin/icons/arrow-icon.svg" alt="">                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                                                                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    ";i:1;N;}i:1;N;}

@@ -63,6 +63,8 @@ return [
                 'signup' => 'auth/auth/signup',
                 'login' => 'auth/auth/login',
 
+                'GET refresh' => 'auth/auth/refresh-token',
+
                 'GET project' => 'project/index',
                 'project/create' => 'project/create',
                 'GET project/<id:\d+>' => 'project/update',
@@ -141,22 +143,22 @@ return [
         ],
 
     ],
-    /*'as authenticator' => [
+    'as authenticator' => [
         'class' => '\yii\filters\auth\CompositeAuth',
-        'except' => ['auth/auth/signup', 'auth/auth/login'],
+        'except' => ['auth/auth/signup', 'auth/auth/login', 'auth/auth/refresh-token'],
         'authMethods' => [
             ['class' => 'yii\filters\auth\HttpBearerAuth'],
         ]
     ],
     'as access' => [
         'class' => 'yii\filters\AccessControl',
-        'except' => ['auth/auth/signup', 'auth/auth/login'],
+        'except' => ['auth/auth/signup', 'auth/auth/login', 'auth/auth/refresh-token'],
         'rules' => [
             [
                 'allow' => true,
                 'roles' => ['@'],
             ],
         ],
-    ],*/
+    ],
     'params' => $params,
 ];

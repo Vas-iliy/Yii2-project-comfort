@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace backend\controllers\auth;
 
 use core\forms\auth\PasswordResetRequestForm;
@@ -55,4 +55,4 @@ class ResetController extends Controller
 
         return $form;
     }
-}
+}*/

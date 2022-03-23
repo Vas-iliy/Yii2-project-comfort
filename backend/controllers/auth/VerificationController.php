@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace backend\controllers\auth;
 
 use core\forms\auth\ResendVerificationEmailForm;
@@ -49,4 +49,4 @@ class VerificationController extends Controller
 
         return $form;
     }
-}
+}*/

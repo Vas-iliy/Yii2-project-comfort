@@ -26,11 +26,11 @@ class AuthService
         $this->users->condition(['username' => $form->username]);
         $this->users->condition(['email' => $form->email]);
         $user = $this->users->save(User::signup($form->username, $form->email, $form->password));
-        $this->sendEmail($user, $form);
+        //$this->sendEmail($user, $form);
         return $user;
     }
 
-    public function sendEmail(User $user, SignupForm $form)
+    /*public function sendEmail(User $user, SignupForm $form)
     {
         $send = Yii::$app->mailer
             ->compose(
@@ -44,7 +44,7 @@ class AuthService
         if (!$send) {
             throw new \RuntimeException('None');
         }
-    }
+    }*/
 
     public function auth(LoginForm $form)
     {
@@ -53,7 +53,7 @@ class AuthService
             throw new \DomainException('Undefined password');
         }
         $token = Token::generateToken($user['id']);
-        $tokens = $this->tokens->save($token);
-        return $tokens;
+        $this->tokens->save($token);
+        return $token;
     }
 }

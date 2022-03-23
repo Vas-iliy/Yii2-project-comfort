@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace core\forms\auth;
 
 use yii\base\Model;
@@ -17,4 +17,4 @@ class ResetPasswordForm extends Model
         ];
     }
 
-}
+}*/

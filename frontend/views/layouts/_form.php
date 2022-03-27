@@ -23,8 +23,8 @@
     </div>
     <span class="modal-block__title">Определились с материалом?</span>
     <div class="form-block__inputs">
-        <div class="form-block__input h20 select_input">
-            <?= $form->field($model, 'material')->dropDownList($materials, ['prompt' => 'Материал'])->label(false)?>
+        <div class="">
+            <?= $form->field($model, 'material')->dropDownList($materials, ['prompt' => 'Материал', 'class' => 'form-control select_input'])->label(false)?>
         </div>
     </div>
     <?= $form->field($model, 'reCaptcha')->widget(\kekaadrenalin\recaptcha3\ReCaptchaWidget::class) ?>

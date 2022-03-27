@@ -23,7 +23,7 @@
     </div>
     <span class="modal-block__title">Определились с материалом?</span>
     <div class="form-block__inputs">
-        <div class="form-block__input h20">
+        <div class="form-block__input h20 select_input">
             <?= $form->field($model, 'material')->dropDownList($materials, ['prompt' => 'Материал'])->label(false)?>
         </div>
     </div>
